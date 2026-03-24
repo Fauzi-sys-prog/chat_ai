@@ -65,6 +65,7 @@ This project demonstrates how an AI-assisted product can support building-plan r
 - Demo presentation script: [DEMO_SCRIPT.md](./DEMO_SCRIPT.md)
 - Interview answers: [INTERVIEW_QA.md](./INTERVIEW_QA.md)
 - Screenshot guide for GitHub and recruiter presentations: [SCREENSHOT_GUIDE.md](./SCREENSHOT_GUIDE.md)
+- Premium screenshot captions for GitHub and portfolios: [SCREENSHOT_CAPTIONS.md](./SCREENSHOT_CAPTIONS.md)
 - Deployment and production checklist: [DEPLOYMENT.md](./DEPLOYMENT.md)
 - Product blueprint for the building-plan automation direction: [BUILDING_PLAN_AUTOMATION_BLUEPRINT.md](./BUILDING_PLAN_AUTOMATION_BLUEPRINT.md)
 
