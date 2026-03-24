@@ -41,6 +41,29 @@ This project demonstrates how an AI-assisted product can support building-plan r
 
 Add your screenshots to `docs/screenshots/` and keep the filenames below so the preview section stays plug-and-play.
 
+`Recommended final screenshot set`
+
+Use this exact set for the strongest first pass on GitHub:
+
+1. `landing-signin.png`
+   Use the hero screen with the large product headline.
+2. `project-dashboard.png`
+   Use the project portfolio and active project summary screen.
+3. `plan-intake.png`
+   Use the plan intake and code knowledge view with the `Eyes - Brain - Hands` board visible.
+4. `review-chat.png`
+   Retake this one so it shows both a review prompt and a real AI answer.
+5. `observability-audit.png`
+   Retake this one from the audit logs, request logs, or usage panel.
+
+`Current status`
+
+- Ready now: `landing-signin.png`
+- Ready now: `project-dashboard.png`
+- Usable now: `plan-intake.png`
+- Still needed: `review-chat.png`
+- Still needed: `observability-audit.png`
+
 ### 1. Landing and Sign-in
 
 ![Landing and sign-in](./docs/screenshots/landing-signin.png)
