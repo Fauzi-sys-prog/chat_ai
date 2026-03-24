@@ -1,60 +1,60 @@
 ## Demo Script
 
-### Tujuan Demo
+### Demo goal
 
-Menunjukkan bahwa produk ini adalah `building plan automation workspace` yang membantu tim membaca plan, memuat referensi FBC atau NEC, lalu mengubah review AI menjadi checklist dan tindak lanjut teknis.
+Show that this product is a `building plan automation workspace` that helps teams read plans, load FBC or NEC references, and turn AI review output into checklists and technical next steps.
 
-### Opening 20-30 Detik
+### 20-30 second opening
 
-`Ini adalah Building Plan Automation MVP. Tujuannya untuk membantu tim desain, MEP, atau reviewer kode memusatkan intake drawing, lookup aturan bangunan, dan handoff review ke engineer dalam satu dashboard. Jadi workflow yang biasanya tercecer di file plan, PDF kode, dan catatan manual bisa dilihat dan ditindaklanjuti dari satu tempat.`
+`This is the Building Plan Automation MVP. It is designed to help design teams, MEP reviewers, or code reviewers centralize drawing intake, building-code lookup, and review handoff to engineers inside one dashboard. Work that usually lives across plan files, code PDFs, and manual notes can now be reviewed and acted on in one place.`
 
-### Flow Demo 2 Menit
+### 2-minute demo flow
 
-1. Tunjukkan landing dan login.
-2. Jelaskan bahwa produk ini menampilkan `AI review workflow`, bukan chat generik.
-3. Masuk ke proyek aktif dan tunjukkan panel `Mata - Otak - Tangan`.
-4. Upload satu file plan, drawing, atau spesifikasi.
-5. Tunjukkan bahwa file langsung masuk ke `plan intake dan code knowledge`.
-6. Klik prompt cepat:
-   `Baca plan ini dan identifikasi ruang, fixture, dan area yang butuh review MEP.`
-7. Lanjut dengan prompt:
-   `Susun checklist FBC dan NEC yang paling relevan untuk proyek ini.`
-8. Tutup dengan prompt:
-   `Ubah temuan review ini menjadi action items yang bisa dipakai engineer lapangan.`
-9. Jika waktunya cukup, buka analytics, audit trail, atau request log untuk menunjukkan kesiapan produk.
+1. Show the landing page and sign-in experience.
+2. Explain that the product demonstrates an `AI review workflow`, not a generic chat interface.
+3. Open the active project and highlight the `Eyes - Brain - Hands` board.
+4. Upload a plan, drawing, or specification file.
+5. Show that the file immediately appears in the `plan intake and code knowledge` area.
+6. Click the quick prompt:
+   `Read this plan and identify rooms, fixtures, and areas that need MEP review.`
+7. Follow with:
+   `Build the most relevant FBC and NEC checklist for this project.`
+8. Close with:
+   `Turn these review findings into action items that an engineer in the field can use.`
+9. If time allows, open analytics, the audit trail, or request logs to show operational readiness.
 
-### Narasi Saat Demo
+### Narration during the demo
 
-Saat menunjukkan panel utama:
+When showing the main panel:
 
-`Saya memposisikan produk ini sebagai workspace review proyek. Jadi user tidak cuma ngobrol dengan AI, tapi menjalankan alur intake plan, code lookup, dan handoff dalam satu tempat.`
+`I positioned this as a project review workspace. The user is not just chatting with AI. They are running a workflow that combines plan intake, code lookup, and technical handoff in one place.`
 
-Saat menunjukkan file upload:
+When showing file upload:
 
-`Di tahap ini file proyek masuk sebagai konteks kerja. Nanti AI bisa menggunakan plan, spesifikasi, atau referensi kode sebagai dasar review.`
+`At this step, the project file becomes working context. The AI can then use plans, specifications, or code references as the basis for the review.`
 
-Saat menunjukkan prompt checklist:
+When showing the checklist prompt:
 
-`Bagian ini penting karena menunjukkan bahwa AI dipakai untuk reasoning berbasis referensi, bukan sekadar generative text tanpa konteks.`
+`This matters because it shows AI being used for reference-grounded reasoning, not just generic text generation without context.`
 
-Saat menunjukkan action items:
+When showing action items:
 
-`Nilai akhirnya bukan hanya menemukan masalah, tetapi mengubah hasil review menjadi catatan yang bisa langsung diteruskan ke engineer atau drafter.`
+`The end value is not only to identify issues, but to convert the review into notes that can be passed directly to an engineer or drafter.`
 
-### Kalau Masih Pakai Demo Mode
+### If demo mode is still active
 
-Gunakan kalimat ini:
+Use this line:
 
-`Untuk presentasi ini saya aktifkan demo-safe mode agar workflow tetap stabil walaupun layanan AI live sedang dibatasi. Dengan begitu stakeholder tetap bisa melihat alur produk end-to-end tanpa terganggu dependency eksternal.`
+`For this walkthrough I enabled the demo-safe mode so the workflow stays stable even if the live AI service is limited. That lets stakeholders see the full product flow without being blocked by an external dependency.`
 
-### Prompt Demo Yang Bagus
+### Strong demo prompts
 
-- `Baca plan ini dan identifikasi ruang, fixture, dan area yang butuh review MEP.`
-- `Susun checklist FBC dan NEC yang paling relevan untuk proyek ini.`
-- `Jelaskan alur Vision -> Code -> Routing untuk plan ini secara praktis.`
-- `Ringkas dokumen referensi ini untuk reviewer yang baru join ke proyek.`
-- `Ubah temuan review ini menjadi action items yang bisa dipakai engineer lapangan.`
+- `Read this plan and identify rooms, fixtures, and areas that need MEP review.`
+- `Build the most relevant FBC and NEC checklist for this project.`
+- `Explain the Vision -> Code -> Routing workflow for this plan in practical terms.`
+- `Summarize this reference file for a reviewer who just joined the project.`
+- `Turn these review findings into action items that an engineer in the field can use.`
 
-### Closing 20 Detik
+### 20-second closing
 
-`Jadi nilai utama produk ini adalah menyatukan intake drawing, lookup kode bangunan, dan AI-assisted review dalam satu dashboard yang lebih operasional. Dari sisi engineering, saya juga sengaja menyiapkan auth, data layer, observability, dan fallback mode agar produk ini terasa realistis, bukan sekadar prototype UI.`
+`The core value of this product is that it brings drawing intake, building-code lookup, and AI-assisted review into one more operational dashboard. From an engineering standpoint, I also designed auth, the data layer, observability, and fallback mode so the product feels realistic, not just like a prototype UI.`

@@ -1,44 +1,44 @@
 ## Interview Q&A
 
-### Jelaskan project ini secara singkat
+### Explain this project briefly
 
-`Saya membangun internal AI knowledge workspace untuk membantu tim mencari SOP, merangkum dokumen, dan menjawab pertanyaan operasional lebih cepat. Stack-nya memakai Next.js dan TypeScript di frontend, FastAPI dan SQLAlchemy di backend, PostgreSQL untuk data utama, dan jalur AI yang siap ke OpenAI dengan fallback demo mode agar sistem tetap stabil saat dependency eksternal bermasalah.`
+`I built an AI-assisted building plan review workspace to help teams intake plans, load FBC or NEC references, and turn review findings into technical action items faster. The stack uses Next.js and TypeScript on the frontend, FastAPI and SQLAlchemy on the backend, PostgreSQL for the core data layer, and an OpenAI-ready AI path with demo fallback so the system remains stable when external dependencies are unavailable.`
 
-### Kenapa pakai FastAPI dan bukan Node backend?
+### Why did you choose FastAPI instead of a Node backend?
 
-`Karena saya ingin backend yang kuat untuk API, pemrosesan dokumen, dan integrasi AI. FastAPI memberi struktur yang cepat, type-aware, dan enak untuk service semacam ini.`
+`I wanted a backend that is strong for APIs, document processing, and AI integration. FastAPI gives a fast, type-aware structure that fits this kind of service very well.`
 
-### Kenapa pindah ke PostgreSQL?
+### Why move to PostgreSQL?
 
-`Karena kebutuhan aplikasinya sudah lebih dari sekadar prototype lokal. Ada auth, workspace, documents, logs, usage tracking, dan data relasional yang lebih cocok dikelola dengan PostgreSQL daripada SQLite.`
+`The application already outgrew the shape of a lightweight local prototype. It has auth, projects, documents, logs, usage tracking, and relational data that are better handled by PostgreSQL than SQLite.`
 
-### Kenapa tidak pakai Prisma?
+### Why not use Prisma?
 
-`Karena backend ini berbasis Python. SQLAlchemy dan Alembic lebih natural, lebih konsisten, dan tidak menambah lapisan ORM kedua yang tidak perlu.`
+`Because this backend is Python-based. SQLAlchemy and Alembic are more natural here, stay consistent with the rest of the backend, and avoid introducing a second ORM layer that is not needed.`
 
-### Bagaimana alur AI di project ini?
+### How does the AI flow work in this project?
 
-`User mengirim prompt, backend menyimpan message, lalu jika ada dokumen workspace sistem membangun context dari chunks dokumen. Context itu dikirim ke model AI agar jawaban lebih relevan. Jika layanan AI live tidak tersedia, backend otomatis berpindah ke demo mode agar flow produk tetap aman untuk diuji atau dipresentasikan.`
+`The user sends a review prompt, the backend stores the message, and if project documents exist, the system builds context from document chunks. That context is then sent to the AI model to make the response more relevant. If the live AI path is unavailable, the backend automatically falls back to demo mode so the product flow stays stable for testing and presentations.`
 
-### Apa tantangan terbesarnya?
+### What was the hardest part?
 
-`Menjaga pengalaman aplikasi tetap stabil walaupun third-party AI provider bisa gagal karena billing, rate limit, atau koneksi. Karena itu saya tambahkan fallback demo mode, error handling yang lebih jelas, dan observability supaya masalahnya cepat diisolasi.`
+`Keeping the product usable even when a third-party AI provider can fail because of billing, rate limits, or connectivity. That is why I added a demo fallback, clearer error handling, and observability so the problem can be isolated quickly.`
 
-### Apa yang menunjukkan ini bukan sekadar chatbot?
+### What proves this is not just a chatbot?
 
-- Ada workspace isolation.
-- Ada document ingestion dan chunking.
-- Ada usage tracking dan cost estimation.
-- Ada request logs dan audit logs.
-- Ada API-key access untuk integrasi B2B/internal.
+- It has workspace isolation
+- It includes document ingestion and chunking
+- It includes usage tracking and cost estimation
+- It includes request logs and audit logs
+- It includes API-key access for internal or B2B integrations
 
-### Kalau ditanya “bagian apa yang paling kamu banggakan?”
+### What part are you most proud of?
 
-`Saya paling bangga pada arsitektur dan product judgment-nya. Saya tidak hanya membuat chat bekerja, tetapi juga memastikan sistem tetap bisa digunakan saat AI live gagal, sehingga produk tetap credible untuk user dan stakeholder.`
+`I am most proud of the architecture and product judgment. I did not only make chat work. I made sure the system stays usable when live AI fails, so the product still feels credible to users and stakeholders.`
 
-### Kalau ditanya “apa next step project ini?”
+### What would be the next step for the project?
 
-- Menyalakan AI live dengan billing aktif atau provider alternatif.
-- Meningkatkan retrieval berbasis dokumen agar jawaban lebih grounded.
-- Menambah role-based governance dan analytics yang lebih dalam.
-- Menyiapkan deployment environment untuk staging/production.
+- Turn on live AI with active billing or an alternative provider
+- Improve document-grounded retrieval so review output is even more specific
+- Add deeper governance and analytics
+- Prepare a true staging or production deployment environment

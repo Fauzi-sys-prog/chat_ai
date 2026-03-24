@@ -1,50 +1,50 @@
-## BW Water Knowledge Assistant
+## Building Plan Automation Workspace
 
-BW Water Knowledge Assistant adalah aplikasi internal knowledge workspace yang membantu tim menemukan SOP, merangkum dokumen, dan menjawab pertanyaan operasional lebih cepat dalam satu antarmuka.
+The Building Plan Automation Workspace is an internal review product that helps teams intake plans, load code references, and turn technical findings into action-ready review output inside one interface.
 
-### Value Proposition
+### Value proposition
 
-- Mengurangi waktu mencari informasi di file PDF, catatan tim, dan dokumen operasional.
-- Membantu tim mendapatkan jawaban awal yang lebih konsisten untuk SOP, kebijakan, dan tindak lanjut kerja.
-- Menyatukan chat AI, dokumen workspace, observability, audit log, dan kontrol workspace dalam satu produk.
+- Reduce the time spent reading plans, opening code references, and writing manual review notes
+- Help teams produce more consistent first-pass reviews for code compliance and MEP follow-up work
+- Combine AI review, project documents, observability, audit logs, and workspace controls inside one product
 
-### Positioning Untuk CV
+### Positioning for a CV
 
-Gunakan versi singkat ini:
+Use this short version:
 
-`Built an internal AI knowledge workspace using Next.js, TypeScript, FastAPI, SQLAlchemy, PostgreSQL, and OpenAI-ready retrieval workflows to help teams search SOPs, summarize documents, and answer operational questions faster.`
+`Built an AI-assisted building plan review workspace using Next.js, TypeScript, FastAPI, SQLAlchemy, PostgreSQL, and OpenAI-ready retrieval workflows to help teams intake plans, load code references, and convert review findings into technical action items.`
 
-Gunakan versi yang lebih kuat ini kalau interviewer suka detail:
+Use this more detailed version when the interviewer wants depth:
 
-`Designed and built a production-style internal knowledge assistant with authentication, workspace isolation, document ingestion, semantic chunking, usage tracking, audit logs, API-key access, and AI chat fallback/demo mode for reliable stakeholder demos.`
+`Designed and built a production-style building-plan review product with authentication, workspace isolation, document ingestion, semantic chunking, usage tracking, audit logs, API-key access, and a demo-safe AI fallback for stable stakeholder walkthroughs.`
 
-### Positioning Untuk Interview
+### Positioning for interviews
 
-Kalau ditanya "project ini buat apa?", jawab:
+If asked, “What is this project for?”:
 
-`Saya membangun knowledge assistant internal untuk membantu tim operasional dan manajemen menemukan jawaban dari SOP, kebijakan, dan dokumen kerja tanpa harus mencari manual di banyak file. Sistem ini juga tetap usable saat AI provider live tidak tersedia, jadi flow produk tetap stabil untuk demo dan operasional awal.`
+`I built an AI-assisted project review workspace to help design and technical teams centralize plan intake, code lookup, and structured review output. Instead of switching between plan files, code PDFs, and manual notes, the user can work through those steps inside one workflow.`
 
-Kalau ditanya "apa yang membuat project ini kuat?", jawab:
+If asked, “What makes the project strong?”:
 
-- Fullstack end-to-end, bukan cuma UI.
-- Ada auth, workspace, dokumen, chat, observability, audit log, dan usage tracking.
-- Sudah dipindahkan ke PostgreSQL dan migration flow dibersihkan.
-- Ada fallback demo mode agar produk tetap bisa dipresentasikan dengan stabil.
+- It is full-stack end to end, not just a polished UI
+- It includes auth, projects, documents, AI review, observability, audit logs, and usage tracking
+- It is already moved onto a PostgreSQL-ready foundation with a clean migration path
+- It includes a stable demo fallback so the product can still be presented even when live AI is unavailable
 
-### Positioning Untuk Tender / Client Pitch
+### Positioning for client or pitch conversations
 
-Gunakan narasi ini:
+Use this narrative:
 
-`Produk ini dirancang sebagai internal knowledge copilot untuk mempercepat akses ke SOP, kebijakan, dan dokumen perusahaan. Tim tidak perlu membuka banyak file satu per satu. Mereka cukup bertanya, lalu sistem membantu menyusun jawaban awal, ringkasan, dan tindak lanjut berdasarkan knowledge workspace yang tersedia.`
+`This product is designed as an internal building-plan review copilot that speeds up access to plans, code references, and technical review output. Teams do not need to open multiple files one by one. They can intake a plan, ask for structured review support, and generate checklist-style output and action items inside one workspace.`
 
-### Kenapa Ini Menarik Untuk Employer
+### Why this is attractive to employers
 
-- Menunjukkan kemampuan merancang produk, bukan sekadar menyelesaikan task coding kecil.
-- Menunjukkan pemahaman masalah bisnis, UX, backend, data layer, dan AI integration.
-- Menunjukkan engineering judgment karena sistem tetap punya fallback saat third-party AI gagal.
+- It shows product thinking, not just isolated coding tasks
+- It demonstrates business understanding, UX judgment, backend design, data-layer thinking, and AI integration
+- It shows engineering judgment because the system still has a graceful fallback when third-party AI is unavailable
 
-### Kenapa Ini Menarik Untuk Client
+### Why this is attractive to clients
 
-- Use case-nya jelas dan mudah dibayangkan manfaatnya.
-- Bisa dipakai untuk knowledge management, SOP lookup, onboarding, dan support internal.
-- Sudah punya pondasi untuk role-based access, audit trail, dan usage monitoring.
+- The use case is concrete and easy to understand
+- The value proposition is practical: plan intake, review support, code lookup, and handoff workflow
+- The foundation already supports access control, auditability, and operational monitoring

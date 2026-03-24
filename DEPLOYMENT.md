@@ -1,19 +1,19 @@
 # Deployment Guide
 
-Panduan ini dibuat untuk membawa app dari mode lokal/demo ke environment yang lebih production-ready.
+This guide is intended to move the app from local or demo mode into a more production-ready environment.
 
-## 1. Target arsitektur
+## 1. Target architecture
 
-Rekomendasi minimal:
+Minimum recommended setup:
 
-- Frontend: `Next.js` dijalankan dengan `npm run build && npm run start`
+- Frontend: `Next.js` running with `npm run build && npm run start`
 - Backend: `uvicorn backend.main:app`
 - Database: `PostgreSQL`
-- Extension vector: `pgvector`
-- Reverse proxy: `Nginx` atau platform proxy bawaan
-- Process manager: `systemd`, `pm2`, Docker, atau platform managed runtime
+- Vector extension: `pgvector`
+- Reverse proxy: `Nginx` or the platform's built-in proxy
+- Process manager: `systemd`, `pm2`, Docker, or a managed runtime
 
-## 2. Environment yang wajib diisi
+## 2. Required environment variables
 
 Backend:
 
@@ -34,19 +34,19 @@ Frontend:
 PYTHON_API_BASE_URL=https://api.your-domain.com
 ```
 
-Kalau live AI belum aktif, demo mode masih bisa dipakai sebagai fallback.
+If live AI is not active yet, the demo fallback can still be used.
 
 ## 3. Database rollout
 
-1. Jalankan PostgreSQL
-2. Pastikan extension `vector` aktif
-3. Jalankan migrasi:
+1. Start PostgreSQL
+2. Make sure the `vector` extension is enabled
+3. Run migrations:
 
 ```bash
 alembic upgrade head
 ```
 
-4. Cek health backend:
+4. Check backend health:
 
 ```bash
 curl http://127.0.0.1:8000/health
@@ -54,7 +54,7 @@ curl http://127.0.0.1:8000/health
 
 ## 4. Backend startup
 
-Untuk server Linux sederhana:
+For a simple Linux server:
 
 ```bash
 source .venv/bin/activate
@@ -62,7 +62,7 @@ alembic upgrade head
 uvicorn backend.main:app --host 0.0.0.0 --port 8000
 ```
 
-Kalau mau lebih stabil, jalankan di bawah process manager.
+For more stability, run it under a process manager.
 
 ## 5. Frontend startup
 
@@ -72,7 +72,7 @@ npm run build
 npm run start
 ```
 
-Untuk development lokal tetap bisa:
+For local development:
 
 ```bash
 npm run dev
@@ -80,48 +80,48 @@ npm run dev
 
 ## 6. Pre-launch checklist
 
-- `PostgreSQL` aktif dan bisa diakses backend
-- `alembic upgrade head` sukses
-- `OPENAI_API_KEY` valid atau demo mode sudah disetujui untuk presentasi
-- `APP_BASE_URL` sesuai domain frontend
-- `PYTHON_API_BASE_URL` sesuai URL backend
-- endpoint `/health` merespons `200`
-- register/login berhasil
-- create conversation berhasil
-- upload dokumen berhasil
-- chat berhasil
-- request log dan audit log muncul
+- `PostgreSQL` is running and reachable by the backend
+- `alembic upgrade head` succeeds
+- `OPENAI_API_KEY` is valid, or demo mode has been approved for presentations
+- `APP_BASE_URL` matches the frontend domain
+- `PYTHON_API_BASE_URL` matches the backend URL
+- `/health` returns `200`
+- register and sign-in work
+- creating a conversation works
+- document upload works
+- chat works
+- request logs and audit logs are visible
 
 ## 7. Production hardening
 
-Yang paling penting sebelum go-live:
+Most important tasks before go-live:
 
-- pakai domain HTTPS
-- jangan simpan key di frontend
-- isi `ADMIN_EMAILS` dengan email admin yang benar
-- pakai PostgreSQL, jangan SQLite
-- aktifkan backup database
-- rotasi API key kalau pernah tersebar
-- batasi akses admin analytics
-- review quota token dan dokumen per workspace
-- monitor request logs, audit logs, dan error rate
+- use an HTTPS domain
+- never expose secrets in the frontend
+- set `ADMIN_EMAILS` correctly
+- use PostgreSQL, not SQLite
+- enable database backups
+- rotate API keys if they were ever exposed
+- restrict admin analytics access
+- review token and document quotas per workspace
+- monitor request logs, audit logs, and error rates
 
 ## 8. Demo-ready vs live-ready
 
 Demo-ready:
 
-- demo mode aktif
-- OpenAI billing belum harus aktif
-- fokus ke UX, alur dokumen, workspace, dan observability
+- demo mode is active
+- OpenAI billing does not need to be active yet
+- the focus is on UX, document flow, workspace controls, and observability
 
 Live-ready:
 
-- billing/API OpenAI aktif
-- rate limit sudah diperhitungkan
-- email/SMTP siap
-- backup dan monitoring jalan
-- deployment pakai domain dan HTTPS
+- OpenAI billing and API access are active
+- rate limits have been considered
+- email and SMTP are configured
+- backups and monitoring are in place
+- deployment uses a domain and HTTPS
 
-## 9. Narasi yang bisa dipakai saat presentasi
+## 9. Presentation narrative
 
-`Aplikasi ini sudah berjalan end-to-end untuk auth, workspace isolation, document ingestion, observability, dan AI-assisted chat. Untuk demo, sistem punya safe fallback mode. Untuk production, arsitekturnya sudah siap dinaikkan ke PostgreSQL, pgvector, dan live AI provider.`
+`This application already works end to end for auth, workspace isolation, document ingestion, observability, and AI-assisted review chat. For demos, the system includes a safe fallback mode. For production, the architecture is already prepared for PostgreSQL, pgvector, and a live AI provider.`

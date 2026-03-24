@@ -471,78 +471,78 @@ export function ChatApp() {
   const isSimpleWorkspaceMode = true;
   const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? "";
   const isRegisterMode = authMode === "register";
-  const authTitle = isRegisterMode ? "Buat akun reviewer" : "Masuk ke review proyek";
+  const authTitle = isRegisterMode ? "Create your reviewer account" : "Sign in to your project review workspace";
   const authCopy = isRegisterMode
-    ? "Buat akun untuk mulai mengelola proyek, unggah plan, dan jalankan review AI berbasis kode bangunan."
-    : "Masuk ke proyek yang sudah ada. Email dan Google akan mengarah ke akun yang sama bila alamatnya cocok.";
-  const emailSubmitLabel = isRegisterMode ? "Buat akun dengan email" : "Masuk dengan email";
-  const googleSubmitLabel = isRegisterMode ? "Daftar dengan Google" : "Masuk dengan Google";
+    ? "Create an account to manage projects, upload plans, and run AI-assisted building-code reviews."
+    : "Sign in to an existing project. Email and Google will map to the same account when the address matches.";
+  const emailSubmitLabel = isRegisterMode ? "Create account with email" : "Sign in with email";
+  const googleSubmitLabel = isRegisterMode ? "Create account with Google" : "Sign in with Google";
   const googleProvider = authProviders?.google ?? null;
   const googleReady = Boolean(googleClientId && googleProvider?.enabled);
   const googleHelperText = googleProvider?.enabled
     ? googleProvider.description
     : googleProvider?.reason ??
       (googleClientId
-        ? "Google login masih dipersiapkan."
-        : "Google login belum dikonfigurasi di frontend.");
+        ? "Google sign-in is still being prepared."
+        : "Google sign-in is not configured on the frontend yet.");
 
   const quickPrompts = [
-    "Baca plan ini dan identifikasi ruang, fixture, dan area yang butuh review MEP.",
-    "Susun checklist FBC dan NEC yang paling relevan untuk proyek ini.",
-    "Ubah temuan review ini menjadi action items yang bisa dipakai engineer lapangan.",
-    "Ringkas dokumen referensi ini untuk reviewer yang baru join ke proyek.",
-    "Jelaskan alur Vision -> Code -> Routing untuk plan ini secara praktis.",
-    "Jawab dulu secara umum, lalu tandai bagian yang masih butuh dokumen proyek atau referensi kode.",
+    "Review this plan and identify rooms, fixtures, and areas that need MEP attention.",
+    "Build the most relevant FBC and NEC checklist for this project.",
+    "Turn this review into action items that a field engineer can execute.",
+    "Summarize this reference file for a reviewer who just joined the project.",
+    "Explain the Vision -> Code -> Routing workflow for this plan in practical terms.",
+    "Answer at a high level first, then mark any points that still require project files or code references.",
   ];
   const proofCards = [
     {
-      label: "Pengguna utama",
-      title: "Tim arsitektur, MEP, dan reviewer kode",
-      copy: "Dipakai oleh tim yang perlu membaca plan, memuat referensi FBC atau NEC, lalu menyusun temuan review dan tindak lanjut tanpa bolak-balik antar file.",
+      label: "Primary users",
+      title: "Architecture, MEP, and code review teams",
+      copy: "Built for teams that need to read plans, load FBC or NEC references, and turn review findings into follow-up work without jumping between files.",
     },
     {
-      label: "Masalah utama",
-      title: "Review plan dan lookup kode masih manual",
-      copy: "Workflow blueprint, code lookup, dan handoff ke engineer biasanya terpisah. App ini menyatukannya dalam satu dashboard proyek yang lebih utuh.",
+      label: "Core problem",
+      title: "Plan review and code lookup are still manual",
+      copy: "Blueprint review, code lookup, and handoff to engineers are usually fragmented. This app brings them together in one project dashboard.",
     },
     {
-      label: "Alur inti",
-      title: "Intake plan, cocokkan kode, siapkan handoff",
-      copy: "User unggah plan dan referensi, minta AI menyusun checklist review, lalu ubah temuan menjadi catatan yang siap diteruskan ke tim desain atau lapangan.",
+      label: "Core workflow",
+      title: "Intake plans, match codes, prepare handoff",
+      copy: "Users upload plans and references, ask AI to generate review checklists, then convert findings into notes ready for design or field teams.",
     },
   ];
   const trustSignals = [
-    "Vision intake untuk plan dan file referensi",
-    "Code-aware review dengan basis FBC dan NEC",
-    "Audit trail, request log, dan usage tracking",
-    "PostgreSQL, migrasi, dan deploy path siap",
+    "Vision intake for plans and reference files",
+    "Code-aware review grounded in FBC and NEC",
+    "Audit trail, request logs, and usage tracking",
+    "PostgreSQL, migrations, and a deploy-ready path",
   ];
   const recruiterSignals = [
     {
-      title: "Cara pikir produk",
-      copy: "Masalah, target user, dan alur kerja building-plan review terlihat jelas sejak landing sampai proyek aktif.",
+      title: "Product thinking",
+      copy: "The problem, target user, and building-plan review workflow are clear from the landing page through the active project view.",
     },
     {
-      title: "Eksekusi end-to-end",
-      copy: "App ini menunjukkan dashboard, auth, data layer, upload, review AI, dan observabilitas dalam satu produk yang utuh.",
+      title: "End-to-end execution",
+      copy: "This app demonstrates dashboard work, auth, data layers, uploads, AI review, and observability inside one coherent product.",
     },
     {
-      title: "Kesiapan operasional",
-      copy: "Ada proyek, dokumen referensi, run log, audit trail, quota signals, dan fallback demo untuk presentasi yang tetap stabil.",
+      title: "Operational realism",
+      copy: "It includes projects, reference files, run logs, audit trails, quota signals, and a stable demo fallback for live presentations.",
     },
   ];
   const demoScenarios = [
     {
       title: "Intake plan",
-      prompt: "Baca plan ini dan identifikasi ruang, fixture, dan area yang butuh review MEP.",
+      prompt: "Review this plan and identify rooms, fixtures, and areas that need MEP attention.",
     },
     {
-      title: "Checklist code",
-      prompt: "Susun checklist FBC dan NEC yang paling relevan untuk proyek ini.",
+      title: "Code checklist",
+      prompt: "Build the most relevant FBC and NEC checklist for this project.",
     },
     {
       title: "Handoff engineer",
-      prompt: "Ubah temuan review ini menjadi action items yang bisa dipakai engineer lapangan.",
+      prompt: "Turn this review into action items that a field engineer can execute.",
     },
   ];
 
@@ -552,19 +552,19 @@ export function ChatApp() {
   }
   const starterFlows = [
     {
-      title: "Review plan cepat",
-      description: "Mulai dari plan atau gambar yang baru diunggah lalu minta AI mengidentifikasi ruang dan area review.",
-      prompt: "Baca plan ini dan identifikasi ruang, fixture, dan area yang butuh review MEP.",
+      title: "Fast plan review",
+      description: "Start from the uploaded plan or drawing and ask AI to identify rooms, fixtures, and review areas.",
+      prompt: "Review this plan and identify rooms, fixtures, and areas that need MEP attention.",
     },
     {
-      title: "Checklist kode bangunan",
-      description: "Gunakan AI untuk menyusun poin review yang relevan dari FBC, NEC, atau dokumen referensi proyek.",
-      prompt: "Susun checklist FBC dan NEC yang paling relevan untuk proyek ini.",
+      title: "Building code checklist",
+      description: "Use AI to assemble the most relevant review points from FBC, NEC, or project reference documents.",
+      prompt: "Build the most relevant FBC and NEC checklist for this project.",
     },
     {
       title: "Action items MEP",
-      description: "Ubah temuan review menjadi daftar tindak lanjut yang siap diteruskan ke engineer atau drafter.",
-      prompt: "Ubah temuan review ini menjadi action items yang bisa dipakai engineer lapangan.",
+      description: "Turn review findings into a follow-up list that can be handed to an engineer or drafter.",
+      prompt: "Turn this review into action items that a field engineer can execute.",
     },
   ];
   const projectPlanDocuments = workspaceDocuments.filter((document) =>
@@ -575,29 +575,29 @@ export function ChatApp() {
   );
   const projectReadiness = [
     {
-      label: "Proyek aktif",
-      value: activeWorkspace?.name ?? "Belum dipilih",
+      label: "Active project",
+      value: activeWorkspace?.name ?? "Not selected yet",
       ready: Boolean(activeWorkspace),
     },
     {
-      label: "File plan",
+      label: "Plan files",
       value:
         projectPlanDocuments.length > 0
-          ? `${projectPlanDocuments.length} file terdeteksi`
-          : "Belum ada plan",
+          ? `${projectPlanDocuments.length} files detected`
+          : "No plan uploaded yet",
       ready: projectPlanDocuments.length > 0,
     },
     {
-      label: "Referensi kode",
+      label: "Code references",
       value:
         codeReferenceDocuments.length > 0
-          ? `${codeReferenceDocuments.length} referensi aktif`
-          : "Belum ada FBC / NEC",
+          ? `${codeReferenceDocuments.length} active references`
+          : "No FBC / NEC loaded yet",
       ready: codeReferenceDocuments.length > 0,
     },
     {
-      label: "Sesi review",
-      value: activeConversation ? `${activeConversation.messages.length} catatan aktif` : "Belum ada sesi",
+      label: "Review session",
+      value: activeConversation ? `${activeConversation.messages.length} active notes` : "No session yet",
       ready: Boolean(activeConversation),
     },
   ];
@@ -605,7 +605,7 @@ export function ChatApp() {
   async function readJson<T>(response: Response): Promise<T> {
     if (!response.ok) {
       const text = await response.text();
-      throw new Error(text || "Permintaan gagal.");
+      throw new Error(text || "Request failed.");
     }
     return (await response.json()) as T;
   }
@@ -989,7 +989,7 @@ export function ChatApp() {
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : "Gagal memuat workspace.");
+          setError(err instanceof Error ? err.message : "Failed to load the workspace.");
         }
       } finally {
         if (!cancelled) {
@@ -1065,7 +1065,7 @@ export function ChatApp() {
         setAnalytics(analyticsData);
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : "Gagal memuat data workspace.");
+          setError(err instanceof Error ? err.message : "Failed to load workspace data.");
         }
       }
     }
@@ -1169,7 +1169,7 @@ export function ChatApp() {
       setUser(data.user);
       setAuthPassword("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Autentikasi gagal.");
+      setError(err instanceof Error ? err.message : "Authentication failed.");
     } finally {
       setIsAuthenticating(false);
     }
@@ -1192,7 +1192,7 @@ export function ChatApp() {
       setUser(data.user);
       setAuthPassword("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Google login gagal.");
+      setError(err instanceof Error ? err.message : "Google sign-in failed.");
     } finally {
       setIsAuthenticating(false);
     }
@@ -1227,7 +1227,7 @@ export function ChatApp() {
 
   async function handlePasswordResetRequest() {
     if (!authEmail.trim()) {
-      setError("Isi email dulu untuk kirim reset password.");
+      setError("Enter your email first to send a password reset.");
       return;
     }
 
@@ -1241,11 +1241,11 @@ export function ChatApp() {
         body: JSON.stringify({ email: authEmail }),
       });
       if (!response.ok) {
-        throw new Error((await response.text()) || "Gagal kirim reset password.");
+        throw new Error((await response.text()) || "Failed to send the password reset email.");
       }
-      setError("Link reset password sudah diproses. Cek inbox atau email queue.");
+      setError("The password reset link has been requested. Check your inbox or the email queue.");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal kirim reset password.");
+      setError(err instanceof Error ? err.message : "Failed to send the password reset email.");
     }
   }
 
@@ -1290,7 +1290,7 @@ export function ChatApp() {
       setError(null);
       await fetchWorkspaceDetail(workspaceId);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal memuat workspace.");
+      setError(err instanceof Error ? err.message : "Failed to load the workspace.");
     }
   }
 
@@ -1315,7 +1315,7 @@ export function ChatApp() {
       setWorkspaces(list);
       setWorkspaceName("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal membuat workspace.");
+      setError(err instanceof Error ? err.message : "Failed to create the workspace.");
     }
   }
 
@@ -1346,7 +1346,7 @@ export function ChatApp() {
       await fetchEmailWorkerStatus();
       setInviteEmail("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal menambah member.");
+      setError(err instanceof Error ? err.message : "Failed to invite the member.");
     }
   }
 
@@ -1373,7 +1373,7 @@ export function ChatApp() {
       await fetchPendingInvites();
       await fetchMemberUsage(activeWorkspace.id);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal menghapus member.");
+      setError(err instanceof Error ? err.message : "Failed to remove the member.");
     }
   }
 
@@ -1404,7 +1404,7 @@ export function ChatApp() {
       await fetchInvoiceSummary(activeWorkspace.id);
       await fetchInvoiceHistory(activeWorkspace.id);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal menyimpan metadata member.");
+      setError(err instanceof Error ? err.message : "Failed to save member metadata.");
     }
   }
 
@@ -1415,7 +1415,7 @@ export function ChatApp() {
         method: "POST",
       });
       if (!response.ok) {
-        throw new Error((await response.text()) || "Gagal memproses undangan.");
+        throw new Error((await response.text()) || "Failed to process the invitation.");
       }
 
       await fetchPendingInvites();
@@ -1428,7 +1428,7 @@ export function ChatApp() {
         }
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal memproses undangan.");
+      setError(err instanceof Error ? err.message : "Failed to process the invitation.");
     }
   }
 
@@ -1450,7 +1450,7 @@ export function ChatApp() {
       await fetchAuditLogs(activeWorkspace.id);
       await fetchWorkspaceSettings(activeWorkspace.id);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal membuat mock checkout.");
+      setError(err instanceof Error ? err.message : "Failed to create the mock checkout session.");
     }
   }
 
@@ -1481,7 +1481,7 @@ export function ChatApp() {
       await fetchWorkspaceSubscription(activeWorkspace.id);
       await fetchAuditLogs(activeWorkspace.id);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal menyimpan workspace settings.");
+      setError(err instanceof Error ? err.message : "Failed to save workspace settings.");
     }
   }
 
@@ -1523,7 +1523,7 @@ export function ChatApp() {
       await fetchInvoiceHistory(activeWorkspace.id);
       await fetchAuditLogs(activeWorkspace.id);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal menyimpan budget department.");
+      setError(err instanceof Error ? err.message : "Failed to save the department budget.");
     }
   }
 
@@ -1553,7 +1553,7 @@ export function ChatApp() {
       await fetchInvoiceHistory(activeWorkspace.id);
       await fetchAuditLogs(activeWorkspace.id);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal menghapus budget department.");
+      setError(err instanceof Error ? err.message : "Failed to delete the department budget.");
     }
   }
 
@@ -1571,13 +1571,13 @@ export function ChatApp() {
         },
       );
       if (!response.ok) {
-        throw new Error((await response.text()) || "Gagal retry email.");
+        throw new Error((await response.text()) || "Failed to retry the email job.");
       }
       await fetchEmailJobs(activeWorkspace.id);
       await fetchAuditLogs(activeWorkspace.id);
       await fetchEmailWorkerStatus();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal retry email.");
+      setError(err instanceof Error ? err.message : "Failed to retry the email job.");
     }
   }
 
@@ -1603,14 +1603,14 @@ export function ChatApp() {
       await fetchWorkspaceApiKeyUsage(activeWorkspace.id);
       await fetchAuditLogs(activeWorkspace.id);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal membuat API key.");
+      setError(err instanceof Error ? err.message : "Failed to create the API key.");
     }
   }
 
   async function downloadProtectedFile(path: string, filename: string) {
     const response = await apiFetch(path);
     if (!response.ok) {
-      throw new Error((await response.text()) || "Gagal mengunduh file.");
+      throw new Error((await response.text()) || "Failed to download the file.");
     }
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
@@ -1644,7 +1644,7 @@ export function ChatApp() {
         `workspace-${activeWorkspace.id}-request-logs.csv`,
       );
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal mengunduh request log.");
+      setError(err instanceof Error ? err.message : "Failed to download the request log.");
     }
   }
 
@@ -1658,7 +1658,7 @@ export function ChatApp() {
       await fetchRequestLogs(activeWorkspace.id, { offset: 0, limit: requestLogLimit });
       return;
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal memuat request log.");
+      setError(err instanceof Error ? err.message : "Failed to load request logs.");
     }
   }
 
@@ -1671,7 +1671,7 @@ export function ChatApp() {
       setRequestLogOffset(nextOffset);
       await fetchRequestLogs(activeWorkspace.id, { offset: nextOffset, limit: requestLogLimit });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal pindah halaman request log.");
+      setError(err instanceof Error ? err.message : "Failed to change the request log page.");
     }
   }
 
@@ -1686,7 +1686,7 @@ export function ChatApp() {
         `workspace-${activeWorkspace.id}-invoice-current.csv`,
       );
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal export invoice.");
+      setError(err instanceof Error ? err.message : "Failed to export the invoice.");
     }
   }
 
@@ -1704,13 +1704,13 @@ export function ChatApp() {
         },
       );
       if (!response.ok) {
-        throw new Error((await response.text()) || "Gagal revoke API key.");
+        throw new Error((await response.text()) || "Failed to revoke the API key.");
       }
       await fetchWorkspaceApiKeys(activeWorkspace.id);
       await fetchWorkspaceApiKeyUsage(activeWorkspace.id);
       await fetchAuditLogs(activeWorkspace.id);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal revoke API key.");
+      setError(err instanceof Error ? err.message : "Failed to revoke the API key.");
     }
   }
 
@@ -1718,7 +1718,7 @@ export function ChatApp() {
     try {
       await navigator.clipboard.writeText(url);
     } catch {
-      setError("Gagal menyalin invite link.");
+      setError("Failed to copy the invite link.");
     }
   }
 
@@ -1750,7 +1750,7 @@ export function ChatApp() {
       setConversations(list);
       setInput("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal membuat sesi review baru.");
+      setError(err instanceof Error ? err.message : "Failed to create a new review session.");
     }
   }
 
@@ -1763,7 +1763,7 @@ export function ChatApp() {
       setError(null);
       await loadConversation(conversationId);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal memuat sesi review.");
+      setError(err instanceof Error ? err.message : "Failed to load the review session.");
     }
   }
 
@@ -1778,7 +1778,7 @@ export function ChatApp() {
         method: "DELETE",
       });
       if (!response.ok) {
-        throw new Error((await response.text()) || "Gagal menghapus sesi review.");
+        throw new Error((await response.text()) || "Failed to delete the review session.");
       }
 
       const nextList = await fetchConversationSummaries();
@@ -1793,7 +1793,7 @@ export function ChatApp() {
       await fetchAnalytics();
       await fetchAdminAnalytics();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal menghapus sesi review.");
+      setError(err instanceof Error ? err.message : "Failed to delete the review session.");
     }
   }
 
@@ -1817,7 +1817,7 @@ export function ChatApp() {
       await fetchAdminAnalytics();
       setInput("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal reset sesi review.");
+      setError(err instanceof Error ? err.message : "Failed to reset the review session.");
     }
   }
 
@@ -1846,7 +1846,7 @@ export function ChatApp() {
       );
 
       if (!response.ok) {
-        throw new Error((await response.text()) || "Upload dokumen gagal.");
+        throw new Error((await response.text()) || "The document upload failed.");
       }
 
       await loadConversation(activeConversation.id);
@@ -1858,7 +1858,7 @@ export function ChatApp() {
       }
       event.target.value = "";
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal upload dokumen.");
+      setError(err instanceof Error ? err.message : "Failed to upload the document.");
     } finally {
       setIsUploading(false);
     }
@@ -1875,7 +1875,7 @@ export function ChatApp() {
         method: "DELETE",
       });
       if (!response.ok) {
-        throw new Error((await response.text()) || "Gagal menghapus dokumen.");
+        throw new Error((await response.text()) || "Failed to delete the document.");
       }
 
       await loadConversation(activeConversation.id);
@@ -1886,7 +1886,7 @@ export function ChatApp() {
         await fetchWorkspaceDocuments(activeWorkspace.id);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal menghapus dokumen.");
+      setError(err instanceof Error ? err.message : "Failed to delete the document.");
     }
   }
 
@@ -1918,8 +1918,8 @@ export function ChatApp() {
         ? {
             ...current,
             title:
-              current.title === "Chat baru" || current.title === "Review baru"
-                ? trimmed.slice(0, 48) || "Review baru"
+              current.title === "New chat" || current.title === "New review"
+                ? trimmed.slice(0, 48) || "New review"
                 : current.title,
             messages: [...current.messages, tempUser, tempAssistant],
           }
@@ -1949,11 +1949,11 @@ export function ChatApp() {
       }
 
       if (!response.ok) {
-        throw new Error((await response.text()) || "Gagal mendapatkan jawaban.");
+        throw new Error((await response.text()) || "Failed to get a response.");
       }
 
       if (!response.body) {
-        throw new Error("Stream dari server tidak tersedia.");
+        throw new Error("The server stream is not available.");
       }
 
       const reader = response.body.getReader();
@@ -1981,7 +1981,7 @@ export function ChatApp() {
 
       fullReply += decoder.decode();
       if (!fullReply.trim()) {
-        throw new Error("Model tidak mengembalikan jawaban.");
+        throw new Error("The model did not return any response.");
       }
 
       const summaries = await fetchConversationSummaries();
@@ -1996,7 +1996,7 @@ export function ChatApp() {
                 ...current,
                 messages: current.messages.map((message) =>
                   message.id === tempAssistant.id
-                    ? { ...message, content: message.content || "Jawaban dihentikan." }
+                    ? { ...message, content: message.content || "Response stopped." }
                     : message,
                 ),
               }
@@ -2004,7 +2004,7 @@ export function ChatApp() {
         );
       } else {
         const errorMessage =
-          err instanceof Error ? err.message : "Terjadi kesalahan saat menghubungi model AI.";
+          err instanceof Error ? err.message : "An error occurred while contacting the AI model.";
         setActiveConversation((current) =>
           current
             ? {
@@ -2015,7 +2015,7 @@ export function ChatApp() {
                         ...message,
                         content:
                           message.content ||
-                          `Maaf, saya belum bisa menjawab sekarang. ${errorMessage}`,
+                          `I cannot answer that right now. ${errorMessage}`,
                       }
                     : message,
                 ),
@@ -2051,31 +2051,31 @@ export function ChatApp() {
         ) : null}
         <section className={styles.hero}>
           <p className={styles.eyebrow}>Building Plan Automation MVP</p>
-          <h1>Platform AI untuk intake plan, basis kode bangunan, dan koordinasi review MEP.</h1>
+          <h1>An AI workspace for plan intake, code knowledge, and coordinated MEP review.</h1>
           <p className={styles.subcopy}>
-            Produk ini menunjukkan bagaimana satu dashboard bisa dipakai untuk membaca plan, memuat
-            referensi FBC atau NEC, menyusun checklist review, dan menyiapkan handoff kerja ke engineer
-            tanpa memecah alur ke banyak tool yang terpisah.
+            This product shows how one dashboard can be used to read plans, load FBC or NEC references,
+            generate review checklists, and prepare handoff work for engineers without splitting the
+            workflow across disconnected tools.
           </p>
           <div className={styles.recruiterStrip}>
-            <span className={styles.recruiterStripLabel}>Yang Ditunjukkan App Ini</span>
-            <strong>AI review workflow, reasoning berbasis kode, dan eksekusi full-stack end-to-end.</strong>
+            <span className={styles.recruiterStripLabel}>What This App Demonstrates</span>
+            <strong>AI review workflows, code-grounded reasoning, and end-to-end full-stack execution.</strong>
           </div>
           <div className={styles.statusStrip}>
             <article className={styles.statusCard}>
               <span className={styles.statusLabel}>Backend</span>
-              <strong>{backendStatus === "online" ? "Aktif" : backendStatus === "offline" ? "Tidak aktif" : "Mengecek"}</strong>
-              <p>{backendStatus === "online" ? "API lokal siap dipakai." : "Koneksi backend sedang dicek."}</p>
+              <strong>{backendStatus === "online" ? "Online" : backendStatus === "offline" ? "Offline" : "Checking"}</strong>
+              <p>{backendStatus === "online" ? "The local API is ready." : "The backend connection is being checked."}</p>
             </article>
             <article className={styles.statusCard}>
               <span className={styles.statusLabel}>Data layer</span>
-              <strong>Siap PostgreSQL</strong>
-              <p>Schema, migration, dan data proyek sudah disiapkan untuk alur yang lebih siap produksi.</p>
+              <strong>PostgreSQL ready</strong>
+              <p>The schema, migrations, and project data flow are prepared for a more production-ready rollout.</p>
             </article>
             <article className={styles.statusCard}>
-              <span className={styles.statusLabel}>Jalur AI</span>
-              <strong>{aiMode === "demo" ? "Mode demo stabil" : "Hybrid siap"}</strong>
-              <p>Vision intake, retrieval referensi kode, dan fallback demo tersedia dalam satu alur produk.</p>
+              <span className={styles.statusLabel}>AI path</span>
+              <strong>{aiMode === "demo" ? "Stable demo mode" : "Hybrid ready"}</strong>
+              <p>Vision intake, code-reference retrieval, and a demo fallback are available in one product flow.</p>
             </article>
           </div>
           <div className={styles.proofGrid}>
@@ -2097,12 +2097,12 @@ export function ChatApp() {
           <div className={styles.recruiterPanel}>
             <div className={styles.recruiterHeader}>
               <div>
-                <p className={styles.statusLabel}>Untuk Recruiter</p>
-                <strong className={styles.recruiterTitle}>Yang ditunjukkan app ini tentang cara kerja saya</strong>
+                <p className={styles.statusLabel}>For Recruiters</p>
+                <strong className={styles.recruiterTitle}>What this product shows about how I work</strong>
               </div>
               <p className={styles.recruiterCopy}>
-                Fokus utamanya bukan cuma membuat chat AI, tetapi membangun workflow review plan yang
-                usable, stabil, dan punya pijakan produk yang jelas untuk tim desain atau MEP.
+                The goal is not just to build an AI chat surface, but to design a usable and stable
+                plan-review workflow with a clear product point of view for design and MEP teams.
               </p>
             </div>
             <div className={styles.recruiterGrid}>
@@ -2117,29 +2117,29 @@ export function ChatApp() {
           <div className={styles.demoFlowPanel}>
             <div className={styles.demoFlowHeader}>
               <div>
-                <p className={styles.statusLabel}>Alur demo yang disarankan</p>
-                <strong className={styles.demoFlowTitle}>Tiga langkah untuk menunjukkan value produk</strong>
+                <p className={styles.statusLabel}>Suggested demo flow</p>
+                <strong className={styles.demoFlowTitle}>Three steps to show the product value</strong>
               </div>
               <p className={styles.demoFlowCopy}>
-                Buka app, buat proyek, unggah plan dan referensi kode, lalu tunjukkan bagaimana review AI
-                berubah menjadi checklist dan tindak lanjut yang konkret.
+                Open the app, create a project, upload a plan and code references, then show how AI review
+                becomes a concrete checklist and next-step handoff.
               </p>
             </div>
             <div className={styles.demoFlowGrid}>
               <article className={styles.demoStepCard}>
                 <span className={styles.demoStepNumber}>01</span>
-                <strong>Mulai dari intake plan</strong>
-                <p>Tunjukkan bahwa plan atau layout bisa masuk sebagai konteks awal untuk identifikasi ruang dan fixture.</p>
+                <strong>Start with plan intake</strong>
+                <p>Show that a plan or layout can enter the workflow as the starting context for room and fixture identification.</p>
               </article>
               <article className={styles.demoStepCard}>
                 <span className={styles.demoStepNumber}>02</span>
-                <strong>Muat FBC atau NEC</strong>
-                <p>Tunjukkan bahwa referensi kode bangunan bisa dipakai untuk menyusun checklist review yang relevan.</p>
+                <strong>Load FBC or NEC</strong>
+                <p>Show that building-code references can be used to generate a grounded review checklist.</p>
               </article>
               <article className={styles.demoStepCard}>
                 <span className={styles.demoStepNumber}>03</span>
-                <strong>Ubah jadi handoff kerja</strong>
-                <p>Tutup dengan action items, catatan review, dan log produk supaya alurnya terasa siap diteruskan ke tim.</p>
+                <strong>Convert it into handoff work</strong>
+                <p>Close with action items, review notes, and product logs so the workflow feels ready for the next team.</p>
               </article>
             </div>
           </div>
@@ -2158,32 +2158,32 @@ export function ChatApp() {
                 type="button"
                 onClick={() => handleSwitchAuthMode("register")}
               >
-                Buat akun
+                Create account
               </button>
               <button
                 className={`${styles.authTab} ${authMode === "login" ? styles.authTabActive : ""}`}
                 type="button"
                 onClick={() => handleSwitchAuthMode("login")}
               >
-                Masuk
+                Sign in
               </button>
             </div>
 
             <form className={styles.authForm} onSubmit={handleAuthSubmit}>
               <p className={styles.authSectionNote}>
                 {isRegisterMode
-                  ? "Pakai email dan password kalau kamu mau membuat akun proyek baru secara manual."
-                  : "Masuk manual dengan email dan password yang sudah terhubung ke proyek review ini."}
+                  ? "Use email and password if you want to create a new project account manually."
+                  : "Sign in with the email and password already linked to this review workspace."}
               </p>
               {authMode === "register" ? (
                 <label className={styles.label}>
-                  Nama
+                  Name
                   <input
                     className={styles.authInput}
                     autoComplete="name"
                     value={authName}
                     onChange={(event) => setAuthName(event.target.value)}
-                    placeholder="Nama kamu"
+                    placeholder="Your name"
                   />
                 </label>
               ) : null}
@@ -2196,7 +2196,7 @@ export function ChatApp() {
                   autoComplete="email"
                   value={authEmail}
                   onChange={(event) => setAuthEmail(event.target.value)}
-                  placeholder="nama@perusahaan.com"
+                  placeholder="name@company.com"
                 />
               </label>
 
@@ -2208,17 +2208,17 @@ export function ChatApp() {
                   autoComplete={isRegisterMode ? "new-password" : "current-password"}
                   value={authPassword}
                   onChange={(event) => setAuthPassword(event.target.value)}
-                  placeholder="Minimal 8 karakter"
+                  placeholder="At least 8 characters"
                 />
               </label>
 
               <button className={styles.button} type="submit" disabled={isAuthenticating || isBooting}>
-                {isAuthenticating ? "Memproses..." : emailSubmitLabel}
+                {isAuthenticating ? "Processing..." : emailSubmitLabel}
               </button>
 
               {authMode === "login" ? (
                 <button className={styles.ghostButton} type="button" onClick={handlePasswordResetRequest}>
-                  Saya lupa password
+                  I forgot my password
                 </button>
               ) : null}
             </form>
@@ -2226,7 +2226,7 @@ export function ChatApp() {
             {googleReady ? (
               <>
                 <div className={styles.authDivider}>
-                  <span>{isRegisterMode ? "atau daftar lebih cepat" : "atau lanjut dengan Google"}</span>
+                  <span>{isRegisterMode ? "or create an account faster" : "or continue with Google"}</span>
                 </div>
                 <div className={styles.googleAuthRow}>
                   <div ref={googleButtonRef} />
@@ -2234,8 +2234,7 @@ export function ChatApp() {
                 <p className={styles.authHint}>{googleHelperText}</p>
                 {showGoogleDevHint ? (
                   <p className={styles.authHint}>
-                    Kalau tombol Google belum merespons di lokal, pastikan origin browser ini sudah didaftarkan
-                    di Google Cloud OAuth.
+                    If the Google button does not respond locally, make sure this browser origin is registered in Google Cloud OAuth.
                   </p>
                 ) : null}
               </>
@@ -2279,14 +2278,14 @@ export function ChatApp() {
     null;
   const quotaWarning =
     tokenQuotaRatio >= 0.95 || documentQuotaRatio >= 0.95
-      ? "Kuota proyek hampir habis. Saatnya naikkan paket atau reset kuota."
+      ? "Project quota is almost exhausted. Upgrade the plan or reset the quota soon."
       : tokenQuotaRatio >= 0.75 || documentQuotaRatio >= 0.75
-        ? "Pemakaian proyek sudah tinggi. Pantau kuota biar review dan upload tidak mentok."
+        ? "Project usage is running high. Monitor quotas so reviews and uploads do not stall."
         : null;
   const budgetWarning = departmentBudgetSignal
     ? departmentBudgetSignal.status === "exceeded"
-      ? `Anggaran departemen ${departmentBudgetSignal.department} sudah melewati batas bulanan.`
-      : `Anggaran departemen ${departmentBudgetSignal.department} mendekati batas bulanan.`
+      ? `The ${departmentBudgetSignal.department} department has exceeded its monthly budget.`
+      : `The ${departmentBudgetSignal.department} department is nearing its monthly budget limit.`
     : null;
   const showStarterFlows = Boolean(activeConversation && (activeConversation.messages?.length ?? 0) <= 1);
 
@@ -2296,56 +2295,56 @@ export function ChatApp() {
         <div className={styles.heroTopline}>
           <div>
             <p className={styles.eyebrow}>Building Plan Automation MVP</p>
-            <h1>Workspace AI untuk intake plan, basis FBC/NEC, dan review MEP.</h1>
+            <h1>An AI workspace for plan intake, FBC or NEC knowledge, and coordinated MEP review.</h1>
           </div>
           <div className={styles.accountCard}>
             <p className={styles.accountName}>{user.name}</p>
             <p className={styles.accountMeta}>{user.email}</p>
             <p className={styles.accountMeta}>
-              {user.email_verified ? "Email terverifikasi" : "Email belum diverifikasi"}
+              {user.email_verified ? "Email verified" : "Email not yet verified"}
             </p>
             <button className={styles.ghostButton} type="button" onClick={handleLogout}>
-              Keluar
+              Sign out
             </button>
           </div>
         </div>
 
         <p className={styles.subcopy}>
-          Tujuan produk ini adalah menyatukan intake drawing, referensi kode bangunan, dan sesi review AI
-          dalam satu dashboard yang bisa dipakai untuk menyusun checklist, temuan, dan handoff teknis.
-          Recruiter harus langsung melihat bahwa ini adalah workflow review proyek, bukan chat UI generik.
+          The goal of this product is to bring drawing intake, building-code references, and AI-assisted
+          review into one dashboard that can produce checklists, findings, and technical handoff notes.
+          Recruiters should immediately understand that this is a project review workflow, not a generic chat UI.
         </p>
         <div className={styles.statusStrip}>
           <article className={styles.statusCard}>
             <span className={styles.statusLabel}>Backend</span>
-            <strong>{backendStatus === "online" ? "Aktif" : backendStatus === "offline" ? "Tidak aktif" : "Mengecek"}</strong>
-            <p>{backendStatus === "online" ? "Server lokal aktif dan siap menerima request." : "Status backend sedang dicek."}</p>
+            <strong>{backendStatus === "online" ? "Online" : backendStatus === "offline" ? "Offline" : "Checking"}</strong>
+            <p>{backendStatus === "online" ? "The local server is running and ready to accept requests." : "The backend status is being checked."}</p>
           </article>
           <article className={styles.statusCard}>
             <span className={styles.statusLabel}>Mode AI</span>
-            <strong>{aiMode === "demo" ? "Mode demo stabil" : aiMode === "live" ? "Mode AI live" : "Hybrid siap"}</strong>
+            <strong>{aiMode === "demo" ? "Stable demo mode" : aiMode === "live" ? "Live AI mode" : "Hybrid ready"}</strong>
             <p>
               {aiMode === "demo"
-                ? "Review AI tetap bisa didemokan meski provider live belum aktif."
-                : "Jalur chat siap untuk plan review, code lookup, dan catatan teknis."}
+                ? "The review workflow can still be demonstrated even when the live provider is not active."
+                : "The AI path is ready for plan review, code lookup, and technical notes."}
             </p>
           </article>
           <article className={styles.statusCard}>
-            <span className={styles.statusLabel}>Proyek aktif</span>
-            <strong>{activeWorkspace ? activeWorkspace.name : "Belum pilih proyek"}</strong>
-            <p>{workspaces.length} proyek terhubung dengan file referensi, sesi review, dan pelacakan pemakaian.</p>
+            <span className={styles.statusLabel}>Active project</span>
+            <strong>{activeWorkspace ? activeWorkspace.name : "No project selected yet"}</strong>
+            <p>{workspaces.length} connected projects with reference files, review sessions, and usage tracking.</p>
           </article>
         </div>
         <div className={styles.trustBar}>
-          <span className={styles.trustChip}>Vision intake untuk plan dan gambar</span>
-          <span className={styles.trustChip}>Checklist review berbasis FBC dan NEC</span>
-          <span className={styles.trustChip}>Audit trail dan request log aktif</span>
-          <span className={styles.trustChip}>Jalur demo stabil tersedia</span>
+          <span className={styles.trustChip}>Vision intake for plans and drawings</span>
+          <span className={styles.trustChip}>FBC and NEC grounded review checklists</span>
+          <span className={styles.trustChip}>Audit trails and request logs included</span>
+          <span className={styles.trustChip}>Stable demo path available</span>
         </div>
 
         {quotaWarning || budgetWarning ? (
           <div className={styles.warningBanner}>
-            <strong>{budgetWarning ? "Sinyal biaya" : "Sinyal kuota"}</strong>
+            <strong>{budgetWarning ? "Budget signal" : "Quota signal"}</strong>
             <span>{budgetWarning ?? quotaWarning}</span>
           </div>
         ) : null}
@@ -2354,8 +2353,8 @@ export function ChatApp() {
           <div className={styles.auditPanel}>
             <div className={styles.teamHeader}>
               <div>
-                <p className={styles.analyticsLabel}>Undangan tertunda</p>
-                <h2 className={styles.adminTitle}>Undangan proyek masuk</h2>
+                <p className={styles.analyticsLabel}>Pending invites</p>
+                <h2 className={styles.adminTitle}>Incoming project invites</h2>
               </div>
             </div>
 
@@ -2364,7 +2363,7 @@ export function ChatApp() {
                 <article key={invite.id} className={styles.memberCard}>
                   <strong>{invite.workspace_name}</strong>
                   <span>
-                    Undangan dibuat {new Date(invite.created_at).toLocaleString("id-ID")}
+                    Created {new Date(invite.created_at).toLocaleString("en-US")}
                   </span>
                   <span>{invite.accept_url}</span>
                   <div className={styles.memberActions}>
@@ -2373,21 +2372,21 @@ export function ChatApp() {
                       type="button"
                       onClick={() => handleCopyInviteLink(invite.accept_url)}
                     >
-                      Salin link
+                      Copy link
                     </button>
                     <button
                       className={styles.button}
                       type="button"
                       onClick={() => handleInvitationDecision(invite.token, "accept")}
                     >
-                      Terima
+                      Accept
                     </button>
                     <button
                       className={styles.deleteButton}
                       type="button"
                       onClick={() => handleInvitationDecision(invite.token, "reject")}
                     >
-                      Tolak
+                      Decline
                     </button>
                   </div>
                 </article>
@@ -2400,8 +2399,8 @@ export function ChatApp() {
           <section className={styles.teamPanel}>
             <div className={styles.teamHeader}>
               <div>
-                <p className={styles.analyticsLabel}>Portofolio proyek</p>
-                <h2 className={styles.adminTitle}>Ruang proyek dan basis review</h2>
+                <p className={styles.analyticsLabel}>Project portfolio</p>
+                <h2 className={styles.adminTitle}>Project spaces and review library</h2>
               </div>
             </div>
 
@@ -2410,10 +2409,10 @@ export function ChatApp() {
                 className={styles.authInput}
                 value={workspaceName}
                 onChange={(event) => setWorkspaceName(event.target.value)}
-                placeholder="Nama proyek baru"
+                placeholder="New project name"
               />
               <button className={styles.button} type="submit">
-                Buat proyek
+                Create project
               </button>
             </form>
 
@@ -2429,7 +2428,7 @@ export function ChatApp() {
                 >
                   <strong>{workspace.name}</strong>
                   <span>
-                    {workspace.member_count} kolaborator aktif
+                    {workspace.member_count} active collaborators
                   </span>
                 </button>
               ))}
@@ -2439,9 +2438,9 @@ export function ChatApp() {
           <section className={styles.teamPanel}>
             <div className={styles.teamHeader}>
               <div>
-                <p className={styles.analyticsLabel}>Ringkasan proyek</p>
+                <p className={styles.analyticsLabel}>Project summary</p>
                 <h2 className={styles.adminTitle}>
-                  {workspaceBilling?.workspace_name ?? "Pilih proyek"}
+                  {workspaceBilling?.workspace_name ?? "Select a project"}
                 </h2>
               </div>
             </div>
@@ -2451,21 +2450,21 @@ export function ChatApp() {
                 {workspaceSubscription ? (
                   <div className={styles.subscriptionPanel}>
                     <div>
-                      <p className={styles.subscriptionTitle}>Ringkasan proyek aktif</p>
+                      <p className={styles.subscriptionTitle}>Active project summary</p>
                       <p className={styles.subscriptionMeta}>
-                        {workspaceSubscription.seats_in_use} kolaborator aktif • status {workspaceSubscription.status}
-                        • reset periode{" "}
-                        {new Date(workspaceSubscription.current_period_end).toLocaleDateString("id-ID")}
+                        {workspaceSubscription.seats_in_use} active collaborators • status {workspaceSubscription.status}
+                        • period resets{" "}
+                        {new Date(workspaceSubscription.current_period_end).toLocaleDateString("en-US")}
                       </p>
                       <p className={styles.subscriptionMeta}>
-                        token AI {workspaceSubscription.quota_tokens_used.toLocaleString("id-ID")} /{" "}
-                        {workspaceSubscription.monthly_token_quota.toLocaleString("id-ID")} • file{" "}
+                        AI tokens {workspaceSubscription.quota_tokens_used.toLocaleString("en-US")} /{" "}
+                        {workspaceSubscription.monthly_token_quota.toLocaleString("en-US")} • files{" "}
                         {workspaceSubscription.quota_documents_used} / {workspaceSubscription.monthly_document_quota}
                       </p>
                     </div>
                     <p className={styles.subscriptionPrice}>
                       {workspaceSubscription.plan_name}
-                      <span>paket aktif</span>
+                      <span>active plan</span>
                     </p>
                   </div>
                 ) : null}
@@ -2473,31 +2472,31 @@ export function ChatApp() {
                 {canManageMembers && showDetailedBilling ? (
                   <div className={styles.memberActions}>
                     <button className={styles.button} type="button" onClick={handleMockCheckout}>
-                      Simulasi Stripe Checkout
+                      Simulate Stripe checkout
                     </button>
                   </div>
                 ) : null}
 
                 <div className={styles.billingGrid}>
                   <article className={styles.analyticsCard}>
-                    <span className={styles.analyticsLabel}>Kolaborator</span>
+                    <span className={styles.analyticsLabel}>Collaborators</span>
                     <strong>{workspaceBilling.member_count}</strong>
-                    <p>Total orang di proyek ini</p>
+                    <p>Total people in this project</p>
                   </article>
                   <article className={styles.analyticsCard}>
-                    <span className={styles.analyticsLabel}>Token AI</span>
-                    <strong>{workspaceBilling.estimated_total_tokens.toLocaleString("id-ID")}</strong>
-                    <p>Estimasi token untuk review</p>
+                    <span className={styles.analyticsLabel}>AI tokens</span>
+                    <strong>{workspaceBilling.estimated_total_tokens.toLocaleString("en-US")}</strong>
+                    <p>Estimated review token usage</p>
                   </article>
                   <article className={styles.analyticsCard}>
-                    <span className={styles.analyticsLabel}>Sesi review</span>
+                    <span className={styles.analyticsLabel}>Review sessions</span>
                     <strong>{workspaceBilling.chats_sent}</strong>
-                    <p>Total interaksi review terkirim</p>
+                    <p>Total review interactions sent</p>
                   </article>
                   <article className={styles.analyticsCard}>
-                    <span className={styles.analyticsLabel}>File</span>
+                    <span className={styles.analyticsLabel}>Files</span>
                     <strong>{workspaceBilling.documents_uploaded}</strong>
-                    <p>Plan dan referensi terunggah</p>
+                    <p>Uploaded plans and references</p>
                   </article>
                 </div>
 
@@ -2505,12 +2504,12 @@ export function ChatApp() {
                   <div className={styles.auditPanel}>
                     <div className={styles.teamHeader}>
                       <div>
-                        <p className={styles.analyticsLabel}>Estimasi biaya</p>
-                        <h3 className={styles.subscriptionTitle}>Estimasi periode berjalan</h3>
+                        <p className={styles.analyticsLabel}>Cost estimate</p>
+                        <h3 className={styles.subscriptionTitle}>Current period estimate</h3>
                       </div>
                       {canManageMembers ? (
                         <button className={styles.ghostButton} type="button" onClick={handleExportInvoiceCsv}>
-                          Unduh invoice CSV
+                          Download invoice CSV
                         </button>
                       ) : null}
                     </div>
@@ -2524,21 +2523,21 @@ export function ChatApp() {
                         </p>
                       </article>
                       <article className={styles.analyticsCard}>
-                        <span className={styles.analyticsLabel}>Pemakaian</span>
+                        <span className={styles.analyticsLabel}>Usage</span>
                         <strong>${invoiceSummary.estimated_usage_cost_usd.toFixed(4)}</strong>
-                        <p>{invoiceSummary.token_usage.toLocaleString("id-ID")} estimasi token</p>
+                        <p>{invoiceSummary.token_usage.toLocaleString("en-US")} estimated tokens</p>
                       </article>
                       <article className={styles.analyticsCard}>
-                        <span className={styles.analyticsLabel}>Request</span>
+                        <span className={styles.analyticsLabel}>Requests</span>
                         <strong>{invoiceSummary.request_count}</strong>
-                        <p>{invoiceSummary.api_key_request_count} lewat API key</p>
+                        <p>{invoiceSummary.api_key_request_count} through API keys</p>
                       </article>
                       <article className={styles.analyticsCard}>
                         <span className={styles.analyticsLabel}>Total</span>
                         <strong>${invoiceSummary.total_usd.toFixed(2)}</strong>
                         <p>
-                          {new Date(invoiceSummary.period_start).toLocaleDateString("id-ID")} -{" "}
-                          {new Date(invoiceSummary.period_end).toLocaleDateString("id-ID")}
+                          {new Date(invoiceSummary.period_start).toLocaleDateString("en-US")} -{" "}
+                          {new Date(invoiceSummary.period_end).toLocaleDateString("en-US")}
                         </p>
                       </article>
                     </div>
@@ -2559,8 +2558,8 @@ export function ChatApp() {
                       <div className={styles.auditPanel}>
                         <div className={styles.teamHeader}>
                           <div>
-                            <p className={styles.analyticsLabel}>Ringkasan member</p>
-                            <h3 className={styles.subscriptionTitle}>Pemakaian per member</h3>
+                            <p className={styles.analyticsLabel}>Member summary</p>
+                            <h3 className={styles.subscriptionTitle}>Usage by member</h3>
                           </div>
                         </div>
                         <div className={styles.auditList}>
@@ -2569,14 +2568,14 @@ export function ChatApp() {
                               <strong>{member.name}</strong>
                               <span>{member.email}</span>
                               <span>
-                                departemen {member.department ?? "-"} • pusat biaya {member.cost_center ?? "-"}
+                                department {member.department ?? "-"} • cost center {member.cost_center ?? "-"}
                               </span>
                               <span>
-                                {member.token_usage.toLocaleString("id-ID")} token • $
+                                {member.token_usage.toLocaleString("en-US")} tokens • $
                                 {member.estimated_usage_cost_usd.toFixed(4)}
                               </span>
                               <span>
-                                {member.chats_sent} chat • {member.documents_uploaded} dokumen
+                                {member.chats_sent} review prompts • {member.documents_uploaded} documents
                               </span>
                             </article>
                           ))}
@@ -2588,8 +2587,8 @@ export function ChatApp() {
                       <div className={styles.auditPanel}>
                         <div className={styles.teamHeader}>
                           <div>
-                            <p className={styles.analyticsLabel}>Anggaran departemen</p>
-                            <h3 className={styles.subscriptionTitle}>Sinyal batas anggaran</h3>
+                            <p className={styles.analyticsLabel}>Department budgets</p>
+                            <h3 className={styles.subscriptionTitle}>Budget threshold signals</h3>
                           </div>
                         </div>
                         <div className={styles.auditList}>
@@ -2603,10 +2602,10 @@ export function ChatApp() {
                                 {item.monthly_budget_usd.toFixed(2)}
                               </span>
                               <span>
-                                utilisasi {(item.utilization_ratio * 100).toFixed(1)}% • peringatan di{" "}
+                                utilization {(item.utilization_ratio * 100).toFixed(1)}% • alert at{" "}
                                 {(item.alert_threshold_ratio * 100).toFixed(0)}%
                               </span>
-                              <span>{item.member_count} member ditandai ke departemen ini</span>
+                              <span>{item.member_count} members tagged to this department</span>
                             </article>
                           ))}
                         </div>
@@ -2617,8 +2616,8 @@ export function ChatApp() {
                       <div className={styles.auditPanel}>
                         <div className={styles.teamHeader}>
                           <div>
-                            <p className={styles.analyticsLabel}>Riwayat invoice</p>
-                            <h3 className={styles.subscriptionTitle}>6 bulan terakhir</h3>
+                            <p className={styles.analyticsLabel}>Invoice history</p>
+                            <h3 className={styles.subscriptionTitle}>Last 6 months</h3>
                           </div>
                         </div>
                         <div className={styles.auditList}>
@@ -2626,15 +2625,15 @@ export function ChatApp() {
                             <article key={`${invoice.workspace_id}-${invoice.period_start}`} className={styles.auditItem}>
                               <strong>{invoice.period_label}</strong>
                               <span>
-                                total ${invoice.total_usd.toFixed(2)} • token{" "}
-                                {invoice.token_usage.toLocaleString("id-ID")}
+                                total ${invoice.total_usd.toFixed(2)} • tokens{" "}
+                                {invoice.token_usage.toLocaleString("en-US")}
                               </span>
                               <span>
-                                request {invoice.request_count} • dokumen {invoice.document_uploads}
+                                requests {invoice.request_count} • documents {invoice.document_uploads}
                               </span>
                               <span>
-                                {new Date(invoice.period_start).toLocaleDateString("id-ID")} -{" "}
-                                {new Date(invoice.period_end).toLocaleDateString("id-ID")}
+                                {new Date(invoice.period_start).toLocaleDateString("en-US")} -{" "}
+                                {new Date(invoice.period_end).toLocaleDateString("en-US")}
                               </span>
                             </article>
                           ))}
@@ -2655,10 +2654,10 @@ export function ChatApp() {
                       type="email"
                       value={inviteEmail}
                       onChange={(event) => setInviteEmail(event.target.value)}
-                      placeholder="Tambah kolaborator lewat email"
+                      placeholder="Invite a collaborator by email"
                     />
                     <button className={styles.button} type="submit">
-                      Tambahkan
+                      Invite
                     </button>
                   </form>
                 ) : null}
@@ -2669,7 +2668,7 @@ export function ChatApp() {
                       <strong>{member.name}</strong>
                       <span>{member.email}</span>
                       <span>
-                        fungsi {member.department ?? "-"} • pusat biaya {member.cost_center ?? "-"}
+                        department {member.department ?? "-"} • cost center {member.cost_center ?? "-"}
                       </span>
                       {canManageMembers ? (
                         <div className={styles.filterRow}>
@@ -2682,7 +2681,7 @@ export function ChatApp() {
                                 [member.email]: event.target.value,
                               }))
                             }
-                            placeholder="Departemen"
+                            placeholder="Department"
                           />
                     <input
                       className={styles.authInput}
@@ -2693,7 +2692,7 @@ export function ChatApp() {
                                 [member.email]: event.target.value,
                               }))
                             }
-                      placeholder="Pusat biaya"
+                      placeholder="Cost center"
                     />
                           <div />
                           <button
@@ -2701,7 +2700,7 @@ export function ChatApp() {
                             type="button"
                             onClick={() => handleSaveMemberMetadata(member.email)}
                           >
-                            Simpan tag
+                            Save tags
                           </button>
                         </div>
                       ) : null}
@@ -2712,7 +2711,7 @@ export function ChatApp() {
                             type="button"
                             onClick={() => handleRemoveMember(member.email)}
                           >
-                            Hapus member
+                            Remove member
                           </button>
                         </div>
                       ) : null}
@@ -2725,7 +2724,7 @@ export function ChatApp() {
                     <div className={styles.teamHeader}>
                       <div>
                         <p className={styles.analyticsLabel}>Audit trail</p>
-                        <h3 className={styles.subscriptionTitle}>Jejak aktivitas workspace</h3>
+                        <h3 className={styles.subscriptionTitle}>Workspace activity trail</h3>
                       </div>
                     </div>
 
@@ -2737,7 +2736,7 @@ export function ChatApp() {
                             <span>
                               {log.target_type}: {log.target_value}
                             </span>
-                            {log.actor_email ? <span>aktor {log.actor_email}</span> : null}
+                            {log.actor_email ? <span>actor {log.actor_email}</span> : null}
                             {formatMetadataEntries(log.metadata).length > 0 ? (
                               <div className={styles.metadataList}>
                                 {formatMetadataEntries(log.metadata).map(([key, value]) => (
@@ -2750,11 +2749,11 @@ export function ChatApp() {
                                 ))}
                               </div>
                             ) : null}
-                            <span>{new Date(log.created_at).toLocaleString("id-ID")}</span>
+                            <span>{new Date(log.created_at).toLocaleString("en-US")}</span>
                           </article>
                         ))
                       ) : (
-                        <p className={styles.emptyText}>Belum ada audit log untuk workspace ini.</p>
+                        <p className={styles.emptyText}>No audit log entries are available for this workspace yet.</p>
                       )}
                     </div>
                   </div>
@@ -2769,8 +2768,8 @@ export function ChatApp() {
             <section className={styles.teamPanel}>
               <div className={styles.teamHeader}>
                 <div>
-                  <p className={styles.analyticsLabel}>Pemakaian workspace</p>
-                  <h2 className={styles.adminTitle}>Meter pemakaian per member</h2>
+                  <p className={styles.analyticsLabel}>Workspace usage</p>
+                  <h2 className={styles.adminTitle}>Usage meter by member</h2>
                 </div>
               </div>
 
@@ -2780,16 +2779,16 @@ export function ChatApp() {
                     <strong>{entry.name}</strong>
                     <span>{entry.email}</span>
                     <span>
-                      {entry.estimated_total_tokens.toLocaleString("id-ID")} token • $
+                      {entry.estimated_total_tokens.toLocaleString("en-US")} tokens • $
                       {entry.estimated_total_cost_usd.toFixed(4)}
                     </span>
                     <span>
-                      {entry.chats_sent} chat • {entry.documents_uploaded} dokumen
+                      {entry.chats_sent} review prompts • {entry.documents_uploaded} documents
                     </span>
                   </article>
                 ))}
                 {memberUsage.length === 0 ? (
-                  <p className={styles.emptyText}>Belum ada meter pemakaian yang bisa ditampilkan.</p>
+                  <p className={styles.emptyText}>There is no member usage data to show yet.</p>
                 ) : null}
               </div>
             </section>
@@ -2797,15 +2796,15 @@ export function ChatApp() {
             <section className={styles.teamPanel}>
               <div className={styles.teamHeader}>
                 <div>
-                  <p className={styles.analyticsLabel}>Pengaturan workspace</p>
-                  <h2 className={styles.adminTitle}>Paket, kuota, dan operasional email</h2>
+                  <p className={styles.analyticsLabel}>Workspace settings</p>
+                  <h2 className={styles.adminTitle}>Plan, quotas, and email operations</h2>
                 </div>
               </div>
 
               {workspaceSettings ? (
                 <form className={styles.settingsGrid} onSubmit={handleSaveWorkspaceSettings}>
                   <label className={styles.label}>
-                    Nama paket
+                    Plan name
                     <input
                       className={styles.authInput}
                       value={planName}
@@ -2814,7 +2813,7 @@ export function ChatApp() {
                     />
                   </label>
                   <label className={styles.label}>
-                    Seat yang termasuk
+                    Included seats
                     <input
                       className={styles.authInput}
                       type="number"
@@ -2824,7 +2823,7 @@ export function ChatApp() {
                     />
                   </label>
                   <label className={styles.label}>
-                    Harga dasar USD
+                    Base price USD
                     <input
                       className={styles.authInput}
                       type="number"
@@ -2835,7 +2834,7 @@ export function ChatApp() {
                     />
                   </label>
                   <label className={styles.label}>
-                    Harga per seat USD
+                    Per-seat price USD
                     <input
                       className={styles.authInput}
                       type="number"
@@ -2846,7 +2845,7 @@ export function ChatApp() {
                     />
                   </label>
                   <label className={styles.label}>
-                    Kuota token bulanan
+                    Monthly token quota
                     <input
                       className={styles.authInput}
                       type="number"
@@ -2856,7 +2855,7 @@ export function ChatApp() {
                     />
                   </label>
                   <label className={styles.label}>
-                    Kuota dokumen bulanan
+                    Monthly document quota
                     <input
                       className={styles.authInput}
                       type="number"
@@ -2867,8 +2866,8 @@ export function ChatApp() {
                   </label>
                   <article className={styles.analyticsCard}>
                     <span className={styles.analyticsLabel}>SMTP</span>
-                    <strong>{workspaceSettings.smtp_enabled ? "Siap" : "Nonaktif"}</strong>
-                    <p>{workspaceSettings.smtp_enabled ? "Invite email aktif" : "Konfigurasi SMTP belum ada"}</p>
+                    <strong>{workspaceSettings.smtp_enabled ? "Ready" : "Disabled"}</strong>
+                    <p>{workspaceSettings.smtp_enabled ? "Invite email delivery is enabled" : "SMTP is not configured yet"}</p>
                   </article>
                   <div className={styles.settingsActions}>
                     <button
@@ -2876,20 +2875,20 @@ export function ChatApp() {
                       type="submit"
                       disabled={!canEditWorkspaceSettings}
                     >
-                      Simpan pengaturan
+                      Save settings
                     </button>
                   </div>
                 </form>
               ) : (
-                <p className={styles.emptyText}>Pengaturan workspace belum tersedia untuk akses ini.</p>
+                <p className={styles.emptyText}>Workspace settings are not available for this access level yet.</p>
               )}
 
               {workspaceSettings ? (
                 <div className={styles.auditPanel}>
                   <div className={styles.teamHeader}>
                     <div>
-                      <p className={styles.analyticsLabel}>Anggaran departemen</p>
-                      <h3 className={styles.subscriptionTitle}>Batas biaya per departemen</h3>
+                      <p className={styles.analyticsLabel}>Department budgets</p>
+                      <h3 className={styles.subscriptionTitle}>Department spending limits</h3>
                     </div>
                   </div>
 
@@ -2899,7 +2898,7 @@ export function ChatApp() {
                         className={styles.authInput}
                         value={departmentBudgetName}
                         onChange={(event) => setDepartmentBudgetName(event.target.value)}
-                        placeholder="Nama departemen"
+                        placeholder="Department name"
                       />
                       <input
                         className={styles.authInput}
@@ -2907,7 +2906,7 @@ export function ChatApp() {
                         step="0.01"
                         value={departmentBudgetUsd}
                         onChange={(event) => setDepartmentBudgetUsd(event.target.value)}
-                        placeholder="Anggaran bulanan USD"
+                        placeholder="Monthly budget USD"
                       />
                       <input
                         className={styles.authInput}
@@ -2917,10 +2916,10 @@ export function ChatApp() {
                         max="1"
                         value={departmentBudgetThreshold}
                         onChange={(event) => setDepartmentBudgetThreshold(event.target.value)}
-                        placeholder="Rasio peringatan"
+                        placeholder="Alert ratio"
                       />
                       <button className={styles.button} type="submit">
-                        Simpan anggaran
+                        Save budget
                       </button>
                     </form>
                   ) : null}
@@ -2937,14 +2936,14 @@ export function ChatApp() {
                               {budget.department} {alert ? `• ${alert.status}` : ""}
                             </strong>
                             <span>
-                              anggaran ${budget.monthly_budget_usd.toFixed(2)} • peringatan di{" "}
+                              budget ${budget.monthly_budget_usd.toFixed(2)} • alert at{" "}
                               {(budget.alert_threshold_ratio * 100).toFixed(0)}%
                             </span>
                             <span>
-                              pemakaian sekarang ${alert?.spend_usd.toFixed(4) ?? "0.0000"} • utilisasi{" "}
+                              current spend ${alert?.spend_usd.toFixed(4) ?? "0.0000"} • utilization{" "}
                               {alert ? `${(alert.utilization_ratio * 100).toFixed(1)}%` : "0.0%"}
                             </span>
-                            <span>{alert?.member_count ?? 0} member ditag ke department ini</span>
+                            <span>{alert?.member_count ?? 0} members tagged to this department</span>
                             {canManageMembers ? (
                               <div className={styles.memberActions}>
                                 <button
@@ -2952,7 +2951,7 @@ export function ChatApp() {
                                   type="button"
                                   onClick={() => handleDeleteDepartmentBudget(budget.id)}
                                 >
-                                  Hapus budget
+                                  Remove budget
                                 </button>
                               </div>
                             ) : null}
@@ -2962,7 +2961,7 @@ export function ChatApp() {
                     </div>
                   ) : (
                     <p className={styles.emptyText}>
-                      Belum ada anggaran departemen. Tambahkan batas biaya supaya billing bisa kasih peringatan lebih awal.
+                      No department budgets have been added yet. Add a spending limit so billing can raise earlier warnings.
                     </p>
                   )}
                 </div>
@@ -2972,7 +2971,7 @@ export function ChatApp() {
                 <div className={styles.teamHeader}>
                   <div>
                     <p className={styles.analyticsLabel}>Observability</p>
-                    <h3 className={styles.subscriptionTitle}>Ringkasan request log</h3>
+                    <h3 className={styles.subscriptionTitle}>Request log overview</h3>
                   </div>
                 </div>
 
@@ -2983,14 +2982,14 @@ export function ChatApp() {
                         className={styles.authInput}
                         value={requestLogQuery}
                         onChange={(event) => setRequestLogQuery(event.target.value)}
-                        placeholder="Cari path, mis. /conversations"
+                        placeholder="Search a path, for example /conversations"
                       />
                       <select
                         className={styles.authInput}
                         value={requestLogAuthMode}
                         onChange={(event) => setRequestLogAuthMode(event.target.value)}
                       >
-                        <option value="">Semua auth</option>
+                        <option value="">All auth modes</option>
                         <option value="session">session</option>
                         <option value="api_key">api_key</option>
                       </select>
@@ -2999,7 +2998,7 @@ export function ChatApp() {
                         value={requestLogStatusCode}
                         onChange={(event) => setRequestLogStatusCode(event.target.value)}
                       >
-                        <option value="">Semua status</option>
+                        <option value="">All statuses</option>
                         <option value="200">200</option>
                         <option value="401">401</option>
                         <option value="403">403</option>
@@ -3007,46 +3006,46 @@ export function ChatApp() {
                         <option value="500">500</option>
                       </select>
                       <button className={styles.button} type="button" onClick={handleApplyRequestLogFilters}>
-                        Terapkan
+                        Apply
                       </button>
                     </div>
 
                     <div className={styles.memberActions}>
                       <button className={styles.ghostButton} type="button" onClick={handleExportRequestLogsCsv}>
-                        Unduh request log CSV
+                        Download request log CSV
                       </button>
                       <span className={styles.emptyText}>
-                        {requestLogTotal} log total • halaman {Math.floor(requestLogOffset / requestLogLimit) + 1}
+                        {requestLogTotal} total logs • page {Math.floor(requestLogOffset / requestLogLimit) + 1}
                       </span>
                     </div>
 
                     <div className={styles.billingGrid}>
                       <article className={styles.analyticsCard}>
-                        <span className={styles.analyticsLabel}>Request</span>
+                        <span className={styles.analyticsLabel}>Requests</span>
                         <strong>{workspaceObservability.total_requests}</strong>
-                        <p>Total request tercatat</p>
+                        <p>Total recorded requests</p>
                       </article>
                       <article className={styles.analyticsCard}>
-                        <span className={styles.analyticsLabel}>Error</span>
+                        <span className={styles.analyticsLabel}>Errors</span>
                         <strong>{workspaceObservability.error_requests}</strong>
                         <p>HTTP 4xx/5xx</p>
                       </article>
                       <article className={styles.analyticsCard}>
-                        <span className={styles.analyticsLabel}>Latensi</span>
+                        <span className={styles.analyticsLabel}>Latency</span>
                         <strong>{workspaceObservability.avg_duration_ms} ms</strong>
-                        <p>Durasi rata-rata</p>
+                        <p>Average duration</p>
                       </article>
                       <article className={styles.analyticsCard}>
-                        <span className={styles.analyticsLabel}>Terakhir terlihat</span>
+                        <span className={styles.analyticsLabel}>Last seen</span>
                         <strong>
                           {workspaceObservability.last_request_at
-                            ? new Date(workspaceObservability.last_request_at).toLocaleDateString("id-ID")
+                            ? new Date(workspaceObservability.last_request_at).toLocaleDateString("en-US")
                             : "-"}
                         </strong>
                         <p>
                           {workspaceObservability.top_paths.length > 0
                             ? workspaceObservability.top_paths.join(" • ")
-                            : "Belum ada path dominan"}
+                            : "No dominant paths yet"}
                         </p>
                       </article>
                     </div>
@@ -3063,7 +3062,7 @@ export function ChatApp() {
                       <div className={styles.auditList}>
                         {workspaceObservability.recent_errors.map((entry) => (
                           <article key={entry} className={styles.auditItem}>
-                            <strong>Error terbaru</strong>
+                            <strong>Recent error</strong>
                             <span>{entry}</span>
                           </article>
                         ))}
@@ -3082,11 +3081,11 @@ export function ChatApp() {
                           <span>
                             {log.user_email ?? "no-user"} • {log.api_key_label ?? "no-api-key"}
                           </span>
-                          <span>{new Date(log.created_at).toLocaleString("id-ID")}</span>
+                          <span>{new Date(log.created_at).toLocaleString("en-US")}</span>
                         </article>
                       ))}
                       {requestLogs.length === 0 ? (
-                        <p className={styles.emptyText}>Belum ada request log detail untuk workspace ini.</p>
+                        <p className={styles.emptyText}>There are no detailed request logs for this workspace yet.</p>
                       ) : null}
                     </div>
 
@@ -3102,7 +3101,7 @@ export function ChatApp() {
                             )
                           }
                         >
-                          Halaman sebelumnya
+                          Previous page
                         </button>
                         <button
                           className={styles.ghostButton}
@@ -3114,21 +3113,21 @@ export function ChatApp() {
                             )
                           }
                         >
-                          Halaman berikutnya
+                          Next page
                         </button>
                       </div>
                     ) : null}
                   </>
                 ) : (
-                  <p className={styles.emptyText}>Observability belum tersedia untuk akses ini.</p>
+                  <p className={styles.emptyText}>Observability is not available for this access level yet.</p>
                 )}
               </div>
 
               <div className={styles.auditPanel}>
                 <div className={styles.teamHeader}>
                   <div>
-                    <p className={styles.analyticsLabel}>API key workspace</p>
-                    <h3 className={styles.subscriptionTitle}>Akses integrasi</h3>
+                    <p className={styles.analyticsLabel}>Workspace API keys</p>
+                    <h3 className={styles.subscriptionTitle}>Integration access</h3>
                   </div>
                 </div>
 
@@ -3137,19 +3136,19 @@ export function ChatApp() {
                     className={styles.authInput}
                     value={newApiKeyLabel}
                     onChange={(event) => setNewApiKeyLabel(event.target.value)}
-                    placeholder="Label API key"
+                    placeholder="API key label"
                     disabled={!canManageMembers}
                   />
                   <button className={styles.button} type="submit" disabled={!canManageMembers}>
-                    Buat key
+                    Create key
                   </button>
                 </form>
 
                 {latestApiKey ? (
                   <article className={styles.auditItem}>
-                    <strong>API key baru</strong>
+                    <strong>New API key</strong>
                     <span>{latestApiKey}</span>
-                    <span>Simpan sekarang. Setelah ini key mentah tidak akan ditampilkan lagi.</span>
+                    <span>Save it now. The raw key will not be shown again after this.</span>
                   </article>
                 ) : null}
 
@@ -3162,8 +3161,8 @@ export function ChatApp() {
                       </span>
                       <span>
                         {item.last_used_at
-                          ? `terakhir dipakai ${new Date(item.last_used_at).toLocaleString("id-ID")}`
-                          : `dibuat ${new Date(item.created_at).toLocaleString("id-ID")}`}
+                          ? `last used ${new Date(item.last_used_at).toLocaleString("en-US")}`
+                          : `created ${new Date(item.created_at).toLocaleString("en-US")}`}
                       </span>
                       {item.status === "active" ? (
                         <div className={styles.memberActions}>
@@ -3172,14 +3171,14 @@ export function ChatApp() {
                             type="button"
                             onClick={() => handleRevokeApiKey(item.id)}
                           >
-                            Cabut akses
+                            Revoke access
                           </button>
                         </div>
                       ) : null}
                     </article>
                   ))}
                   {workspaceApiKeys.length === 0 ? (
-                    <p className={styles.emptyText}>Belum ada API key untuk workspace ini.</p>
+                    <p className={styles.emptyText}>There are no API keys for this workspace yet.</p>
                   ) : null}
                 </div>
 
@@ -3191,16 +3190,16 @@ export function ChatApp() {
                         {item.key_prefix}... • {item.request_count} request • status {item.status}
                       </span>
                       <span>
-                        {item.billable_request_count} request tertagih • $
+                        {item.billable_request_count} billable requests • $
                         {item.estimated_cost_usd.toFixed(4)} •{" "}
-                        {item.estimated_tokens.toLocaleString("id-ID")} token
+                        {item.estimated_tokens.toLocaleString("en-US")} tokens
                       </span>
                       <span>
                         {item.last_used_at
-                          ? `terakhir dipakai ${new Date(item.last_used_at).toLocaleString("id-ID")}`
-                          : "belum pernah dipakai"}
+                          ? `last used ${new Date(item.last_used_at).toLocaleString("en-US")}`
+                          : "never used yet"}
                       </span>
-                      <span>{item.last_path ? `path terakhir ${item.last_path}` : "belum ada path tercatat"}</span>
+                      <span>{item.last_path ? `last path ${item.last_path}` : "no path recorded yet"}</span>
                       {item.top_paths.length > 0 ? (
                         <div className={styles.metadataList}>
                           {item.top_paths.map((path) => (
@@ -3213,7 +3212,7 @@ export function ChatApp() {
                     </article>
                   ))}
                   {workspaceApiKeyUsage.length === 0 ? (
-                    <p className={styles.emptyText}>Belum ada pemakaian API key yang tercatat.</p>
+                    <p className={styles.emptyText}>There is no recorded API key usage yet.</p>
                   ) : null}
                 </div>
               </div>
@@ -3221,8 +3220,8 @@ export function ChatApp() {
               <div className={styles.auditPanel}>
                 <div className={styles.teamHeader}>
                   <div>
-                    <p className={styles.analyticsLabel}>Antrian email</p>
-                    <h3 className={styles.subscriptionTitle}>Status pengiriman undangan</h3>
+                    <p className={styles.analyticsLabel}>Email queue</p>
+                    <h3 className={styles.subscriptionTitle}>Invite delivery status</h3>
                   </div>
                 </div>
                 <div className={styles.auditList}>
@@ -3233,16 +3232,16 @@ export function ChatApp() {
                         {job.recipient_email} • status {job.status}
                       </span>
                         <span>
-                        percobaan {job.attempt_count} • worker {job.worker_name ?? "-"}
+                        attempts {job.attempt_count} • worker {job.worker_name ?? "-"}
                         </span>
                       <span>
                         {job.sent_at
-                          ? `terkirim ${new Date(job.sent_at).toLocaleString("id-ID")}`
-                          : `masuk antrean ${new Date(job.created_at).toLocaleString("id-ID")}`}
+                          ? `sent ${new Date(job.sent_at).toLocaleString("en-US")}`
+                          : `queued ${new Date(job.created_at).toLocaleString("en-US")}`}
                       </span>
                       {job.processing_started_at ? (
                         <span>
-                          diproses {new Date(job.processing_started_at).toLocaleString("id-ID")}
+                          processing started {new Date(job.processing_started_at).toLocaleString("en-US")}
                         </span>
                       ) : null}
                       {job.error_message ? <span>{job.error_message}</span> : null}
@@ -3253,14 +3252,14 @@ export function ChatApp() {
                             type="button"
                             onClick={() => handleRetryEmailJob(job.id)}
                           >
-                            Coba kirim lagi
+                            Retry send
                           </button>
                         </div>
                       ) : null}
                     </article>
                   ))}
                   {emailJobs.length === 0 ? (
-                    <p className={styles.emptyText}>Belum ada email job untuk workspace ini.</p>
+                    <p className={styles.emptyText}>There are no email jobs for this workspace yet.</p>
                   ) : null}
                 </div>
               </div>
@@ -3271,32 +3270,32 @@ export function ChatApp() {
         {analytics ? (
           <div className={styles.analyticsGrid}>
             <article className={styles.analyticsCard}>
-              <span className={styles.analyticsLabel}>Sesi review</span>
+              <span className={styles.analyticsLabel}>Review sessions</span>
               <strong>{analytics.conversation_count}</strong>
-              <p>{analytics.chats_sent} sesi review dikirim</p>
+              <p>{analytics.chats_sent} review prompts sent</p>
             </article>
             <article className={styles.analyticsCard}>
-              <span className={styles.analyticsLabel}>File referensi</span>
+              <span className={styles.analyticsLabel}>Reference files</span>
               <strong>{analytics.document_count}</strong>
-              <p>{analytics.total_chunks} potongan referensi terindeks</p>
+              <p>{analytics.total_chunks} indexed reference chunks</p>
             </article>
             <article className={styles.analyticsCard}>
-              <span className={styles.analyticsLabel}>Catatan AI</span>
+              <span className={styles.analyticsLabel}>AI notes</span>
               <strong>{analytics.message_count}</strong>
-              <p>{analytics.assistant_message_count} balasan AI</p>
+              <p>{analytics.assistant_message_count} AI responses</p>
             </article>
             {!isSimpleWorkspaceMode ? (
               <>
                 <article className={styles.analyticsCard}>
-                  <span className={styles.analyticsLabel}>Estimasi token</span>
-                  <strong>{analytics.estimated_total_tokens.toLocaleString("id-ID")}</strong>
+                  <span className={styles.analyticsLabel}>Estimated tokens</span>
+                  <strong>{analytics.estimated_total_tokens.toLocaleString("en-US")}</strong>
                   <p>
-                    prompt {analytics.estimated_prompt_tokens.toLocaleString("id-ID")} • completion{" "}
-                    {analytics.estimated_completion_tokens.toLocaleString("id-ID")}
+                    prompt {analytics.estimated_prompt_tokens.toLocaleString("en-US")} • completion{" "}
+                    {analytics.estimated_completion_tokens.toLocaleString("en-US")}
                   </p>
                 </article>
                 <article className={styles.analyticsCard}>
-                  <span className={styles.analyticsLabel}>Estimasi biaya</span>
+                  <span className={styles.analyticsLabel}>Estimated cost</span>
                   <strong>${analytics.estimated_total_cost_usd.toFixed(4)}</strong>
                   <p>
                     prompt ${analytics.estimated_prompt_cost_usd.toFixed(4)} • completion $
@@ -3312,11 +3311,11 @@ export function ChatApp() {
           <div className={styles.adminPanel}>
             <div className={styles.adminHeader}>
               <div>
-                <p className={styles.analyticsLabel}>Analitik admin</p>
-                <h2 className={styles.adminTitle}>Ringkasan semua workspace</h2>
+                <p className={styles.analyticsLabel}>Admin analytics</p>
+                <h2 className={styles.adminTitle}>Cross-workspace summary</h2>
               </div>
               <p className={styles.adminSummary}>
-                {adminAnalytics.user_count} user • {adminAnalytics.usage_event_count} event penggunaan • $
+                {adminAnalytics.user_count} users • {adminAnalytics.usage_event_count} usage events • $
                 {adminAnalytics.estimated_total_cost_usd.toFixed(4)}
               </p>
             </div>
@@ -3324,42 +3323,42 @@ export function ChatApp() {
             <div className={styles.adminMetrics}>
               <div className={styles.adminMetric}>
                 <strong>{adminAnalytics.conversation_count}</strong>
-                <span>Total percakapan</span>
+                <span>Total conversations</span>
               </div>
               <div className={styles.adminMetric}>
                 <strong>{adminAnalytics.document_count}</strong>
-                <span>Total dokumen</span>
+                <span>Total documents</span>
               </div>
               <div className={styles.adminMetric}>
                 <strong>{adminAnalytics.message_count}</strong>
-                <span>Total pesan</span>
+                <span>Total messages</span>
               </div>
               <div className={styles.adminMetric}>
-                <strong>{adminAnalytics.estimated_total_tokens.toLocaleString("id-ID")}</strong>
-                <span>Total estimasi token</span>
+                <strong>{adminAnalytics.estimated_total_tokens.toLocaleString("en-US")}</strong>
+                <span>Total estimated tokens</span>
               </div>
             </div>
 
             {emailWorkerStatus ? (
               <div className={styles.metadataList}>
                 <span className={styles.metadataTag}>
-                  worker {emailWorkerStatus.worker_enabled ? "aktif" : "manual"}
+                  worker {emailWorkerStatus.worker_enabled ? "enabled" : "manual"}
                 </span>
                 <span className={styles.metadataTag}>
-                  berjalan {emailWorkerStatus.worker_running ? "ya" : "tidak"}
+                  running {emailWorkerStatus.worker_running ? "yes" : "no"}
                 </span>
                 <span className={styles.metadataTag}>
-                  antrean {emailWorkerStatus.queue_depth}
+                  queue {emailWorkerStatus.queue_depth}
                 </span>
                 <span className={styles.metadataTag}>
-                  diproses {emailWorkerStatus.processing_jobs}
+                  processing {emailWorkerStatus.processing_jobs}
                 </span>
                 <span className={styles.metadataTag}>
-                  gagal {emailWorkerStatus.failed_jobs}
+                  failed {emailWorkerStatus.failed_jobs}
                 </span>
                 {emailWorkerStatus.last_processed_at ? (
                   <span className={styles.metadataTag}>
-                    proses terakhir {new Date(emailWorkerStatus.last_processed_at).toLocaleString("id-ID")}
+                    last processed {new Date(emailWorkerStatus.last_processed_at).toLocaleString("en-US")}
                   </span>
                 ) : null}
               </div>
@@ -3371,11 +3370,11 @@ export function ChatApp() {
                   <p className={styles.topUserName}>{entry.name}</p>
                   <p className={styles.topUserMeta}>{entry.email}</p>
                   <p className={styles.topUserMeta}>
-                    {entry.conversation_count} chat • {entry.document_count} dokumen
+                    {entry.conversation_count} review sessions • {entry.document_count} documents
                   </p>
                   <p className={styles.topUserCost}>
                     ${entry.estimated_total_cost_usd.toFixed(4)} •{" "}
-                    {entry.estimated_total_tokens.toLocaleString("id-ID")} token
+                    {entry.estimated_total_tokens.toLocaleString("en-US")} tokens
                   </p>
                 </article>
               ))}
@@ -3387,7 +3386,7 @@ export function ChatApp() {
       <section className={styles.workspace}>
         <aside className={styles.sidebar}>
           <button className={styles.newChatButton} type="button" onClick={handleNewChat}>
-            Review baru
+            New review
           </button>
 
           <div className={styles.conversationList}>
@@ -3406,10 +3405,10 @@ export function ChatApp() {
                 >
                   <span className={styles.conversationTitle}>{conversation.title}</span>
                   <span className={styles.conversationMeta}>
-                    {conversation.document_count} file • {conversation.message_count} catatan
+                    {conversation.document_count} files • {conversation.message_count} notes
                   </span>
                   <span className={styles.conversationMeta}>
-                    {new Date(conversation.updated_at).toLocaleString("id-ID", {
+                    {new Date(conversation.updated_at).toLocaleString("en-US", {
                       dateStyle: "short",
                       timeStyle: "short",
                     })}
@@ -3422,15 +3421,15 @@ export function ChatApp() {
                   onClick={() => handleDeleteConversation(conversation.id)}
                   disabled={isLoading || conversations.length === 1}
                 >
-                  Hapus
+                  Delete
                 </button>
               </div>
             ))}
             {conversations.length === 0 ? (
               <div className={styles.sidebarEmptyCard}>
-                <span className={styles.statusLabel}>Mulai di sini</span>
-                <strong>Belum ada sesi review aktif</strong>
-                <p>Buat review baru untuk mulai membaca plan, memuat referensi kode, atau mendiskusikan temuan proyek.</p>
+                <span className={styles.statusLabel}>Start here</span>
+                <strong>No active review sessions yet</strong>
+                <p>Create a new review to start reading plans, loading code references, or discussing project findings.</p>
               </div>
             ) : null}
           </div>
@@ -3439,12 +3438,12 @@ export function ChatApp() {
         <section className={styles.shell}>
           <div className={styles.knowledgeBar}>
             <div>
-              <p className={styles.knowledgeEyebrow}>Plan intake dan code knowledge</p>
+              <p className={styles.knowledgeEyebrow}>Plan intake and code knowledge</p>
               <h2 className={styles.knowledgeTitle}>
-                {workspaceDocuments.length} file proyek dan referensi
+                {workspaceDocuments.length} project and reference files
               </h2>
               <p className={styles.documentMeta}>
-                {activeConversation?.documents.length ?? 0} file terhubung langsung ke sesi review ini
+                {activeConversation?.documents.length ?? 0} files linked directly to this review session
               </p>
             </div>
 
@@ -3462,10 +3461,10 @@ export function ChatApp() {
                 onClick={() => fileInputRef.current?.click()}
                 disabled={!activeConversation || isUploading}
               >
-                {isUploading ? "Mengunggah..." : "Unggah plan / code"}
+                {isUploading ? "Uploading..." : "Upload plans or codes"}
               </button>
               <button className={styles.ghostButton} type="button" onClick={handleReset}>
-                Reset sesi
+                Reset session
               </button>
             </div>
           </div>
@@ -3474,16 +3473,16 @@ export function ChatApp() {
             <div className={styles.planOpsHeader}>
               <div>
                 <p className={styles.knowledgeEyebrow}>Pipeline MVP</p>
-                <h3 className={styles.planOpsTitle}>Mata - Otak - Tangan</h3>
+                <h3 className={styles.planOpsTitle}>Eyes - Brain - Hands</h3>
                 <p className={styles.planOpsCopy}>
-                  Gunakan dashboard ini untuk intake drawing, memuat basis aturan FBC atau NEC,
-                  lalu mengubah hasil review menjadi checklist dan handoff teknis yang lebih siap dieksekusi.
+                  Use this dashboard to intake drawings, load FBC or NEC knowledge, and turn review findings
+                  into checklists and technical handoff notes that are more ready to execute.
                 </p>
               </div>
               <div className={styles.planStageRow}>
-                <span className={styles.planStageChip}>Mata: baca plan dan fixture</span>
-                <span className={styles.planStageChip}>Otak: cocokkan dengan kode</span>
-                <span className={styles.planStageChip}>Tangan: siapkan routing dan tindak lanjut</span>
+                <span className={styles.planStageChip}>Eyes: read plans and fixtures</span>
+                <span className={styles.planStageChip}>Brain: match them to code</span>
+                <span className={styles.planStageChip}>Hands: prepare routing and follow-up work</span>
               </div>
             </div>
 
@@ -3492,7 +3491,7 @@ export function ChatApp() {
                 <article key={item.label} className={styles.planOpsCard}>
                   <span className={styles.analyticsLabel}>{item.label}</span>
                   <strong>{item.value}</strong>
-                  <p>{item.ready ? "Siap dipakai dalam alur review aktif." : "Masih perlu dilengkapi agar pipeline terasa utuh."}</p>
+                  <p>{item.ready ? "Ready to use in the current review workflow." : "Still needs more setup before the pipeline feels complete."}</p>
                 </article>
               ))}
             </div>
@@ -3501,23 +3500,23 @@ export function ChatApp() {
               <button
                 className={styles.ghostButton}
                 type="button"
-                onClick={() => handleQuickPrompt("Baca plan ini dan identifikasi ruang, fixture, dan area yang butuh review MEP.")}
+                onClick={() => handleQuickPrompt("Read this plan and identify rooms, fixtures, and areas that need MEP review.")}
               >
-                Mulai intake plan
+                Start plan intake
               </button>
               <button
                 className={styles.ghostButton}
                 type="button"
-                onClick={() => handleQuickPrompt("Susun checklist FBC dan NEC yang paling relevan untuk proyek ini.")}
+                onClick={() => handleQuickPrompt("Build the most relevant FBC and NEC checklist for this project.")}
               >
-                Minta checklist code
+                Request a code checklist
               </button>
               <button
                 className={styles.ghostButton}
                 type="button"
-                onClick={() => handleQuickPrompt("Ubah temuan review ini menjadi action items yang bisa dipakai engineer lapangan.")}
+                onClick={() => handleQuickPrompt("Turn these review findings into action items that an engineer in the field can use.")}
               >
-                Siapkan handoff engineer
+                Prepare an engineer handoff
               </button>
             </div>
           </div>
@@ -3529,26 +3528,26 @@ export function ChatApp() {
                   <div>
                     <p className={styles.documentName}>{document.name}</p>
                     <p className={styles.documentMeta}>
-                      {document.chunk_count} potongan •{" "}
-                      {new Date(document.created_at).toLocaleString("id-ID", {
+                      {document.chunk_count} chunks •{" "}
+                      {new Date(document.created_at).toLocaleString("en-US", {
                         dateStyle: "short",
                         timeStyle: "short",
                       })}
                     </p>
-                    <p className={styles.documentMeta}>sesi: {document.conversation_title}</p>
+                    <p className={styles.documentMeta}>session: {document.conversation_title}</p>
                   </div>
                   <button
                     className={styles.deleteButton}
                     type="button"
                     onClick={() => handleDeleteDocument(document.id)}
                   >
-                    Hapus
+                    Delete
                   </button>
                 </div>
               ))
             ) : (
               <p className={styles.emptyText}>
-                Belum ada file proyek. Anda bisa mulai dari pertanyaan umum, lalu unggah plan, referensi FBC atau NEC, atau spesifikasi proyek untuk review yang lebih tajam.
+                There are no project files yet. You can start with a general question, then upload plans, FBC or NEC references, or project specifications for a sharper review.
               </p>
             )}
           </div>
@@ -3559,15 +3558,15 @@ export function ChatApp() {
                 {isBooting ? (
                   <article className={`${styles.message} ${styles.assistantMessage}`}>
                     <span className={styles.messageRole}>System</span>
-                    <p>Menyiapkan proyek review...</p>
+                    <p>Preparing the review workspace...</p>
                   </article>
                 ) : null}
 
                 {showStarterFlows ? (
                   <section className={styles.starterPanel}>
                     <div className={styles.starterHeader}>
-                      <span className={styles.statusLabel}>Saran titik mulai</span>
-                      <strong>Mulai dari skenario review yang paling gampang didemokan</strong>
+                      <span className={styles.statusLabel}>Suggested starting points</span>
+                      <strong>Start with the review scenario that is easiest to demonstrate</strong>
                     </div>
                     <div className={styles.starterGrid}>
                       {starterFlows.map((flow) => (
@@ -3593,7 +3592,7 @@ export function ChatApp() {
                     }`}
                   >
                     <span className={styles.messageRole}>
-                      {message.role === "user" ? "Kamu" : "AI"}
+                      {message.role === "user" ? "You" : "AI"}
                     </span>
                     <p>{message.content}</p>
                   </article>
@@ -3602,7 +3601,7 @@ export function ChatApp() {
 
               <form className={styles.form} onSubmit={handleSubmit}>
                 <label className={styles.label} htmlFor="prompt">
-                  Tulis instruksi review
+                  Write a review instruction
                 </label>
 
                 <textarea
@@ -3610,7 +3609,7 @@ export function ChatApp() {
                   id="prompt"
                   className={styles.input}
                   rows={4}
-                  placeholder="Contoh: baca plan ini lalu buat checklist NEC untuk bathroom dan kitchen, atau ubah temuan review menjadi tindak lanjut"
+                  placeholder="Example: read this plan and build an NEC checklist for the bathroom and kitchen, or convert the findings into next actions"
                   value={input}
                   onChange={(event) => setInput(event.target.value)}
                   disabled={!activeConversation}
@@ -3618,16 +3617,16 @@ export function ChatApp() {
 
                 <div className={styles.formFooter}>
                   <p className={styles.hint}>
-                    Arsitektur: Next.js UI, FastAPI backend, PostgreSQL, retrieval referensi, dan chat review.
+                    Architecture: Next.js UI, FastAPI backend, PostgreSQL, reference retrieval, and AI review chat.
                   </p>
                   <div className={styles.actions}>
                     {isLoading ? (
                       <button className={styles.stopButton} type="button" onClick={handleStop}>
-                        Hentikan
+                        Stop
                       </button>
                     ) : null}
                     <button className={styles.button} type="submit" disabled={isLoading || !activeConversation}>
-                      {isLoading ? "Mengalir..." : "Kirim"}
+                      {isLoading ? "Streaming..." : "Send"}
                     </button>
                   </div>
                 </div>
@@ -3636,23 +3635,23 @@ export function ChatApp() {
 
             <aside className={styles.assistantRail}>
               <div className={styles.assistantRailHeader}>
-                <p className={styles.analyticsLabel}>Asisten</p>
-                <h3 className={styles.subscriptionTitle}>Copilot review building plan</h3>
+                <p className={styles.analyticsLabel}>Assistant</p>
+                <h3 className={styles.subscriptionTitle}>Building plan review copilot</h3>
                 {aiMode === "demo" ? (
-                  <span className={styles.demoBadge}>Mode demo aktif</span>
+                  <span className={styles.demoBadge}>Demo mode active</span>
                 ) : null}
                 <p className={styles.assistantCopy}>
-                  Gunakan AI ini untuk membaca plan, memuat referensi kode, menulis temuan review, dan menyiapkan handoff teknis dalam satu tempat.
+                  Use this AI to read plans, load code references, write review findings, and prepare technical handoff notes in one place.
                 </p>
                 {aiMode === "demo" ? (
                   <p className={styles.demoHint}>
-                    Respons saat ini memakai fallback simulasi yang tetap cocok untuk presentasi workflow proyek dan uji alur.
+                    Responses are currently using a simulation fallback that still works well for workflow demos and user-flow testing.
                   </p>
                 ) : null}
               </div>
 
               <div className={styles.assistantSection}>
-                <p className={styles.assistantSectionTitle}>Tugas cepat</p>
+                <p className={styles.assistantSectionTitle}>Quick tasks</p>
                 <div className={styles.quickPromptList}>
                   {quickPrompts.map((prompt) => (
                     <button
@@ -3668,7 +3667,7 @@ export function ChatApp() {
               </div>
 
               <div className={styles.assistantSection}>
-                <p className={styles.assistantSectionTitle}>Skenario demo</p>
+                <p className={styles.assistantSectionTitle}>Demo scenarios</p>
                 <div className={styles.demoScenarioList}>
                   {demoScenarios.map((scenario) => (
                     <button
@@ -3685,29 +3684,29 @@ export function ChatApp() {
               </div>
 
               <div className={styles.assistantSection}>
-                <p className={styles.assistantSectionTitle}>Konteks proyek</p>
+                <p className={styles.assistantSectionTitle}>Project context</p>
                 <div className={styles.assistantStats}>
                   <article className={styles.assistantStatCard}>
                     <strong>{workspaceDocuments.length}</strong>
-                    <span>file proyek</span>
+                    <span>project files</span>
                   </article>
                   <article className={styles.assistantStatCard}>
                     <strong>{activeConversation?.documents.length ?? 0}</strong>
-                    <span>file di sesi ini</span>
+                    <span>files in this session</span>
                   </article>
                   <article className={styles.assistantStatCard}>
                     <strong>{activeConversation?.messages.length ?? 0}</strong>
-                    <span>catatan di sesi aktif</span>
+                    <span>notes in the active session</span>
                   </article>
                 </div>
               </div>
 
               <div className={styles.assistantSection}>
-                <p className={styles.assistantSectionTitle}>Cara pakai yang paling enak</p>
+                <p className={styles.assistantSectionTitle}>Recommended workflow</p>
                 <div className={styles.assistantTips}>
-                  <p>1. Mulai dari unggah plan, gambar, atau spesifikasi proyek untuk memberi konteks awal.</p>
-                  <p>2. Tambahkan referensi FBC, NEC, atau dokumen standar jika Anda ingin review yang lebih grounded.</p>
-                  <p>3. Minta AI memisahkan antara asumsi umum, temuan review, dan tindakan lanjut untuk engineer.</p>
+                  <p>1. Start by uploading plans, drawings, or project specifications to establish context.</p>
+                  <p>2. Add FBC, NEC, or standards documents if you want more grounded review outputs.</p>
+                  <p>3. Ask the AI to separate general assumptions, review findings, and next actions for the engineer.</p>
                 </div>
               </div>
             </aside>

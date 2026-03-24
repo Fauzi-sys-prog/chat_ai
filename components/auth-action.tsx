@@ -34,7 +34,7 @@ export function AuthAction({
           cache: "no-store",
         });
         if (!response.ok) {
-          throw new Error((await response.text()) || "Token tidak ditemukan.");
+          throw new Error((await response.text()) || "Token was not found.");
         }
         const data = (await response.json()) as TokenPreview;
         if (!cancelled) {
@@ -42,7 +42,7 @@ export function AuthAction({
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : "Gagal memuat token.");
+          setError(err instanceof Error ? err.message : "Failed to load token.");
         }
       } finally {
         if (!cancelled) {
@@ -69,9 +69,9 @@ export function AuthAction({
           method: "POST",
         });
         if (!response.ok) {
-          throw new Error((await response.text()) || "Verifikasi gagal.");
+          throw new Error((await response.text()) || "Verification failed.");
         }
-        setMessage("Email berhasil diverifikasi. Kamu bisa lanjut login di dashboard.");
+        setMessage("Email verified successfully. You can now sign in to the dashboard.");
       } else {
         const response = await fetch(`/api/backend/auth/password-reset/${token}`, {
           method: "POST",
@@ -81,12 +81,12 @@ export function AuthAction({
           body: JSON.stringify({ password }),
         });
         if (!response.ok) {
-          throw new Error((await response.text()) || "Reset password gagal.");
+          throw new Error((await response.text()) || "Password reset failed.");
         }
-        setMessage("Password berhasil direset. Login lagi dengan password baru.");
+        setMessage("Password updated successfully. Sign in again with your new password.");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Aksi gagal.");
+      setError(err instanceof Error ? err.message : "Action failed.");
     } finally {
       setIsSubmitting(false);
     }
@@ -98,15 +98,15 @@ export function AuthAction({
         <p className={styles.eyebrow}>{mode === "verify_email" ? "Verify Email" : "Reset Password"}</p>
         <h1 className={styles.title}>
           {mode === "verify_email"
-            ? "Verifikasi email akun kamu."
-            : "Atur password baru untuk akun kamu."}
+            ? "Verify your account email."
+            : "Set a new password for your account."}
         </h1>
         <p className={styles.copy}>
           {isLoading
-            ? "Memuat token..."
+            ? "Loading token..."
             : preview
-              ? `${preview.email} • expires ${new Date(preview.expires_at).toLocaleString("id-ID")}`
-              : "Token tidak tersedia."}
+              ? `${preview.email} • expires ${new Date(preview.expires_at).toLocaleString("en-US")}`
+              : "Token is not available."}
         </p>
 
         {mode === "reset_password" ? (
@@ -116,23 +116,23 @@ export function AuthAction({
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              placeholder="Minimal 8 karakter"
+              placeholder="At least 8 characters"
             />
             <button className={styles.button} type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Memproses..." : "Simpan password baru"}
+              {isSubmitting ? "Processing..." : "Save new password"}
             </button>
           </form>
         ) : (
           <div className={styles.actions}>
             <button className={styles.button} type="button" onClick={() => void handleSubmit()} disabled={isSubmitting}>
-              {isSubmitting ? "Memproses..." : "Verifikasi email"}
+              {isSubmitting ? "Processing..." : "Verify email"}
             </button>
           </div>
         )}
 
         <div className={styles.actions}>
           <Link className={styles.ghostButton} href="/">
-            Buka dashboard
+            Open dashboard
           </Link>
         </div>
 

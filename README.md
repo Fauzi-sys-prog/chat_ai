@@ -1,84 +1,79 @@
 # Building Plan Automation Workspace
 
-AI-powered review workspace untuk membantu tim membaca plan, memuat referensi FBC atau NEC, dan mengubah hasil review menjadi checklist serta handoff teknis.
+An AI-assisted review workspace for teams that need to intake plans, load FBC or NEC references, and convert review findings into technical checklists and handoff notes.
 
-Dalam satu kalimat: ini adalah aplikasi web untuk menyatukan intake drawing, code knowledge, dan AI-assisted review ke dalam satu dashboard proyek yang lebih operasional.
+In one sentence: this app brings drawing intake, code knowledge, and AI-assisted review into a more operational project dashboard.
 
-Project ini lebih dekat ke `AI product engineering` daripada sekadar chat UI. Fokusnya ada di project intake, document-aware review, workspace isolation, observability, dan jalur deploy yang siap dinaikkan ke environment production.
+This project is closer to `AI product engineering` than a simple chat UI. The focus is on project intake, document-aware review, workspace isolation, observability, and a deployment path that can be elevated to a production-style environment.
 
 ## At a glance
 
-- `Siapa user-nya`: tim arsitektur, MEP, reviewer kode, atau engineer operasional
-- `Masalah yang diselesaikan`: review plan, lookup aturan bangunan, dan handoff teknis masih manual dan tersebar
-- `Cara kerja inti`: upload plan dan referensi -> ajukan review prompt -> dapat checklist, temuan, dan action items
+- `Primary users`: architecture teams, MEP reviewers, code reviewers, estimators, or technical operations teams
+- `Problem solved`: plan review, code lookup, and technical handoff are still manual and fragmented
+- `Core workflow`: upload plans and references -> ask for a review -> get checklists, findings, and action items
 
 ## Why this project matters
 
-- Menyatukan intake drawing, lookup FBC atau NEC, dan review AI ke satu workspace proyek
-- Menjaga alur kerja tetap stabil dengan `demo-safe mode` saat AI live belum aktif
-- Menunjukkan full-stack capability: frontend, backend, database, auth, observability, dan AI integration
-- Cocok untuk demo client, portfolio engineer, atau pondasi internal SaaS tool berbasis workflow teknis
+- It brings drawing intake, FBC or NEC lookup, and AI review into one project workspace
+- It keeps the workflow stable through a `demo-safe mode` when live AI is not available
+- It demonstrates full-stack ownership across frontend, backend, database, auth, observability, and AI integration
+- It is usable for recruiter demos, engineering portfolios, and internal SaaS-style workflow prototypes
 
 ## Product highlights
 
-- `Building-plan review copilot`: bisa membaca konteks plan dan referensi proyek untuk menyusun review yang lebih grounded
-- `Document-aware workflow`: upload `PDF`, `TXT`, atau `MD` untuk plan, code reference, atau spesifikasi
-- `Project workspace system`: auth, team access, invite flow, API keys, dan shared review library
-- `Operational visibility`: request logs, audit logs, usage analytics, invoice-style summaries
-- `Resilient demo path`: fallback mode tetap menjaga UX walau billing atau AI live belum aktif
-- `PostgreSQL-ready`: migration path via Alembic dan optional pgvector setup sudah tersedia
+- `Building-plan review copilot`: uses plan context and project references to produce more grounded reviews
+- `Document-aware workflow`: upload `PDF`, `TXT`, or `MD` references for plans, code, or specifications
+- `Project workspace system`: auth, team access, invite flow, API keys, and a shared review library
+- `Operational visibility`: request logs, audit logs, usage analytics, and invoice-style summaries
+- `Resilient demo path`: a fallback mode keeps the UX stable even when billing or live AI is unavailable
+- `PostgreSQL-ready`: Alembic migrations and optional pgvector setup are already in place
 
 ## Quick assets
 
-- Positioning untuk CV, interview, dan tender: [POSITIONING.md](/Users/macbook/Documents/chat_ai/POSITIONING.md)
-- Script demo presentasi: [DEMO_SCRIPT.md](/Users/macbook/Documents/chat_ai/DEMO_SCRIPT.md)
-- Jawaban interview teknikal: [INTERVIEW_QA.md](/Users/macbook/Documents/chat_ai/INTERVIEW_QA.md)
-- Panduan deploy dan production checklist: [DEPLOYMENT.md](/Users/macbook/Documents/chat_ai/DEPLOYMENT.md)
-- Blueprint untuk role building-plan automation / architectural GPT: [BUILDING_PLAN_AUTOMATION_BLUEPRINT.md](/Users/macbook/Documents/chat_ai/BUILDING_PLAN_AUTOMATION_BLUEPRINT.md)
+- Positioning for CV, interviews, and client pitches: [POSITIONING.md](./POSITIONING.md)
+- Demo presentation script: [DEMO_SCRIPT.md](./DEMO_SCRIPT.md)
+- Interview answers: [INTERVIEW_QA.md](./INTERVIEW_QA.md)
+- Deployment and production checklist: [DEPLOYMENT.md](./DEPLOYMENT.md)
+- Product blueprint for the building-plan automation direction: [BUILDING_PLAN_AUTOMATION_BLUEPRINT.md](./BUILDING_PLAN_AUTOMATION_BLUEPRINT.md)
 
 ## Core capabilities
 
-- Realtime review chat dengan multi-session sidebar
-- Register/login, token auth, dan personal or shared project flow
-- Upload plan atau referensi per session, lalu reuse knowledge lintas review dalam proyek
-- Team invites, API keys, usage metrics, request logs, dan audit logs
-- Billing-style dashboard, quota enforcement, invoice history, dan department budget alerts
-- Email verification, password reset, dan queued email delivery path
-- Demo fallback untuk chat dan embedding agar product flow tetap bisa ditunjukkan tanpa AI live
+- Realtime review chat with a multi-session sidebar
+- Register, sign in, token auth, and personal or shared project flows
+- Upload plans and references per session, then reuse knowledge across reviews inside the same project
+- Team invites, API keys, usage metrics, request logs, and audit logs
+- Billing-style dashboards, quota enforcement, invoice history, and department budget alerts
+- Email verification, password reset, and queued email delivery
+- Demo fallback for chat and embeddings so the product flow still works without live AI
 
 ## Stack
 
 - Frontend: `Next.js 15`, `React 19`, `TypeScript`
-- Web server/API proxy: `Next.js Route Handler`
+- Web server and API proxy: `Next.js Route Handler`
 - AI backend: `FastAPI`, `Python`, `OpenAI SDK`
 - Database layer: `SQLAlchemy`
 - Auth: token-based session auth
-- Retrieval: embeddings + semantic chunk search
-- Ops: analytics-ready backend + pgvector docker setup
-- Billing signal: estimated tokens dan estimated cost
-- Collaboration: workspace team + member invite
-- Permissions: owner/admin/member
-- Admin controls: audit log workspace + member management
-- Collaboration flow: pending invite -> accept/reject
-- Shared knowledge: workspace document library lintas conversation
-- Billing integration path: mock checkout + Stripe-style webhook endpoint
-- Delivery path: SMTP invite email + invite landing page
-- Ops surface: workspace settings + member usage + email retry queue
-- Auth hardening: email verify + password reset + worker-like email processor
-- Platform controls: API keys + auth throttling + scheduler-style email worker
-- Operational depth: request logs + migration tooling
-- Security shape: per-endpoint human/API-key access control
-- Cost governance: department budget cap + alert signal
+- Retrieval: embeddings plus semantic chunk search
+- Ops: analytics-ready backend plus pgvector Docker setup
+- Billing signal: estimated tokens and estimated cost
+- Collaboration: project teams plus member invite flow
+- Permissions: owner, admin, member
+- Admin controls: audit logs and member management
+- Shared knowledge: workspace document library across conversations
+- Billing integration path: mock checkout plus a Stripe-style webhook endpoint
+- Delivery path: SMTP invite email plus invite landing page
+- Platform controls: API keys, auth throttling, and worker-style email processing
+- Operational depth: request logs, migration tooling, and budget alerts
 
 ## Quick start
 
-1. Install dependency frontend
+1. Install frontend dependencies
 
 ```bash
 npm install
 ```
 
-2. Siapkan backend Python
+2. Set up the Python backend
 
 ```bash
 python3 -m venv .venv
@@ -86,94 +81,92 @@ source .venv/bin/activate
 pip install -r backend/requirements.txt
 ```
 
-3. Copy environment file
+3. Copy the environment files
 
 ```bash
 cp .env.example .env.local
 cp .env.example backend/.env
 ```
 
-4. Isi `OPENAI_API_KEY` di `backend/.env`
+4. Update `backend/.env`
 
-Opsional:
-isi `PYTHON_API_BASE_URL` di `.env.local` kalau URL backend Python kamu beda dari default `http://127.0.0.1:8000`
-isi `NEXT_PUBLIC_GOOGLE_CLIENT_ID` di `.env.local` dan `GOOGLE_CLIENT_ID` di `backend/.env` kalau mau mengaktifkan Google login
+At minimum:
 
-5. Jalankan backend Python
+```env
+OPENAI_API_KEY=your_key_here
+OPENAI_MODEL=gpt-4o-mini
+OPENAI_EMBEDDING_MODEL=text-embedding-3-small
+```
+
+Optional:
+
+- set `PYTHON_API_BASE_URL` in `.env.local` if your Python backend is not running at `http://127.0.0.1:8000`
+- set `NEXT_PUBLIC_GOOGLE_CLIENT_ID` in `.env.local` and `GOOGLE_CLIENT_ID` in `backend/.env` to enable Google sign-in
+
+5. Start the Python backend
 
 ```bash
 source .venv/bin/activate
 uvicorn backend.main:app --reload
 ```
 
-6. Opsional: jalankan email worker terpisah kalau mau queue lebih mirip production
+6. Optional: run the email worker in a separate terminal
 
 ```bash
 source .venv/bin/activate
 python backend/worker.py
 ```
 
-7. Jalankan frontend Next.js di terminal lain
+7. Start the Next.js frontend in another terminal
 
 ```bash
 npm run dev
 ```
 
-8. Buka `http://localhost:3000`
+8. Open `http://localhost:3000`
 
 ## Demo mode
 
-Kalau billing OpenAI belum aktif, app tetap bisa dipresentasikan dengan aman lewat fallback demo mode.
+If OpenAI billing is not active yet, the app can still be presented safely through the fallback demo mode.
 
-- Chat tetap jalan
-- Upload dokumen tetap jalan
-- Retrieval dokumen tetap dipakai
-- UI tetap menunjukkan alur produk secara realistis
+- Chat still works
+- Document upload still works
+- Document retrieval is still used
+- The UX still shows a realistic product workflow
 
-Ini membuat repo tetap berguna untuk portfolio, demo recruiter, dan validasi UX tanpa bergantung penuh pada provider AI live.
+This keeps the repo useful for portfolio demos, recruiter walkthroughs, and UX validation without depending entirely on a live AI provider.
 
-## Catatan
+## Notes
 
-- Default database sekarang pakai `SQLite` lokal lewat `DATABASE_URL=sqlite:///backend/app.db`
-- Untuk mode yang lebih production-ready, pakai `PostgreSQL` + `Alembic`
-- Upload yang didukung saat ini: `.pdf`, `.txt`, `.md`
-- Embedding default pakai `OPENAI_EMBEDDING_MODEL=text-embedding-3-small`
-- Email yang ada di `ADMIN_EMAILS` bisa buka admin analytics global
-- Cost estimation default bisa di-tuning via `CHAT_INPUT_COST_PER_1K`, `CHAT_OUTPUT_COST_PER_1K`, dan `EMBEDDING_COST_PER_1K`
-- Workspace tim sekarang mendukung create workspace, invite member by email, dan billing summary mock per workspace
-- Owner/admin bisa lihat audit log workspace, owner bisa ubah role, dan owner/admin bisa remove member
-- Invite sekarang bersifat pending sampai user accept/reject dari inbox undangan
-- Invite response sekarang juga punya `accept_url` yang siap dipakai sebagai link undangan
-- Kalau `SMTP_HOST` diisi, backend akan mencoba kirim email invite otomatis
-- Register sekarang membuat token verifikasi email dan login panel punya request reset password
-- Workspace sekarang bisa punya API key sendiri untuk akses non-user via header `X-API-Key`
-- Workspace settings sekarang juga menampilkan observability snapshot dan usage API key
-- Upload dokumen sekarang masuk ke knowledge workspace dan bisa dipakai lintas conversation dalam workspace yang sama
-- Endpoint mock checkout menyiapkan `stripe_customer_id` dan `stripe_subscription_id` palsu supaya UI billing lebih realistis
-- Subscription summary sekarang menampilkan quota bulanan token/dokumen
-- Quota token dan dokumen sekarang juga ditegakkan di backend, bukan cuma ditampilkan
-- Mock Stripe webhook tersedia di `POST /billing/webhooks/stripe` dan memakai header `Stripe-Signature` yang harus cocok dengan `STRIPE_WEBHOOK_SECRET`
-- Processor email jobs tersedia di `POST /system/process-email-jobs` untuk admin, jadi queue email bisa diproses seperti worker ringan
-- Auth endpoints sekarang dibatasi rate limit sederhana via env `AUTH_RATE_LIMIT_WINDOW_SECONDS` dan `AUTH_RATE_LIMIT_MAX_ATTEMPTS`
-- Auto worker email jobs bisa diaktifkan dengan `AUTO_PROCESS_EMAIL_JOBS=1`
-- Kalau mau worker terpisah, pakai `python backend/worker.py`; queue sekarang punya status `processing`, retry lease, dan attempt counter
-- Request log middleware sekarang menyimpan jejak request workspace untuk observability dasar
-- Endpoint sensitif seperti settings, audit log, billing, email jobs, member management, dan admin analytics sekarang hanya bisa diakses lewat login user langsung, bukan `X-API-Key`
-- API key usage sekarang juga menampilkan perkiraan token/cost dan path yang paling sering dipakai
-- Workspace sekarang punya endpoint detail request logs dan export CSV untuk observability yang lebih operasional
-- Billing panel sekarang punya invoice usage periode aktif dan bisa diexport ke CSV
-- Workspace sekarang juga punya histori invoice 6 bulan terakhir dan filter request logs by auth/status/path
-- UI sekarang menampilkan warning saat quota token atau dokumen mulai mendekati limit
-- Filter request logs sekarang disimpan lokal di browser, dan log viewer sudah punya pagination
-- Invoice usage sekarang juga punya breakdown per member di periode aktif
-- Owner/admin sekarang bisa menambahkan `department` dan `cost_center` ke member buat baca billing per tim lebih enak
-- `USE_NATIVE_PGVECTOR=1` akan mencoba write/query path native pgvector saat database pakai PostgreSQL
+- The default local database uses `SQLite` via `DATABASE_URL=sqlite:///backend/app.db`
+- For a more production-ready setup, use `PostgreSQL` plus `Alembic`
+- Supported uploads today: `.pdf`, `.txt`, `.md`
+- Default embeddings use `OPENAI_EMBEDDING_MODEL=text-embedding-3-small`
+- Emails listed in `ADMIN_EMAILS` can access global admin analytics
+- Cost estimation can be tuned with `CHAT_INPUT_COST_PER_1K`, `CHAT_OUTPUT_COST_PER_1K`, and `EMBEDDING_COST_PER_1K`
+- Team workspaces support project creation, member invites by email, and mock billing summaries
+- Invites remain pending until the recipient accepts or rejects them
+- Workspace API keys support non-user access through the `X-API-Key` header
+- Uploads are stored in the workspace knowledge layer and can be reused across conversations in the same workspace
+- Mock checkout populates placeholder Stripe customer and subscription ids to make the billing UI more realistic
+- Subscription summaries show monthly token and document quotas
+- Quotas are enforced in the backend, not only displayed in the UI
+- Mock Stripe webhooks are available at `POST /billing/webhooks/stripe` using `Stripe-Signature`
+- Sensitive endpoints such as settings, audit logs, billing, email jobs, member management, and admin analytics require direct user login, not `X-API-Key`
+- API key usage also shows estimated token usage, cost, and top paths
+- The billing panel includes current-period invoice summaries and CSV export
+- The app includes six months of invoice history and request log filters by auth mode, status, and path
+- The UI shows warnings when token or document quotas approach their limits
+- Request log filters are stored locally in the browser, and the log viewer supports pagination
+- Invoice usage includes a member-level breakdown for the active period
+- Owners and admins can add `department` and `cost_center` metadata for member-level budget visibility
+- `USE_NATIVE_PGVECTOR=1` enables native pgvector write and query paths when PostgreSQL is used
 
 ## Alembic
 
-Repo sekarang sudah punya baseline Alembic awal dan bisa dipakai sebagai jalur migrasi resmi.
+The repo already includes an initial Alembic baseline and can be used as the official migration path.
 
-Contoh pakai:
+Example:
 
 ```bash
 alembic upgrade head
@@ -181,60 +174,59 @@ alembic upgrade head
 
 ## Smoke audit
 
-Untuk cek fitur utama backend tanpa bergantung ke OpenAI sungguhan:
+To verify the main backend flow without relying on live OpenAI responses:
 
 ```bash
 source .venv/bin/activate
 python backend/smoke_audit.py
 ```
 
-Script ini menguji flow utama seperti register/login, workspace, invite member, settings, upload dokumen, chat, API key, billing mock, dan cleanup conversation.
+This script tests key flows such as register, login, workspace creation, member invites, settings, document upload, chat, API keys, mock billing, and conversation cleanup.
 
-Untuk regression test yang lebih ringan dan fokus ke mode demo + upload dokumen:
+For lighter regression coverage focused on demo mode and document upload:
 
 ```bash
 source .venv/bin/activate
 python -m unittest discover -s backend -p 'test_*.py'
 ```
 
-Kalau nanti ada perubahan model baru:
+If the data model changes later:
 
 ```bash
-alembic revision --autogenerate -m "deskripsi_perubahan"
+alembic revision --autogenerate -m "describe_the_change"
 alembic upgrade head
 ```
 
 ## PostgreSQL / pgvector
 
-Untuk siapin database production lokal:
+To prepare a more production-like local database:
 
 ```bash
 docker compose -f docker-compose.pgvector.yml up -d
 ```
 
-Install dependency backend dulu agar driver PostgreSQL tersedia:
+Install backend dependencies first so the PostgreSQL driver is available:
 
 ```bash
 pip install -r backend/requirements.txt
 ```
 
-Lalu ganti `DATABASE_URL` di `backend/.env` menjadi:
+Then update `DATABASE_URL` in `backend/.env`:
 
-```bash
+```env
 DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:5432/chat_ai
 ```
 
-Sesudah itu jalankan migrasi:
+After that, run the migrations:
 
 ```bash
 alembic upgrade head
 ```
 
-File compose ini sudah pakai image `pgvector/pgvector`, jadi jalur migrasi ke retrieval production-grade sudah disiapkan dari sekarang.
-Init SQL juga sudah menyalakan extension `vector` otomatis lewat [docker/postgres/init/01-enable-pgvector.sql](/Users/macbook/Documents/chat_ai/docker/postgres/init/01-enable-pgvector.sql).
+The compose file already uses the `pgvector/pgvector` image, and the vector extension is enabled automatically through `docker/postgres/init/01-enable-pgvector.sql`.
 
-## Langkah berikutnya
+## Next steps
 
-- Migrasi retrieval ke pgvector/PostgreSQL penuh untuk production scale
-- Tambah RBAC yang lebih detail, invite acceptance flow, dan Stripe billing beneran
-- Tambah observability, audit log, dan admin controls yang lebih lengkap
+- Move retrieval fully to PostgreSQL plus pgvector for larger-scale usage
+- Add deeper RBAC, invite governance, and a real Stripe billing flow
+- Expand observability, audit controls, and admin tooling

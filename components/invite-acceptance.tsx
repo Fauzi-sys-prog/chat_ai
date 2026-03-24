@@ -7,7 +7,6 @@ import styles from "./invite-acceptance.module.css";
 type InvitePreview = {
   workspace_name: string;
   email: string;
-  role: string;
   status: string;
   accept_url: string;
   created_at: string;
@@ -38,7 +37,7 @@ export function InviteAcceptance({ token }: { token: string }) {
           cache: "no-store",
         });
         if (!response.ok) {
-          throw new Error((await response.text()) || "Invite tidak ditemukan.");
+          throw new Error((await response.text()) || "Invite not found.");
         }
         const data = (await response.json()) as InvitePreview;
         if (!cancelled) {
@@ -46,7 +45,7 @@ export function InviteAcceptance({ token }: { token: string }) {
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : "Gagal memuat invite.");
+          setError(err instanceof Error ? err.message : "Failed to load invite.");
         }
       } finally {
         if (!cancelled) {
@@ -63,7 +62,7 @@ export function InviteAcceptance({ token }: { token: string }) {
 
   async function handleDecision(action: "accept" | "reject") {
     if (!authToken) {
-      setError("Login dulu di app utama, lalu buka lagi link invite ini.");
+      setError("Sign in through the main app first, then open this invite link again.");
       return;
     }
 
@@ -78,17 +77,17 @@ export function InviteAcceptance({ token }: { token: string }) {
         },
       });
       if (!response.ok) {
-        throw new Error((await response.text()) || "Gagal memproses invite.");
+        throw new Error((await response.text()) || "Failed to process invite.");
       }
       const result = (await response.json()) as { workspace_name: string; status: string };
       setMessage(
         action === "accept"
-          ? `Invite diterima. Workspace ${result.workspace_name} sekarang bisa kamu buka dari dashboard.`
-          : `Invite untuk ${result.workspace_name} ditolak.`,
+          ? `Invite accepted. ${result.workspace_name} is now available from your dashboard.`
+          : `Invite to ${result.workspace_name} was declined.`,
       );
       setInvite((current) => (current ? { ...current, status: result.status } : current));
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal memproses invite.");
+      setError(err instanceof Error ? err.message : "Failed to process invite.");
     } finally {
       setIsSubmitting(false);
     }
@@ -97,14 +96,13 @@ export function InviteAcceptance({ token }: { token: string }) {
   return (
     <main className={styles.page}>
       <section className={styles.card}>
-        <p className={styles.eyebrow}>PT BW Water</p>
-        <h1 className={styles.title}>Masuk ke BW Water Knowledge Assistant lewat link undangan.</h1>
+        <p className={styles.eyebrow}>Project Access</p>
+        <h1 className={styles.title}>Join a project from an invitation link.</h1>
         <p className={styles.copy}>
-          Link ini menampilkan detail undangan knowledge space PT BW Water dan bisa langsung
-          dipakai untuk accept atau reject setelah kamu login.
+          This page shows the invite details and lets you accept or decline access after you sign in.
         </p>
 
-        {isLoading ? <p className={styles.copy}>Memuat invite...</p> : null}
+        {isLoading ? <p className={styles.copy}>Loading invite...</p> : null}
 
         {invite ? (
           <div className={styles.meta}>
@@ -113,12 +111,8 @@ export function InviteAcceptance({ token }: { token: string }) {
               <div>{invite.workspace_name}</div>
             </div>
             <div className={styles.metaItem}>
-              <strong>Email target</strong>
+              <strong>Target email</strong>
               <div>{invite.email}</div>
-            </div>
-            <div className={styles.metaItem}>
-              <strong>Role</strong>
-              <div>{invite.role}</div>
             </div>
             <div className={styles.metaItem}>
               <strong>Status</strong>
@@ -134,7 +128,7 @@ export function InviteAcceptance({ token }: { token: string }) {
             onClick={() => handleDecision("accept")}
             disabled={!invite || invite.status !== "pending" || isSubmitting}
           >
-            {isSubmitting ? "Memproses..." : "Accept Invite"}
+            {isSubmitting ? "Processing..." : "Accept invite"}
           </button>
           <button
             className={styles.ghostButton}
@@ -145,14 +139,13 @@ export function InviteAcceptance({ token }: { token: string }) {
             Reject
           </button>
           <Link className={styles.ghostButton} href="/">
-            Buka dashboard
+            Open dashboard
           </Link>
         </div>
 
         {!authToken ? (
           <p className={styles.copy}>
-            Belum ada session login di browser ini. Login di dashboard dulu, lalu balik ke halaman
-            invite ini.
+            There is no active session in this browser yet. Sign in on the dashboard first, then return to this invite page.
           </p>
         ) : null}
 

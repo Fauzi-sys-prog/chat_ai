@@ -41,8 +41,8 @@ async function proxy(request: Request, path: string[]) {
   } catch (error) {
     const message =
       error instanceof Error
-        ? `Tidak bisa terhubung ke backend Python di ${pythonApiBaseUrl}. ${error.message}`
-        : `Tidak bisa terhubung ke backend Python di ${pythonApiBaseUrl}.`;
+        ? `Unable to reach the Python backend at ${pythonApiBaseUrl}. ${error.message}`
+        : `Unable to reach the Python backend at ${pythonApiBaseUrl}.`;
     return new Response(message, {
       status: 502,
       headers: {

@@ -24,7 +24,19 @@ body {
     radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 28%),
     linear-gradient(180deg, #0b1220 0%, #08111f 100%);
   color: var(--text);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 button,

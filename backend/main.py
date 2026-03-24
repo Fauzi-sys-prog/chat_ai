@@ -934,39 +934,38 @@ class StripeWebhookPayload(BaseModel):
 
 
 STARTER_MESSAGE = (
-    "Halo, saya siap membantu. Saya bisa menjawab pertanyaan umum, merapikan ide, atau menganalisis dokumen workspace jika Anda mengunggah PDF atau file teks yang relevan."
+    "Hello, I am ready to help. I can answer general questions, refine ideas, or analyze workspace documents if you upload relevant PDF or text files."
 )
 SYSTEM_PROMPT = (
-    "Anda adalah BW Water Knowledge Assistant, asisten kerja hybrid yang menggabungkan kemampuan general-purpose AI dan knowledge workspace perusahaan. "
-    "Gunakan nada profesional, tenang, jelas, dan ringkas seperti asisten AI premium. "
-    "Jawab dalam bahasa Indonesia kecuali pengguna meminta bahasa lain. "
-    "Utamakan jawaban yang langsung membantu, dengan struktur yang rapi dan mudah dipindai. "
-    "Prioritaskan kualitas jawaban yang terasa polished, natural, dan meyakinkan tanpa terdengar kaku. "
-    "Hindari gaya bercanda, slang, atau bahasa yang terlalu santai kecuali pengguna secara eksplisit memintanya. "
-    "Anda boleh membantu untuk brainstorming, menulis, merangkum, menjelaskan konsep, dan menjawab pertanyaan umum walau tanpa dokumen. "
-    "Jika ada konteks dokumen workspace, prioritaskan konteks tersebut di atas pengetahuan umum. "
-    "Jangan mengarang fakta internal perusahaan, SOP, kebijakan, angka, atau keputusan yang tidak ada di dokumen workspace. "
-    "Jika pertanyaan pengguna bersifat umum dan tidak memerlukan data internal, Anda boleh menjawab berdasarkan pengetahuan umum. "
-    "Jika jawaban tidak berasal dari dokumen workspace, nyatakan itu secara singkat dan profesional, misalnya "
-    "'Berdasarkan pengetahuan umum' atau 'Saya belum menemukan referensi spesifik di dokumen workspace saat ini'. "
-    "Jika pengguna meminta informasi internal tetapi dokumen pendukung tidak tersedia, katakan dengan jujur bahwa referensi di knowledge workspace belum ditemukan "
-    "dan sarankan unggah dokumen yang relevan bila diperlukan. "
-    "Jika ada ketidakpastian, sampaikan dengan jujur dan jangan terdengar seolah-olah yakin. "
-    "Jika jawaban akan lebih berguna bila diperkaya, sertakan secara adaptif hal-hal seperti konteks inti, poin penting, contoh praktis, risiko atau hal yang perlu dicek, dan langkah lanjut. "
-    "Jangan hanya memberi jawaban generik; upayakan jawaban terasa substantif, relevan dengan kerja, dan membantu pengambilan keputusan. "
-    "Untuk pertanyaan sederhana, jawab dalam 1-3 paragraf pendek tanpa membuat struktur berlebihan. "
-    "Untuk pertanyaan kompleks, mulai dengan jawaban inti terlebih dahulu, lalu tambahkan bagian seperti 'Poin penting' atau 'Langkah lanjut' hanya jika membantu. "
-    "Jika pengguna meminta analisis, rekomendasi, atau penjelasan mendalam, susun jawaban dengan urutan: inti jawaban, poin penting, lalu langkah lanjut bila relevan. "
-    "Gunakan bullet points hanya bila memang membuat jawaban lebih jelas, dan hindari daftar yang terlalu panjang jika paragraf pendek sudah cukup. "
-    "Jika pengguna meminta sesuatu yang bisa ditindaklanjuti, usulkan next step yang konkret dan ringkas. "
-    "Saat menjelaskan, utamakan kejelasan dan keputusan praktis dibanding teori panjang. "
-    "Gunakan pola jawaban berikut secara adaptif sesuai jenis permintaan pengguna. "
-    "Untuk ringkasan dokumen, gunakan format: Ringkasan singkat, lalu Poin penting. "
-    "Untuk pencarian SOP, kebijakan, atau aturan internal, gunakan format: Temuan utama, lalu Referensi workspace jika ada, lalu Catatan gap jika dokumen tidak ditemukan. "
-    "Untuk action items atau rencana kerja, gunakan format: Tujuan singkat, lalu Langkah lanjut yang konkret dan berurutan. "
-    "Untuk jawaban umum non-dokumen, gunakan format paragraf singkat yang langsung menjawab, dan tambahkan label singkat bahwa jawaban berasal dari pengetahuan umum bila relevan. "
-    "Untuk penjelasan konsep, gunakan format: inti konsep dulu, lalu contoh praktis atau implikasi kerja bila membantu. "
-    "Jangan menulis terlalu panjang bila pertanyaan bisa dijawab singkat."
+    "You are the Building Plan Automation Workspace assistant, a hybrid work assistant that combines general-purpose AI with a project knowledge workspace. "
+    "Use a professional, calm, clear, and concise tone similar to a premium AI assistant. "
+    "Answer in English unless the user explicitly asks for another language. "
+    "Prioritize responses that are directly useful, well structured, and easy to scan. "
+    "Aim for polished, natural, and credible answers without sounding stiff. "
+    "Avoid jokes, slang, or overly casual language unless the user explicitly asks for it. "
+    "You may help with brainstorming, writing, summarization, concept explanation, and general questions even without documents. "
+    "If project documents are available, prioritize that context over general knowledge. "
+    "Do not invent internal facts, SOPs, policies, figures, or decisions that are not present in the workspace documents. "
+    "If the question is general and does not require internal data, you may answer from general knowledge. "
+    "If the answer is not based on workspace documents, say that briefly and professionally, for example "
+    "'Based on general knowledge' or 'I have not found a specific reference in the workspace documents yet.' "
+    "If the user requests internal information but the supporting documents are not available, say honestly that the workspace reference was not found and suggest uploading the relevant document if needed. "
+    "If there is uncertainty, say so honestly and do not sound falsely confident. "
+    "When a richer answer would be more useful, adaptively include core context, key points, practical examples, risks or checks, and next steps. "
+    "Do not provide generic answers when a stronger one is possible; make the response substantive, work-relevant, and decision-friendly. "
+    "For simple questions, answer in one to three short paragraphs without unnecessary structure. "
+    "For complex questions, start with the core answer first, then add sections such as 'Key points' or 'Next steps' only when helpful. "
+    "For deeper analysis, recommendations, or explanations, use the order: core answer, key points, then next steps when relevant. "
+    "Use bullet points only when they clearly improve readability, and avoid long lists when short paragraphs are enough. "
+    "If the user asks for something actionable, suggest concrete and concise next steps. "
+    "When explaining, prioritize clarity and practical decisions over long theory. "
+    "Use the following response patterns adaptively based on the user's request. "
+    "For document summaries, use: Short summary, then Key points. "
+    "For SOP, policy, or internal rule lookup, use: Main findings, then Workspace references if available, then Gap note if the document is not found. "
+    "For action items or work plans, use: Short objective, then concrete and ordered next steps. "
+    "For general non-document answers, use a short paragraph that answers directly, with a brief note that it comes from general knowledge when relevant. "
+    "For concept explanations, use: core concept first, then a practical example or work implication when helpful. "
+    "Do not write longer than necessary when a concise answer will do."
 )
 EMBEDDING_MODEL = os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
 SESSION_TTL_DAYS = int(os.getenv("SESSION_TTL_DAYS", "14"))
@@ -999,7 +998,7 @@ STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET", "whsec_mock")
 USE_NATIVE_PGVECTOR = database_url.startswith("postgresql") and os.getenv("USE_NATIVE_PGVECTOR", "1") == "1"
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "").strip()
 ALLOWED_WORKSPACE_ROLES = {"owner", "admin", "member"}
-HUMAN_ONLY_ERROR_MESSAGE = "Endpoint ini butuh login user langsung, bukan API key workspace."
+HUMAN_ONLY_ERROR_MESSAGE = "This endpoint requires a direct user login, not a workspace API key."
 DEMO_AI_MODE = os.getenv("DEMO_AI_MODE", "auto").strip().lower()
 
 if AUTO_MANAGE_SCHEMA:
@@ -1014,7 +1013,7 @@ def get_openai_client() -> OpenAI:
         "replace_with_real_openai_api_key",
         "sk-....",
     }:
-        raise HTTPException(status_code=500, detail="OPENAI_API_KEY belum diisi.")
+        raise HTTPException(status_code=500, detail="OPENAI_API_KEY is not configured.")
     return OpenAI(api_key=api_key)
 
 
@@ -1023,7 +1022,7 @@ def demo_ai_enabled() -> bool:
 
 
 def demo_ai_reason(reason: str) -> str:
-    return f"Mode demo aktif karena layanan AI live belum tersedia ({reason})."
+    return f"Demo mode is active because the live AI service is not currently available ({reason})."
 
 
 def demo_embedding(text: str, dimensions: int = 1536) -> list[float]:
@@ -1051,8 +1050,8 @@ def extract_context_blocks(context: str) -> list[tuple[str | None, str]]:
         if not lines:
             continue
         document_name: str | None = None
-        if lines[0].startswith("[Dokumen:"):
-            match = re.match(r"\[Dokumen:\s*(.*?)\s*\|", lines[0])
+        if lines[0].startswith("[Document:"):
+            match = re.match(r"\[Document:\s*(.*?)\s*\|", lines[0])
             if match:
                 document_name = match.group(1).strip()
             lines = lines[1:]
@@ -1107,91 +1106,91 @@ def build_demo_reply(prompt: str, context: str) -> str:
     context_documents = summarize_context_documents(context, limit=3)
     context_highlight_lines = "\n".join(
         f"- {item}" for item in context_highlights
-    ) or "- Sistem berhasil menemukan konteks workspace yang relevan untuk pertanyaan ini."
+    ) or "- The system found workspace context that is relevant to this request."
     if context_available:
         preview_source = context.replace("\n", " ").strip()
         context_preview = preview_source[:260].strip()
 
     if context_available:
-        intro = "Berdasarkan dokumen workspace yang tersedia, berikut ringkasan awal dalam mode demo."
+        intro = "Based on the available workspace documents, here is an initial summary in demo mode."
     else:
-        intro = "Saya menjawab dalam mode demo karena koneksi AI live belum aktif."
+        intro = "I am responding in demo mode because the live AI connection is not active right now."
 
     if any(keyword in lowered for keyword in ["ringkas", "summary", "rangkum"]):
         if context_available:
             return (
                 f"{intro}\n\n"
-                "Ringkasan singkat:\n"
-                "Dokumen yang ada tampak relevan dengan permintaan Anda, dan sistem sudah menemukan konteks yang bisa dipakai sebagai dasar jawaban.\n\n"
-                "Poin penting:\n"
+                "Short summary:\n"
+                "The available documents appear relevant to your request, and the system has already found context that can be used as a basis for the answer.\n\n"
+                "Key points:\n"
                 f"{context_highlight_lines}\n\n"
-                "Implikasi kerja:\n"
-                "- Konten di atas sudah cukup bagus untuk dijadikan ringkasan awal, bahan briefing, atau dasar diskusi internal.\n"
-                "- Karena ini masih mode demo, mohon validasi wording final ke dokumen aslinya sebelum dipakai operasional.\n"
-                "- Saat AI live aktif, bagian ini akan otomatis jadi lebih presisi dan lebih kaya konteks.\n\n"
-                f"Referensi workspace:\n- {context_documents or 'Dokumen workspace terdeteksi tetapi nama file belum terbaca rapi.'}\n\n"
-                f"Cuplikan konteks:\n{context_preview}"
+                "Work implications:\n"
+                "- The content above is already suitable as an initial summary, briefing input, or basis for internal discussion.\n"
+                "- Because this is still demo mode, validate the final wording against the original document before using it operationally.\n"
+                "- Once live AI is enabled, this section will automatically become more precise and more context-rich.\n\n"
+                f"Workspace references:\n- {context_documents or 'Relevant workspace documents were detected, but the file names were not parsed cleanly.'}\n\n"
+                f"Context preview:\n{context_preview}"
             )
         return (
             f"{intro}\n\n"
-            "Ringkasan singkat:\n"
-            "Saat ini belum ada dokumen workspace yang bisa dijadikan sumber ringkasan.\n\n"
-            "Kenapa ini penting:\n"
-            "- Tanpa dokumen, saya hanya bisa memberi arahan umum dan belum bisa merangkum isi internal secara akurat.\n\n"
-            "Langkah lanjut:\n"
-            "- Upload PDF atau TXT yang relevan.\n"
-            "- Setelah itu, minta saya merangkum poin penting, risiko, atau action items.\n"
-            "- Kalau mau, Anda juga bisa mulai dari pertanyaan umum sambil menunggu dokumen tersedia."
+            "Short summary:\n"
+            "There are no workspace documents available yet that can be used as a source for the summary.\n\n"
+            "Why this matters:\n"
+            "- Without documents, I can only provide general guidance and cannot accurately summarize internal content.\n\n"
+            "Next steps:\n"
+            "- Upload a relevant PDF or TXT file.\n"
+            "- Then ask me to summarize key points, risks, or action items.\n"
+            "- You can also start with a general question while the documents are still being prepared."
         )
 
     if any(keyword in lowered for keyword in ["sop", "kebijakan", "policy", "prosedur"]):
         body = (
-            "Temuan utama:\n"
-            "SOP biasanya dipakai untuk menstandarkan langkah kerja agar kualitas, kecepatan, dan kepatuhan tim tetap konsisten.\n\n"
-            "Poin penting:\n"
-            "Dengan SOP yang rapi, onboarding lebih cepat, variasi proses berkurang, dan risiko salah langkah lebih mudah dikendalikan.\n\n"
-            "Contoh praktis:\n"
-            "- SOP onboarding membantu tim tahu urutan kerja, PIC, dan checklist yang harus selesai.\n"
-            "- SOP operasional membantu pekerjaan tetap konsisten walau dikerjakan oleh orang yang berbeda.\n\n"
-            "Langkah lanjut:\n"
-            "- Tentukan tujuan proses yang ingin distandardkan.\n"
-            "- Susun langkah kerja inti, PIC, input, output, dan risiko.\n"
-            "- Validasi draft dengan tim operasional sebelum diberlakukan."
+            "Main findings:\n"
+            "An SOP is typically used to standardize how work is performed so that quality, speed, and compliance remain consistent across the team.\n\n"
+            "Key points:\n"
+            "A strong SOP improves onboarding, reduces process variation, and makes operational mistakes easier to control.\n\n"
+            "Practical examples:\n"
+            "- An onboarding SOP helps the team understand the sequence of work, the owner of each step, and the checklist that needs to be completed.\n"
+            "- An operations SOP helps keep work consistent even when it is carried out by different people.\n\n"
+            "Next steps:\n"
+            "- Define the process that needs to be standardized.\n"
+            "- Document the core steps, owners, inputs, outputs, and risks.\n"
+            "- Validate the draft with the operations team before it is rolled out."
         )
         if context_available:
             body += (
-                "\n\nReferensi workspace:\n"
-                f"- {context_documents or 'Dokumen workspace relevan berhasil terdeteksi.'}\n"
-                "- Sistem mendeteksi ada dokumen workspace, tetapi jawaban ini masih mode demo.\n\n"
-                "Cuplikan penting:\n"
+                "\n\nWorkspace references:\n"
+                f"- {context_documents or 'Relevant workspace documents were detected successfully.'}\n"
+                "- The system detected workspace documents, but this answer is still running in demo mode.\n\n"
+                "Important highlights:\n"
                 + context_highlight_lines
                 + "\n\n"
-                f"Cuplikan konteks:\n{context_preview}"
+                f"Context preview:\n{context_preview}"
             )
         else:
-            body += "\n\nCatatan gap:\nBelum ada referensi workspace yang dipakai untuk jawaban ini."
+            body += "\n\nGap note:\nNo workspace reference was used for this answer."
         return f"{intro}\n\n{body}"
 
     if any(keyword in lowered for keyword in ["langkah", "action", "rencana", "plan", "to-do", "tindak lanjut"]):
         context_section = ""
         if context_available:
             context_section = (
-                "\n\nKonteks workspace:\n"
+                "\n\nWorkspace context:\n"
                 + context_highlight_lines
             )
         return (
             f"{intro}\n\n"
-            "Tujuan singkat:\n"
-            "Membantu Anda bergerak dari pertanyaan ke tindakan yang konkret.\n\n"
-            "Prioritas utama:\n"
-            "- Tentukan hasil akhir yang ingin dicapai.\n"
-            "- Pilih 3 hal paling penting yang perlu dieksekusi lebih dulu.\n"
-            "- Pastikan ada PIC, deadline, dan indikator selesai.\n\n"
-            "Langkah lanjut:\n"
-            "1. Klarifikasi hasil yang ingin dicapai.\n"
-            "2. Kumpulkan dokumen atau data yang paling relevan.\n"
-            "3. Susun 3-5 aksi prioritas dengan PIC dan deadline.\n"
-            "4. Validasi kembali sebelum dipakai sebagai keputusan final."
+            "Short objective:\n"
+            "Help you move from a question to concrete action.\n\n"
+            "Top priorities:\n"
+            "- Define the final outcome you want.\n"
+            "- Choose the three most important things to execute first.\n"
+            "- Make sure each action has an owner, a deadline, and a clear definition of done.\n\n"
+            "Next steps:\n"
+            "1. Clarify the target outcome.\n"
+            "2. Gather the most relevant documents or data.\n"
+            "3. Create three to five priority actions with an owner and deadline.\n"
+            "4. Validate the list before using it as a final decision."
             f"{context_section}"
         )
 
@@ -1199,38 +1198,38 @@ def build_demo_reply(prompt: str, context: str) -> str:
         context_section = ""
         if context_available:
             context_section = (
-                "\n\nReferensi workspace:\n"
-                f"- {context_documents or 'Dokumen relevan terdeteksi'}\n"
-                "Poin konteks:\n"
+                "\n\nWorkspace references:\n"
+                f"- {context_documents or 'Relevant documents were detected'}\n"
+                "Context points:\n"
                 + context_highlight_lines
             )
         return (
             f"{intro}\n\n"
-            "Jawaban singkat:\n"
-            "Topik ini pada dasarnya bisa dijelaskan sebagai konsep kerja yang membantu tim membuat keputusan lebih konsisten dan lebih mudah dieksekusi.\n\n"
-            "Poin penting:\n"
-            "- Fokus utama biasanya ada pada tujuan proses, alur kerja, dan hasil yang ingin dijaga tetap konsisten.\n"
-            "- Nilai praktisnya muncul saat konsep ini dipakai untuk mempercepat onboarding, mengurangi ambiguitas, dan memudahkan kontrol kualitas.\n"
-            "- Kalau konteksnya operasional, hal yang paling penting adalah siapa yang melakukan apa, kapan, dan berdasarkan aturan apa.\n\n"
-            "Contoh praktis:\n"
-            "- Untuk tim operasional, penjelasan yang baik biasanya diterjemahkan ke checklist, SOP, atau keputusan kerja harian.\n"
-            "- Untuk tim manajerial, konsep ini biasanya dipakai untuk menyamakan ekspektasi dan mengurangi variasi proses.\n"
+            "Short answer:\n"
+            "This topic can generally be explained as a working concept that helps teams make decisions more consistently and execute them more clearly.\n\n"
+            "Key points:\n"
+            "- The main focus is usually the process goal, the workflow, and the outcome that must remain consistent.\n"
+            "- Its practical value appears when the concept is used to speed up onboarding, reduce ambiguity, and improve quality control.\n"
+            "- In operational contexts, the most important questions are who does what, when, and based on which rule.\n\n"
+            "Practical examples:\n"
+            "- For operations teams, a good explanation often becomes a checklist, SOP, or day-to-day work decision.\n"
+            "- For management teams, the same concept is often used to align expectations and reduce process variation.\n"
             f"{context_section}"
         )
 
     return (
         f"{intro}\n\n"
-        "Jawaban singkat:\n"
-        "Saya tetap bisa membantu menjelaskan, merangkum, atau menyusun langkah kerja awal meskipun AI live sedang tidak aktif.\n\n"
-        "Poin penting:\n"
-        "- Saya bisa memberi jawaban awal yang terstruktur, termasuk poin inti, contoh praktis, dan langkah lanjut.\n"
-        "- Semua alur chat, auth, workspace, dan dokumen tetap berjalan normal.\n"
-        "- Saat AI live sudah aktif, jawaban akan jadi lebih kaya, lebih presisi, dan lebih kontekstual.\n\n"
-        "Contoh arah jawaban yang bisa saya bantu:\n"
-        "- Menjelaskan konsep kerja dengan bahasa yang lebih sederhana.\n"
-        "- Mengubah temuan menjadi action plan yang lebih rapi.\n"
-        "- Merangkum dokumen atau mengangkat poin penting untuk tim.\n\n"
-        f"Permintaan Anda:\n{cleaned_prompt or '-'}"
+        "Short answer:\n"
+        "I can still help explain, summarize, or structure an initial workflow even while live AI is not active.\n\n"
+        "Key points:\n"
+        "- I can provide an initial structured answer, including the main idea, practical examples, and next steps.\n"
+        "- The full chat, auth, workspace, and document flows continue to work normally.\n"
+        "- Once live AI is active, the response will become richer, more precise, and more contextual.\n\n"
+        "Examples of how I can still help:\n"
+        "- Explain a work concept in simpler language.\n"
+        "- Turn findings into a cleaner action plan.\n"
+        "- Summarize documents or surface the most important points for the team.\n\n"
+        f"Your request:\n{cleaned_prompt or '-'}"
     )
 
 
@@ -1261,27 +1260,27 @@ def get_google_provider_status() -> AuthProviderStatus:
         return AuthProviderStatus(
             enabled=False,
             label="Google",
-            description="Masuk atau buat akun otomatis dengan akun Google.",
-            reason="Google login belum dikonfigurasi di backend.",
+            description="Sign in or create an account automatically with Google.",
+            reason="Google sign-in is not configured on the backend.",
         )
     if GoogleRequest is None or google_id_token is None:
         return AuthProviderStatus(
             enabled=False,
             label="Google",
-            description="Masuk atau buat akun otomatis dengan akun Google.",
-            reason="Dependency Google Sign-In belum terpasang di backend.",
+            description="Sign in or create an account automatically with Google.",
+            reason="The Google Sign-In dependency is not installed on the backend.",
         )
     return AuthProviderStatus(
         enabled=True,
         label="Google",
-        description="Google akan otomatis login kalau akun sudah ada, atau membuat akun baru kalau belum ada.",
+        description="Google will sign the user in automatically if the account already exists, or create one if it does not.",
     )
 
 
 def verify_google_credential(credential: str) -> dict:
     provider_status = get_google_provider_status()
     if not provider_status.enabled:
-        raise HTTPException(status_code=500, detail=provider_status.reason or "Google login belum siap.")
+        raise HTTPException(status_code=500, detail=provider_status.reason or "Google sign-in is not ready yet.")
 
     try:
         token_data = google_id_token.verify_oauth2_token(
@@ -1290,13 +1289,13 @@ def verify_google_credential(credential: str) -> dict:
             GOOGLE_CLIENT_ID,
         )
     except Exception as exc:
-        raise HTTPException(status_code=401, detail="Google credential tidak valid.") from exc
+        raise HTTPException(status_code=401, detail="The Google credential is invalid.") from exc
 
     email = (token_data.get("email") or "").strip().lower()
     if not email:
-        raise HTTPException(status_code=400, detail="Google account tidak menyediakan email.")
+        raise HTTPException(status_code=400, detail="The Google account did not provide an email address.")
     if not token_data.get("email_verified", False):
-        raise HTTPException(status_code=400, detail="Email Google belum terverifikasi.")
+        raise HTTPException(status_code=400, detail="The Google email address is not verified.")
     return token_data
 
 
@@ -1442,7 +1441,7 @@ def enforce_auth_rate_limit(identifier: str) -> None:
         if len(attempts) >= AUTH_RATE_LIMIT_MAX_ATTEMPTS:
             raise HTTPException(
                 status_code=429,
-                detail="Terlalu banyak percobaan auth. Coba lagi beberapa saat lagi.",
+                detail="Too many authentication attempts. Please try again shortly.",
             )
         attempts.append(now)
         auth_rate_limit_state[identifier] = attempts
@@ -1465,7 +1464,7 @@ def get_valid_auth_action_token(
         )
     )
     if not token or token.status != "pending" or ensure_utc(token.expires_at) < utc_now():
-        raise HTTPException(status_code=404, detail="Token tidak valid atau sudah kedaluwarsa.")
+        raise HTTPException(status_code=404, detail="The token is invalid or has expired.")
     return token
 
 
@@ -1480,17 +1479,17 @@ def get_current_user(
         key_hash = hash_api_key(x_api_key.strip())
         api_key = db.scalar(select(WorkspaceApiKey).where(WorkspaceApiKey.key_hash == key_hash))
         if not api_key or api_key.status != "active":
-            raise HTTPException(status_code=401, detail="API key tidak valid.")
+            raise HTTPException(status_code=401, detail="The API key is invalid.")
         workspace = db.get(Workspace, api_key.workspace_id)
         if not workspace:
-            raise HTTPException(status_code=404, detail="Workspace API key tidak ditemukan.")
+            raise HTTPException(status_code=404, detail="The workspace API key was not found.")
         if x_workspace_id and x_workspace_id != workspace.id:
-            raise HTTPException(status_code=403, detail="API key tidak cocok dengan workspace aktif.")
+            raise HTTPException(status_code=403, detail="The API key does not match the active workspace.")
         api_key.last_used_at = utc_now()
         db.commit()
         owner = db.get(User, workspace.owner_user_id)
         if not owner:
-            raise HTTPException(status_code=404, detail="Owner workspace tidak ditemukan.")
+            raise HTTPException(status_code=404, detail="The workspace owner was not found.")
         request.state.auth_mode = "api_key"
         request.state.api_key_id = api_key.id
         request.state.auth_workspace_id = workspace.id
@@ -1503,7 +1502,7 @@ def get_current_user(
     token = authorization.removeprefix("Bearer ").strip()
     session = db.scalar(select(AuthSession).where(AuthSession.token == token))
     if not session or ensure_utc(session.expires_at) < utc_now():
-        raise HTTPException(status_code=401, detail="Session tidak valid.")
+        raise HTTPException(status_code=401, detail="The session is invalid.")
     request.state.auth_mode = "session"
     request.state.api_key_id = None
     request.state.auth_workspace_id = x_workspace_id
@@ -1540,7 +1539,7 @@ def get_conversation_or_404(
         )
     )
     if not conversation:
-        raise HTTPException(status_code=404, detail="Conversation tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The conversation was not found.")
     return conversation
 
 
@@ -1609,7 +1608,7 @@ def chunk_text(text: str, size: int = 1400, overlap: int = 220) -> list[str]:
 def read_document_content(upload: UploadFile) -> str:
     raw = upload.file.read()
     if not raw:
-        raise HTTPException(status_code=400, detail="File kosong.")
+        raise HTTPException(status_code=400, detail="The file is empty.")
 
     filename = (upload.filename or "document").lower()
 
@@ -1622,11 +1621,11 @@ def read_document_content(upload: UploadFile) -> str:
         except UnicodeDecodeError as exc:
             raise HTTPException(
                 status_code=400,
-                detail="File non-PDF harus berupa teks UTF-8.",
+                detail="Non-PDF files must be UTF-8 text.",
             ) from exc
 
     if not text:
-        raise HTTPException(status_code=400, detail="Isi dokumen tidak bisa dibaca.")
+        raise HTTPException(status_code=400, detail="The document content could not be read.")
     return text
 
 
@@ -1672,21 +1671,21 @@ def create_embedding(text: str) -> list[float]:
             return demo_embedding(text)
         raise HTTPException(
             status_code=500,
-            detail="OPENAI_API_KEY tidak valid. Isi backend/.env dengan API key OpenAI yang benar.",
+            detail="OPENAI_API_KEY is invalid. Update backend/.env with a valid OpenAI API key.",
         ) from exc
     except APIConnectionError as exc:
         if demo_ai_enabled():
             return demo_embedding(text)
         raise HTTPException(
             status_code=502,
-            detail="Backend tidak bisa terhubung ke OpenAI untuk memproses embedding dokumen.",
+            detail="The backend could not reach OpenAI to process document embeddings.",
         ) from exc
     except RateLimitError as exc:
         if demo_ai_enabled():
             return demo_embedding(text)
         raise HTTPException(
             status_code=429,
-            detail="Permintaan embedding sedang kena rate limit. Coba lagi sebentar lagi.",
+            detail="Embedding requests are currently being rate limited. Please try again shortly.",
         ) from exc
     except (BadRequestError, NotFoundError) as exc:
         if demo_ai_enabled():
@@ -1694,8 +1693,8 @@ def create_embedding(text: str) -> list[float]:
         raise HTTPException(
             status_code=500,
             detail=(
-                "Konfigurasi embedding AI bermasalah. "
-                "Cek OPENAI_EMBEDDING_MODEL dan pastikan model tersedia untuk API key ini."
+                "The AI embedding configuration is invalid. "
+                "Check OPENAI_EMBEDDING_MODEL and make sure the model is available for this API key."
             ),
         ) from exc
     except Exception as exc:
@@ -1703,7 +1702,7 @@ def create_embedding(text: str) -> list[float]:
             return demo_embedding(text)
         raise HTTPException(
             status_code=500,
-            detail=f"Terjadi kesalahan saat membuat embedding dokumen: {exc}",
+            detail=f"An error occurred while creating the document embedding: {exc}",
         ) from exc
     return result.data[0].embedding
 
@@ -1748,7 +1747,7 @@ def build_context(db: Session, conversation: Conversation, prompt: str) -> str:
             ]
             if native_chunks:
                 return "\n\n".join(
-                    f"[Dokumen: {name} | skor: {score:.2f}]\n{content}"
+                    f"[Document: {name} | score: {score:.2f}]\n{content}"
                     for score, name, content in native_chunks
                 )
         except Exception:
@@ -1777,7 +1776,7 @@ def build_context(db: Session, conversation: Conversation, prompt: str) -> str:
         return ""
 
     return "\n\n".join(
-        f"[Dokumen: {name} | skor: {score:.2f}]\n{content}"
+        f"[Document: {name} | score: {score:.2f}]\n{content}"
         for score, name, content in top_chunks
     )
 
@@ -1843,10 +1842,10 @@ def get_or_create_personal_workspace(db: Session, user: User) -> Workspace:
 def get_workspace_or_404(db: Session, workspace_id: str, user: User) -> Workspace:
     workspace = db.get(Workspace, workspace_id)
     if not workspace:
-        raise HTTPException(status_code=404, detail="Workspace tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The workspace was not found.")
     is_member = any(member.user_id == user.id for member in workspace.members)
     if not is_member:
-        raise HTTPException(status_code=403, detail="Tidak punya akses ke workspace ini.")
+        raise HTTPException(status_code=403, detail="You do not have access to this workspace.")
     return workspace
 
 
@@ -1857,7 +1856,7 @@ def get_workspace_member(workspace: Workspace, user_id: str) -> WorkspaceMember 
 def ensure_workspace_role(workspace: Workspace, user: User, allowed_roles: set[str]) -> WorkspaceMember:
     member = get_workspace_member(workspace, user.id)
     if not member or member.role not in allowed_roles:
-        raise HTTPException(status_code=403, detail="Role workspace tidak mencukupi.")
+        raise HTTPException(status_code=403, detail="The workspace role is not sufficient for this action.")
     return member
 
 
@@ -2361,8 +2360,8 @@ def enforce_workspace_token_quota(
         raise HTTPException(
             status_code=402,
             detail=(
-                "Kuota token workspace bulan ini sudah habis. "
-                "Naikkan plan atau tunggu reset kuota bulanan."
+                "The workspace token quota for this month has been exhausted. "
+                "Upgrade the plan or wait for the monthly quota reset."
             ),
         )
 
@@ -2381,8 +2380,8 @@ def enforce_workspace_document_quota(db: Session, workspace_id: str | None) -> N
         raise HTTPException(
             status_code=402,
             detail=(
-                "Kuota dokumen workspace bulan ini sudah habis. "
-                "Hapus dokumen lama atau naikkan plan."
+                "The workspace document quota for this month has been exhausted. "
+                "Remove older documents or upgrade the plan."
             ),
         )
 
@@ -2392,16 +2391,15 @@ def send_workspace_invite_email(invite: WorkspaceInviteRequest, workspace_name: 
         return False
 
     message = EmailMessage()
-    message["Subject"] = f"Invite ke workspace {workspace_name}"
+    message["Subject"] = f"Invitation to workspace {workspace_name}"
     message["From"] = f"{SMTP_FROM_NAME} <{SMTP_FROM_EMAIL}>"
     message["To"] = invite.email
     message.set_content(
         "\n".join(
             [
-                f"Kamu diundang ke workspace {workspace_name}.",
-                f"Role: {invite.role}",
+                f"You have been invited to join the project {workspace_name}.",
                 "",
-                f"Buka link ini untuk menerima undangan: {APP_BASE_URL}/invite/{invite.token}",
+                f"Open this link to accept the invitation: {APP_BASE_URL}/invite/{invite.token}",
             ]
         )
     )
@@ -2420,13 +2418,12 @@ def create_invite_email_job(
     invite: WorkspaceInviteRequest,
     workspace_name: str,
 ) -> EmailDeliveryJob:
-    subject = f"Invite ke workspace {workspace_name}"
+    subject = f"Invitation to workspace {workspace_name}"
     body_text = "\n".join(
         [
-            f"Kamu diundang ke workspace {workspace_name}.",
-            f"Role: {invite.role}",
+            f"You have been invited to join the project {workspace_name}.",
             "",
-            f"Buka link ini untuk menerima undangan: {APP_BASE_URL}/invite/{invite.token}",
+            f"Open this link to accept the invitation: {APP_BASE_URL}/invite/{invite.token}",
         ]
     )
     job = EmailDeliveryJob(
@@ -2466,24 +2463,24 @@ def queue_auth_email_job(
     token_value: str,
 ) -> EmailDeliveryJob:
     if purpose == "verify_email":
-        subject = "Verifikasi email akun Chat AI"
+        subject = "Verify your Project Review Workspace account"
         link = f"{APP_BASE_URL}/verify-email/{token_value}"
         body = "\n".join(
             [
-                f"Halo {user.name},",
+                f"Hello {user.name},",
                 "",
-                "Klik link berikut untuk verifikasi email akun kamu:",
+                "Use the link below to verify your account email:",
                 link,
             ]
         )
     else:
-        subject = "Reset password akun Chat AI"
+        subject = "Reset your Project Review Workspace password"
         link = f"{APP_BASE_URL}/reset-password/{token_value}"
         body = "\n".join(
             [
-                f"Halo {user.name},",
+                f"Hello {user.name},",
                 "",
-                "Klik link berikut untuk reset password akun kamu:",
+                "Use the link below to reset your password:",
                 link,
             ]
         )
@@ -2636,8 +2633,8 @@ async def get_auth_providers() -> AuthProvidersResponse:
     return AuthProvidersResponse(
         email_password=AuthProviderStatus(
             enabled=True,
-            label="Email dan password",
-            description="Masuk atau buat akun dengan email kerja dan password yang kamu tentukan sendiri.",
+            label="Email and password",
+            description="Sign in or create an account using your work email and the password you choose.",
         ),
         google=get_google_provider_status(),
     )
@@ -2647,13 +2644,13 @@ async def get_auth_providers() -> AuthProvidersResponse:
 async def register(payload: AuthPayload, db: Session = Depends(get_db)):
     enforce_auth_rate_limit(f"register:{payload.email.lower()}")
     if not payload.name or len(payload.name.strip()) < 2:
-        raise HTTPException(status_code=400, detail="Nama minimal 2 karakter.")
+        raise HTTPException(status_code=400, detail="The name must be at least 2 characters.")
     if len(payload.password) < 8:
-        raise HTTPException(status_code=400, detail="Password minimal 8 karakter.")
+        raise HTTPException(status_code=400, detail="The password must be at least 8 characters.")
 
     existing_user = db.scalar(select(User).where(User.email == payload.email.lower()))
     if existing_user:
-        raise HTTPException(status_code=409, detail="Email sudah terdaftar.")
+        raise HTTPException(status_code=409, detail="The email is already registered.")
 
     user = User(
         name=payload.name.strip(),
@@ -2685,7 +2682,7 @@ async def login(payload: AuthPayload, db: Session = Depends(get_db)):
     enforce_auth_rate_limit(f"login:{payload.email.lower()}")
     user = db.scalar(select(User).where(User.email == payload.email.lower()))
     if not user or not verify_password(payload.password, user.password_hash):
-        raise HTTPException(status_code=401, detail="Email atau password salah.")
+        raise HTTPException(status_code=401, detail="The email or password is incorrect.")
 
     token = create_session_token(db, user)
     clear_auth_rate_limit(f"login:{payload.email.lower()}")
@@ -2741,10 +2738,10 @@ async def request_password_reset(payload: PasswordResetRequest, db: Session = De
 async def get_auth_action_token(token_value: str, db: Session = Depends(get_db)):
     token = db.scalar(select(AuthActionToken).where(AuthActionToken.token == token_value))
     if not token:
-        raise HTTPException(status_code=404, detail="Token tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The token was not found.")
     user = db.get(User, token.user_id)
     if not user:
-        raise HTTPException(status_code=404, detail="User tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The user was not found.")
     return AuthActionTokenOut(
         email=user.email,
         purpose=token.purpose,
@@ -2758,7 +2755,7 @@ async def verify_email(token_value: str, db: Session = Depends(get_db)):
     token = get_valid_auth_action_token(db, token_value, "verify_email")
     user = db.get(User, token.user_id)
     if not user:
-        raise HTTPException(status_code=404, detail="User tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The user was not found.")
     user.email_verified = True
     token.status = "used"
     token.used_at = utc_now()
@@ -2773,11 +2770,11 @@ async def confirm_password_reset(
     db: Session = Depends(get_db),
 ):
     if len(payload.password) < 8:
-        raise HTTPException(status_code=400, detail="Password minimal 8 karakter.")
+        raise HTTPException(status_code=400, detail="The password must be at least 8 characters.")
     token = get_valid_auth_action_token(db, token_value, "reset_password")
     user = db.get(User, token.user_id)
     if not user:
-        raise HTTPException(status_code=404, detail="User tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The user was not found.")
     user.password_hash = hash_password(payload.password)
     token.status = "used"
     token.used_at = utc_now()
@@ -2842,7 +2839,7 @@ async def create_workspace(
 ):
     name = payload.name.strip()
     if len(name) < 3:
-        raise HTTPException(status_code=400, detail="Nama workspace minimal 3 karakter.")
+        raise HTTPException(status_code=400, detail="The workspace name must be at least 3 characters.")
 
     workspace = Workspace(owner_user_id=user.id, name=name)
     db.add(workspace)
@@ -3001,7 +2998,7 @@ async def upsert_workspace_department_budget(
 
     department = payload.department.strip()
     if len(department) < 2:
-        raise HTTPException(status_code=400, detail="Nama department minimal 2 karakter.")
+        raise HTTPException(status_code=400, detail="The department name must be at least 2 characters.")
     monthly_budget_usd = round(max(payload.monthly_budget_usd, 0.0), 4)
     alert_threshold_ratio = min(max(payload.alert_threshold_ratio, 0.1), 1.0)
 
@@ -3058,7 +3055,7 @@ async def delete_workspace_department_budget(
     ensure_workspace_role(workspace, user, {"owner", "admin"})
     item = db.get(WorkspaceDepartmentBudget, budget_id)
     if not item or item.workspace_id != workspace.id:
-        raise HTTPException(status_code=404, detail="Budget department tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The department budget was not found.")
     department = item.department
     db.delete(item)
     create_audit_log(
@@ -3189,7 +3186,7 @@ async def create_workspace_api_key(
     ensure_workspace_role(workspace, user, {"owner", "admin"})
     label = payload.label.strip()
     if len(label) < 3:
-        raise HTTPException(status_code=400, detail="Label API key minimal 3 karakter.")
+        raise HTTPException(status_code=400, detail="The API key label must be at least 3 characters.")
 
     raw_key = f"sk_workspace_{secrets.token_urlsafe(24)}"
     item = WorkspaceApiKey(
@@ -3360,7 +3357,7 @@ async def revoke_workspace_api_key(
     ensure_workspace_role(workspace, user, {"owner", "admin"})
     item = db.get(WorkspaceApiKey, api_key_id)
     if not item or item.workspace_id != workspace.id:
-        raise HTTPException(status_code=404, detail="API key tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The API key was not found.")
     item.status = "revoked"
     create_audit_log(
         db,
@@ -3389,7 +3386,7 @@ async def retry_workspace_email_job(
     ensure_workspace_role(workspace, user, {"owner", "admin"})
     job = db.get(EmailDeliveryJob, job_id)
     if not job or job.workspace_id != workspace.id:
-        raise HTTPException(status_code=404, detail="Email job tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The email job was not found.")
 
     job.status = "pending"
     job.error_message = None
@@ -3453,10 +3450,10 @@ async def list_workspace_invitations(
 async def get_workspace_invitation(token: str, db: Session = Depends(get_db)):
     invite = db.scalar(select(WorkspaceInviteRequest).where(WorkspaceInviteRequest.token == token))
     if not invite:
-        raise HTTPException(status_code=404, detail="Invite tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The invite was not found.")
     workspace = db.get(Workspace, invite.workspace_id)
     if not workspace:
-        raise HTTPException(status_code=404, detail="Workspace tujuan tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The destination workspace was not found.")
     return serialize_public_workspace_invite(invite, workspace.name)
 
 
@@ -3468,13 +3465,13 @@ async def accept_workspace_invitation(
 ):
     invite = db.scalar(select(WorkspaceInviteRequest).where(WorkspaceInviteRequest.token == token))
     if not invite or invite.status != "pending":
-        raise HTTPException(status_code=404, detail="Invite tidak ditemukan atau sudah diproses.")
+        raise HTTPException(status_code=404, detail="The invite was not found or has already been processed.")
     if invite.email != user.email.lower():
-        raise HTTPException(status_code=403, detail="Invite ini bukan untuk akun kamu.")
+        raise HTTPException(status_code=403, detail="This invite is not intended for your account.")
 
     workspace = db.get(Workspace, invite.workspace_id)
     if not workspace:
-        raise HTTPException(status_code=404, detail="Workspace tujuan tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The destination workspace was not found.")
 
     existing_member = db.scalar(
         select(WorkspaceMember).where(
@@ -3513,13 +3510,13 @@ async def reject_workspace_invitation(
 ):
     invite = db.scalar(select(WorkspaceInviteRequest).where(WorkspaceInviteRequest.token == token))
     if not invite or invite.status != "pending":
-        raise HTTPException(status_code=404, detail="Invite tidak ditemukan atau sudah diproses.")
+        raise HTTPException(status_code=404, detail="The invite was not found or has already been processed.")
     if invite.email != user.email.lower():
-        raise HTTPException(status_code=403, detail="Invite ini bukan untuk akun kamu.")
+        raise HTTPException(status_code=403, detail="This invite is not intended for your account.")
 
     workspace = db.get(Workspace, invite.workspace_id)
     if not workspace:
-        raise HTTPException(status_code=404, detail="Workspace tujuan tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The destination workspace was not found.")
 
     invite.status = "rejected"
     invite.responded_at = utc_now()
@@ -3554,9 +3551,9 @@ async def invite_workspace_member(
     actor = ensure_workspace_role(workspace, user, {"owner", "admin"})
     invite_role = payload.role.strip().lower()
     if invite_role not in ALLOWED_WORKSPACE_ROLES - {"owner"}:
-        raise HTTPException(status_code=400, detail="Role invite tidak valid.")
+        raise HTTPException(status_code=400, detail="The invite role is invalid.")
     if actor.role != "owner" and invite_role == "admin":
-        raise HTTPException(status_code=403, detail="Hanya owner yang bisa menambah admin.")
+        raise HTTPException(status_code=403, detail="Only the owner can add an admin.")
 
     invited_email = payload.email.lower()
     invited_user = db.scalar(select(User).where(User.email == invited_email))
@@ -3568,7 +3565,7 @@ async def invite_workspace_member(
             )
         )
         if existing_member:
-            raise HTTPException(status_code=409, detail="User sudah ada di workspace.")
+            raise HTTPException(status_code=409, detail="The user is already in the workspace.")
 
     pending_invite = db.scalar(
         select(WorkspaceInviteRequest).where(
@@ -3578,7 +3575,7 @@ async def invite_workspace_member(
         )
     )
     if pending_invite:
-        raise HTTPException(status_code=409, detail="Invite pending sudah ada untuk email ini.")
+        raise HTTPException(status_code=409, detail="A pending invite already exists for this email.")
 
     invite = WorkspaceInviteRequest(
         workspace_id=workspace.id,
@@ -3599,7 +3596,7 @@ async def invite_workspace_member(
         email_sent = True
     except Exception as exc:
         email_job.status = "failed" if SMTP_HOST else "pending"
-        email_job.error_message = str(exc) if SMTP_HOST else "SMTP belum dikonfigurasi."
+        email_job.error_message = str(exc) if SMTP_HOST else "SMTP is not configured yet."
         email_job.updated_at = utc_now()
         email_sent = False
     create_audit_log(
@@ -3631,7 +3628,7 @@ async def update_workspace_member_role(
 
     target_user = db.scalar(select(User).where(User.email == member_email.lower()))
     if not target_user:
-        raise HTTPException(status_code=404, detail="User tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The user was not found.")
 
     member = db.scalar(
         select(WorkspaceMember).where(
@@ -3640,13 +3637,13 @@ async def update_workspace_member_role(
         )
     )
     if not member:
-        raise HTTPException(status_code=404, detail="Member workspace tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The workspace member was not found.")
     if member.user_id == user.id:
-        raise HTTPException(status_code=400, detail="Owner tidak bisa mengubah rolenya sendiri.")
+        raise HTTPException(status_code=400, detail="The owner cannot change their own role.")
 
     next_role = payload.role.strip().lower()
     if next_role not in ALLOWED_WORKSPACE_ROLES - {"owner"}:
-        raise HTTPException(status_code=400, detail="Role target tidak valid.")
+        raise HTTPException(status_code=400, detail="The target role is invalid.")
 
     member.role = next_role
     create_audit_log(
@@ -3678,7 +3675,7 @@ async def update_workspace_member_metadata(
 
     target_user = db.scalar(select(User).where(User.email == member_email.lower()))
     if not target_user:
-        raise HTTPException(status_code=404, detail="User tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The user was not found.")
 
     member = db.scalar(
         select(WorkspaceMember).where(
@@ -3687,7 +3684,7 @@ async def update_workspace_member_metadata(
         )
     )
     if not member:
-        raise HTTPException(status_code=404, detail="Member workspace tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The workspace member was not found.")
 
     member.department = (payload.department or "").strip() or None
     member.cost_center = (payload.cost_center or "").strip() or None
@@ -3719,7 +3716,7 @@ async def remove_workspace_member(
 
     target_user = db.scalar(select(User).where(User.email == member_email.lower()))
     if not target_user:
-        raise HTTPException(status_code=404, detail="User tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The user was not found.")
 
     member = db.scalar(
         select(WorkspaceMember).where(
@@ -3728,11 +3725,11 @@ async def remove_workspace_member(
         )
     )
     if not member:
-        raise HTTPException(status_code=404, detail="Member workspace tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The workspace member was not found.")
     if member.role == "owner":
-        raise HTTPException(status_code=400, detail="Owner workspace tidak bisa dihapus.")
+        raise HTTPException(status_code=400, detail="The workspace owner cannot be removed.")
     if user.id == target_user.id:
-        raise HTTPException(status_code=400, detail="Gunakan owner lain untuk menghapus akun ini.")
+        raise HTTPException(status_code=400, detail="Use a different account to remove this member.")
 
     create_audit_log(
         db,
@@ -3839,11 +3836,11 @@ async def stripe_webhook_mock(
     db: Session = Depends(get_db),
 ):
     if stripe_signature != STRIPE_WEBHOOK_SECRET:
-        raise HTTPException(status_code=401, detail="Stripe signature tidak valid.")
+        raise HTTPException(status_code=401, detail="The Stripe signature is invalid.")
 
     workspace = db.get(Workspace, payload.workspace_id)
     if not workspace:
-        raise HTTPException(status_code=404, detail="Workspace tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The workspace was not found.")
 
     subscription = get_or_create_workspace_subscription(db, workspace)
     if payload.stripe_customer_id:
@@ -3879,7 +3876,7 @@ async def stripe_webhook_mock(
         select(User).where(User.id == workspace.owner_user_id)
     )
     if not admin_user:
-        raise HTTPException(status_code=404, detail="Owner workspace tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The workspace owner was not found.")
     return build_workspace_subscription_summary(db, workspace)
 
 
@@ -4181,7 +4178,7 @@ async def upload_document(
 
         chunks = chunk_text(content)
         if not chunks:
-            raise HTTPException(status_code=400, detail="Dokumen tidak punya konten yang bisa diproses.")
+            raise HTTPException(status_code=400, detail="The document does not contain processable content.")
 
         for index, chunk in enumerate(chunks):
             embedding = create_embedding(chunk)
@@ -4246,7 +4243,7 @@ async def upload_document(
         db.rollback()
         raise HTTPException(
             status_code=500,
-            detail=f"Terjadi kesalahan saat memproses dokumen: {exc}",
+            detail=f"An error occurred while processing the document: {exc}",
         ) from exc
 
 
@@ -4258,13 +4255,13 @@ async def delete_document(
 ):
     document = db.get(Document, document_id)
     if not document:
-        raise HTTPException(status_code=404, detail="Dokumen tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The document was not found.")
     workspace_id = document.workspace_id or document.conversation.workspace_id
     if workspace_id:
         workspace = get_workspace_or_404(db, workspace_id, user)
         ensure_workspace_role(workspace, user, {"owner", "admin", "member"})
     elif document.conversation.user_id != user.id:
-        raise HTTPException(status_code=404, detail="Dokumen tidak ditemukan.")
+        raise HTTPException(status_code=404, detail="The document was not found.")
     document.conversation.updated_at = utc_now()
     db.delete(document)
     db.commit()
@@ -4282,7 +4279,7 @@ async def chat(
 ):
     prompt = payload.content.strip()
     if not prompt:
-        raise HTTPException(status_code=400, detail="Pesan tidak boleh kosong.")
+        raise HTTPException(status_code=400, detail="The message cannot be empty.")
 
     conversation = get_conversation_or_404(db, conversation_id, user.id, workspace.id)
     enforce_workspace_token_quota(db, conversation.workspace_id, estimate_tokens(prompt))
@@ -4312,8 +4309,8 @@ async def chat(
             {
                 "role": "system",
                 "content": (
-                    "Gunakan konteks dokumen berikut kalau relevan. "
-                    "Jangan mengarang isi yang tidak ada.\n\n"
+                    "Use the following document context when it is relevant. "
+                    "Do not invent details that are not present.\n\n"
                     f"{context}"
                 ),
             }
@@ -4335,7 +4332,7 @@ async def chat(
     except HTTPException as exc:
         if demo_ai_enabled():
             demo_reply = (
-                f"{demo_ai_reason(exc.detail if isinstance(exc.detail, str) else 'konfigurasi belum siap')}\n\n"
+                f"{demo_ai_reason(exc.detail if isinstance(exc.detail, str) else 'the configuration is not ready yet')}\n\n"
                 f"{build_demo_reply(prompt, context)}"
             )
         else:
@@ -4343,60 +4340,60 @@ async def chat(
     except AuthenticationError as exc:
         if demo_ai_enabled():
             demo_reply = (
-                f"{demo_ai_reason('API key belum valid')}\n\n"
+                f"{demo_ai_reason('the API key is not valid yet')}\n\n"
                 f"{build_demo_reply(prompt, context)}"
             )
         else:
             raise HTTPException(
                 status_code=500,
-                detail="OPENAI_API_KEY tidak valid. Isi backend/.env dengan API key OpenAI yang benar.",
+                detail="OPENAI_API_KEY is invalid. Update backend/.env with a valid OpenAI API key.",
             ) from exc
     except APIConnectionError as exc:
         if demo_ai_enabled():
             demo_reply = (
-                f"{demo_ai_reason('koneksi ke OpenAI gagal')}\n\n"
+                f"{demo_ai_reason('the connection to OpenAI failed')}\n\n"
                 f"{build_demo_reply(prompt, context)}"
             )
         else:
             raise HTTPException(
                 status_code=502,
-                detail="Backend tidak bisa terhubung ke OpenAI. Cek koneksi internet atau firewall.",
+                detail="The backend could not reach OpenAI. Check the internet connection or firewall.",
             ) from exc
     except RateLimitError as exc:
         if demo_ai_enabled():
             demo_reply = (
-                f"{demo_ai_reason('rate limit atau billing API aktif')}\n\n"
+                f"{demo_ai_reason('the API is rate limited or billing is active but constrained')}\n\n"
                 f"{build_demo_reply(prompt, context)}"
             )
         else:
             raise HTTPException(
                 status_code=429,
-                detail="Permintaan ke OpenAI sedang kena rate limit. Coba lagi sebentar lagi.",
+                detail="The request to OpenAI is currently rate limited. Please try again shortly.",
             ) from exc
     except (BadRequestError, NotFoundError) as exc:
         if demo_ai_enabled():
             demo_reply = (
-                f"{demo_ai_reason('konfigurasi model AI belum cocok')}\n\n"
+                f"{demo_ai_reason('the AI model configuration does not match yet')}\n\n"
                 f"{build_demo_reply(prompt, context)}"
             )
         else:
             raise HTTPException(
                 status_code=500,
                 detail=(
-                    "Konfigurasi model AI bermasalah. "
-                    "Cek OPENAI_MODEL dan pastikan model tersedia untuk API key ini."
+                    "The AI model configuration is invalid. "
+                    "Check OPENAI_MODEL and make sure the model is available for this API key."
                 ),
             ) from exc
     except Exception as exc:
         if demo_ai_enabled():
             demo_reply = (
-                f"{demo_ai_reason('layanan AI live sedang bermasalah')}\n\n"
+                f"{demo_ai_reason('the live AI service is currently unavailable')}\n\n"
                 f"{build_demo_reply(prompt, context)}"
             )
         else:
             raise HTTPException(
                 status_code=500,
-                detail=f"Terjadi kesalahan saat menghubungi model AI: {exc}",
+                detail=f"An error occurred while contacting the AI model: {exc}",
             ) from exc
 
     def generate() -> Generator[str, None, None]:

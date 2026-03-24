@@ -1,150 +1,151 @@
 # Building Plan Automation Blueprint
 
-Blueprint ini memosisikan project sebagai `AI-assisted building plan automation platform` untuk membantu menghasilkan layer MEP di atas plan arsitektur dengan kombinasi vision, code retrieval, dan routing engine.
+This blueprint positions the project as an `AI-assisted building plan automation platform` that helps teams generate MEP review support on top of architectural plans through a combination of vision, code retrieval, and routing logic.
 
 ## One-liner
 
-Platform ini menerima denah arsitektur, mengenali ruang dan simbol penting, mencocokkannya dengan aturan bangunan yang relevan, lalu menghasilkan rekomendasi atau draft routing MEP yang bisa direview engineer.
+The platform accepts an architectural floor plan, identifies important rooms and symbols, matches them to relevant building-code rules, and then produces review recommendations or draft MEP routing that can be reviewed by an engineer.
 
-## Posisi Produk
+## Product position
 
-- `User utama`: engineer, drafter, estimator, atau tim technical operations
-- `Masalah utama`: plan arsitektur dibaca manual, aturan kode dicek manual, dan koordinasi MEP memakan waktu
-- `Nilai produk`: mempercepat review awal, memberi rekomendasi code-aware, dan menyiapkan draft rute MEP sebelum final review manusia
+- `Primary users`: engineers, drafters, estimators, and technical operations teams
+- `Core problem`: architectural plans are still read manually, code references are still checked manually, and MEP coordination takes too much time
+- `Product value`: speed up first-pass review, provide code-aware recommendations, and prepare draft MEP routing before final human review
 
-## Arsitektur 3 Lapis
+## The three-layer architecture
 
-### 1. Mata
+### 1. Eyes
 
-Lapisan ini membaca file plan dan mengenali objek penting.
+This layer reads plan files and detects important objects.
 
-- input: `PDF`, `PNG`, `JPG`, atau export CAD raster
-- output: dinding, pintu, ruang, toilet, sink, panel, peralatan, dan anotasi awal
-- pendekatan MVP:
-  - `Vision API multimodal` seperti OpenAI/Claude untuk parsing visual awal
-  - rule-based geometry extraction untuk garis, room boundary, dan anchor points
-- pendekatan tahap lanjut:
-  - custom CV model untuk simbol MEP dan arsitektural
-  - optional `TensorFlow` atau model detection/segmentation lain bila simbol sudah punya dataset internal
+- Input: `PDF`, `PNG`, `JPG`, or rasterized CAD exports
+- Output: walls, doors, rooms, toilets, sinks, panels, equipment, and initial annotations
+- MVP approach:
+  - multimodal vision APIs such as OpenAI or Claude for initial visual parsing
+  - rule-based geometry extraction for lines, room boundaries, and anchor points
+- Later-stage approach:
+  - custom computer-vision models for MEP and architectural symbols
+  - optional `TensorFlow` or other detection and segmentation models once a domain dataset exists
 
-### 2. Otak
+### 2. Brain
 
-Lapisan ini mengubah hasil visual menjadi keputusan teknik yang bisa dijelaskan.
+This layer converts visual findings into explainable engineering decisions.
 
-- input: hasil deteksi visual + metadata ruangan + dokumen kode
-- output: aturan yang relevan, constraint desain, dan checklist per ruang/zone
-- komponen:
+- Input: detected entities, room metadata, and code references
+- Output: relevant rules, design constraints, and per-room or per-zone checklists
+- Components:
   - `LLM`
-  - `RAG` untuk FBC, NEC, dan dokumen standar internal
-  - rule engine untuk batas-batas deterministik
+  - `RAG` over FBC, NEC, and internal standard documents
+  - a rule engine for deterministic constraints
 
-Contoh:
+Example reasoning:
 
-- "Saya melihat bathroom dengan sink"
-- "NEC mensyaratkan GFCI pada konteks ini"
-- "FBC mensyaratkan ventilation minimum tertentu"
+- "I see a bathroom with a sink"
+- "NEC requires GFCI protection in this context"
+- "FBC requires minimum ventilation in this room type"
 
-### 3. Tangan
+### 3. Hands
 
-Lapisan ini menggambar atau menghitung draft rute teknis.
+This layer draws or calculates technical draft routes.
 
-- input: constraint dari lapisan otak
-- output: candidate route untuk mechanical, electrical, atau plumbing
-- teknik:
+- Input: constraints from the reasoning layer
+- Output: candidate routes for mechanical, electrical, or plumbing systems
+- Techniques:
   - `A* pathfinding`
   - graph routing
   - collision avoidance
-  - constraint checking terhadap forbidden zone, room type, shaft, dan equipment location
+  - constraint checking against forbidden zones, room types, shafts, and equipment locations
 
-## Stack Yang Paling Masuk Akal
+## Recommended stack
 
-### App Layer
+### Application layer
 
 - Frontend: `Next.js + TypeScript`
 - Backend orchestration: `FastAPI + Python`
 - Database: `PostgreSQL`
-- Vector store: `pgvector`
-- Background jobs: `Celery` atau job queue ringan berbasis worker Python
+- Vector storage: `pgvector`
+- Background jobs: `Celery` or a lightweight Python worker queue
 
-### AI Layer
+### AI layer
 
-- Multimodal vision: `OpenAI Responses API` atau model vision setara
-- LLM reasoning: `OpenAI` untuk rule explanation dan structured outputs
-- RAG: embeddings + retrieval untuk code references
-- Optional orchestration: `LangGraph` atau `LangChain` bila flow agentic benar-benar dibutuhkan
+- Multimodal vision: `OpenAI Responses API` or a comparable vision-capable model
+- LLM reasoning: `OpenAI` for rule explanations and structured outputs
+- RAG: embeddings plus retrieval over code references
+- Optional orchestration: `LangGraph` or `LangChain` if a more agentic flow becomes necessary
 
-### Geometry / Plan Processing
+### Geometry and plan processing
 
 - `OpenCV`
 - `Shapely`
 - `NetworkX`
 - `NumPy`
-- optional CAD/BIM parsers bila nanti masuk DWG/DXF/IFC pipeline
+- optional CAD or BIM parsers if the pipeline later needs `DWG`, `DXF`, or `IFC`
 
-### ML Layer Tahap Lanjut
+### Advanced ML layer
 
-Dipakai hanya kalau memang ada dataset simbol sendiri.
+Only add this once a real internal symbol dataset exists:
 
 - `TensorFlow / Keras`
-- custom object detection / segmentation
-- dataset simbol plan untuk outlet, fixture, panel, duct node, dsb
+- custom object detection or segmentation
+- a plan-symbol dataset for outlets, fixtures, panels, duct nodes, and related elements
 
-## Kenapa Bukan Full TensorFlow Dulu
+## Why not start with full TensorFlow
 
-Untuk recruiter dan MVP, yang paling kuat justru:
+For both recruiter value and MVP velocity, the strongest path is:
 
-- vision API dulu untuk validasi use case
-- RAG + rule engine untuk code reasoning
-- routing algorithm untuk hasil yang bisa didemokan
+- use a vision API first to validate the workflow
+- use RAG plus a rule engine for code reasoning
+- use a routing algorithm for something concrete and demonstrable
 
-Ini lebih cepat, lebih realistis, dan lebih jujur daripada mengklaim model CV custom kalau dataset belum ada.
+This is faster, more honest, and more realistic than claiming a custom vision model before a proper dataset exists.
 
-TensorFlow tetap relevan, tapi idealnya masuk di fase kedua untuk:
+TensorFlow still matters, but it fits better in phase two for:
 
-- symbol detection yang lebih stabil
-- room classification khusus domain plan
-- segmentation yang lebih presisi
+- more stable symbol detection
+- domain-specific room classification
+- more precise segmentation
 
-## Modul Inti Yang Harus Ada
+## Core modules
 
-### 1. Plan Intake
+### 1. Plan intake
 
-- upload file plan
+- plan upload
 - project metadata
-- versioning plan
+- plan versioning
 - parsing job queue
 
-### 2. Vision Extraction
+### 2. Vision extraction
 
-- deteksi room candidates
-- ekstraksi fixtures
-- ekstraksi wall/door/opening
+- room candidate detection
+- fixture extraction
+- wall, door, and opening extraction
 - visual overlay preview
 
-### 3. Code Knowledge Layer
+### 3. Code knowledge layer
 
-- ingestion dokumen FBC
-- ingestion NEC
-- metadata by chapter/topic/trade
-- citation-ready retrieval
+- ingest FBC references
+- ingest NEC references
+- store metadata by chapter, topic, and trade
+- support citation-ready retrieval
 
-Catatan:
-- `NEC` punya isu lisensi. Untuk versi publik/demo, jangan sembarang ingest full proprietary content tanpa hak penggunaan yang jelas.
+Note:
 
-### 4. Rule Engine
+- `NEC` has licensing considerations. For a public demo, do not ingest proprietary code content without clear usage rights.
 
-- rule templates by trade:
+### 4. Rule engine
+
+- trade-specific rule templates:
   - electrical
   - plumbing
   - mechanical
 - deterministic checks
 - structured constraint output
 
-### 5. Routing Engine
+### 5. Routing engine
 
 - pathfinding graph
 - obstacle map
-- start/end anchor
+- start and end anchors
 - candidate route scoring
 
 ### 6. Review UI
@@ -153,17 +154,17 @@ Catatan:
 - detected entities
 - suggested rules
 - generated route candidates
-- issue list / warnings
+- issue list and warnings
 
-### 7. Ops Layer
+### 7. Operations layer
 
 - audit logs
 - request logs
 - job runs
-- retry / failure states
+- retry and failure states
 - per-project processing status
 
-## Data Model Yang Perlu Ada
+## Suggested data model
 
 - `projects`
 - `building_plans`
@@ -180,112 +181,70 @@ Catatan:
 - `processing_runs`
 - `audit_logs`
 
-## MVP Yang Recruiter Akan Hargai
+## MVP stages recruiters will respect
 
-Jangan mulai dari "generate full Florida MEP plan". Mulai dari MVP yang believable:
+Do not start with "generate a full Florida-compliant MEP plan." Start with a believable MVP:
 
-### MVP-1: Plan Review Assistant
+### MVP-1: Plan review assistant
 
-- upload 1 denah arsitektur
-- AI deteksi room type dasar
-- RAG cari aturan FBC/NEC yang relevan
-- keluarkan checklist code-aware per room
+- upload one architectural floor plan
+- detect basic room types
+- retrieve relevant FBC and NEC guidance
+- output a code-aware checklist by room
 
-### MVP-2: Electrical Draft Helper
+### MVP-2: Electrical draft helper
 
-- deteksi bathroom / kitchen / room layout
-- sarankan titik outlet/GFCI secara rule-based
-- tampilkan overlay visual sederhana
+- detect bathrooms, kitchens, and room layout
+- suggest outlet or GFCI positions through rule-based logic
+- show a simple visual overlay
 
-### MVP-3: Routing Draft
+### MVP-3: Routing draft
 
-- pilih dua titik
-- generate candidate path dengan A*
-- tampilkan path yang menghindari dinding / forbidden area
+- select two points
+- generate a candidate path with A*
+- display a path that avoids walls and forbidden areas
 
-Kalau tiga flow ini jalan, kamu sudah punya demo yang sangat kuat buat role seperti itu.
+If those three flows work, the demo is already strong for this category of role.
 
-## Apa Yang Bisa Dipakai Dari App Kamu Sekarang
+## What can be reused from the current app
 
-Project kamu yang sekarang sudah punya fondasi yang berguna:
+The current project already includes useful foundations:
 
 - auth
-- workspace / project scoping
+- workspace or project scoping
 - document ingestion
-- RAG-friendly backend
-- audit trail
+- an RAG-friendly backend
+- audit trails
 - request logs
-- PostgreSQL-ready foundation
+- a PostgreSQL-ready foundation
 
-Mapping-nya:
+Suggested mapping:
 
-- `workspace` -> `project / client / building job`
-- `documents` -> `code references, project notes, specification sheets`
-- `chat` -> `plan review assistant`
-- `audit logs` -> `processing and reviewer activity`
-- `request logs` -> `job/debug observability`
+- `workspace` -> `project` or `client account`
+- `documents` -> `plans`, `code references`, or `specifications`
+- `chat` -> `review assistant panel`
+- `request logs` -> `workflow and pipeline telemetry`
+- `audit logs` -> `review actions and engineering traceability`
 
-## Roadmap Implementasi
+## What still needs to be built
 
-### Fase 1
+- plan viewer with overlays
+- detected room and fixture entities
+- a formal code-reference ingestion flow
+- rule evaluation results by room or system
+- routing candidate visualization
+- processing job timelines
 
-- project intake
-- upload plan image/PDF
-- code document library
-- room/fixture extraction mock + review panel
+## Positioning for a recruiter
 
-### Fase 2
+The safest and strongest framing is:
 
-- structured RAG for FBC/NEC
-- rule evaluation output
-- room-level recommendations
+`AI-assisted building plan review workspace that combines plan intake, code retrieval, and structured engineering review into one operational product.`
 
-### Fase 3
+That is better than overselling it as "a fully autonomous MEP generator" before the domain logic, datasets, and review layers are truly production-grade.
 
-- routing engine
-- path candidate overlay
-- issue scoring
+## Interview-safe summary
 
-### Fase 4
+If someone asks what this project demonstrates, answer:
 
-- custom vision model
-- batch processing
-- project dashboard
-- QA / approval workflow
-
-## Stack Yang Dijual Ke Recruiter
-
-Kalau kamu mau positioning yang kuat, jelaskan seperti ini:
-
-`I am building an AI-assisted building-plan automation platform that combines multimodal plan understanding, code-aware retrieval over FBC/NEC references, and path-routing algorithms to generate reviewable MEP recommendations on top of architectural drawings.`
-
-Versi Indonesianya:
-
-`Saya membangun platform otomasi rencana bangunan berbasis AI yang menggabungkan pembacaan denah visual, retrieval aturan bangunan, dan algoritma routing untuk menghasilkan rekomendasi MEP yang bisa direview engineer.`
-
-## Tech Stack Recommendation
-
-- `Frontend`: Next.js, TypeScript
-- `Backend`: FastAPI, Python
-- `Database`: PostgreSQL
-- `Vector Search`: pgvector
-- `AI`: OpenAI multimodal + embeddings
-- `Geometry`: OpenCV, Shapely, NumPy, NetworkX
-- `ML tahap lanjut`: TensorFlow/Keras
-- `Infra`: AWS
-
-## Yang Akan Dinilai Recruiter
-
-- apakah kamu paham memecah masalah teknik besar jadi MVP realistis
-- apakah kamu bisa menggabungkan AI + backend + geometry + review UI
-- apakah kamu paham perbedaan reasoning probabilistik vs rule-based constraints
-- apakah kamu punya data model dan observability yang masuk akal
-- apakah kamu jujur soal batas AI dan tetap mendesain human review loop
-
-## Prinsip Penting
-
-- jangan klaim full autonomous engineering kalau sistemmu masih assistant-level
-- tunjukkan `human-in-the-loop`
-- prioritaskan explainability dan citation
-- prioritaskan reviewability daripada sekadar "AI generated"
-
+`It demonstrates how I think about AI product engineering in a technical domain: start from a real workflow, layer in vision, retrieval, and deterministic logic where each one is appropriate, and make the system observable and reviewable instead of pretending the model alone solves everything.`
