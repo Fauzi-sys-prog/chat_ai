@@ -1,0 +1,38 @@
+:root {
+  color-scheme: dark;
+  --bg: #08111f;
+  --panel: rgba(8, 17, 31, 0.78);
+  --panel-border: rgba(161, 196, 253, 0.18);
+  --text: #eef4ff;
+  --muted: #aac0e5;
+  --accent: #7dd3fc;
+  --accent-strong: #38bdf8;
+  --user-bubble: #18314f;
+  --assistant-bubble: #10233b;
+  --danger: #fda4af;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 28%),
+    linear-gradient(180deg, #0b1220 0%, #08111f 100%);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}

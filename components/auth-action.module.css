@@ -1,0 +1,103 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: min(720px, 100%);
+  padding: 28px;
+  border: 1px solid var(--panel-border);
+  border-radius: 28px;
+  background: var(--panel);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.25);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.95;
+}
+
+.copy {
+  margin: 16px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.form {
+  margin-top: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(2, 6, 23, 0.7);
+  color: var(--text);
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 20px;
+  color: #03111f;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.ghostButton {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.error {
+  margin: 18px 0 0;
+  color: var(--danger);
+}
+
+.success {
+  margin: 18px 0 0;
+  color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .button,
+  .ghostButton {
+    width: 100%;
+  }
+}
