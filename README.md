@@ -37,6 +37,42 @@ This project demonstrates how an AI-assisted product can support building-plan r
 - Show one complete workflow from project intake to review output
 - End with observability, collaboration, or fallback behavior to reinforce engineering maturity
 
+## Product Preview
+
+Add your screenshots to `docs/screenshots/` and keep the filenames below so the preview section stays plug-and-play.
+
+### 1. Landing and Sign-in
+
+![Landing and sign-in](./docs/screenshots/landing-signin.png)
+
+`AI-assisted workspace for plan intake, code knowledge, and coordinated MEP review.`
+
+### 2. Project Dashboard
+
+![Project dashboard](./docs/screenshots/project-dashboard.png)
+
+`Project dashboard with review readiness, project context, and operating signals.`
+
+### 3. Plan and Reference Intake
+
+![Plan and reference intake](./docs/screenshots/plan-intake.png)
+
+`Plan and code-reference intake inside the active review workspace.`
+
+### 4. Review Chat
+
+![Review chat](./docs/screenshots/review-chat.png)
+
+`Structured AI review output with findings, checklists, and next actions.`
+
+### 5. Observability and Audit Trail
+
+![Observability and audit trail](./docs/screenshots/observability-audit.png)
+
+`Audit and request visibility for a more production-ready workflow.`
+
+If you only want a shorter GitHub preview, keep screenshots `1`, `2`, `4`, and `5`.
+
 ## At a glance
 
 - `Primary users`: architecture teams, MEP reviewers, code reviewers, estimators, or technical operations teams
