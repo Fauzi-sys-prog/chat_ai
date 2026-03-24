@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 import hashlib
 import io
 import json
@@ -11,7 +12,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
 from pathlib import Path
-from typing import Generator, Literal
+from typing import AsyncIterator, Generator, Literal
 from uuid import uuid4
 
 from dotenv import load_dotenv
@@ -75,10 +76,18 @@ engine = create_engine(
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, expire_on_commit=False)
 AUTO_MANAGE_SCHEMA = database_url.startswith("sqlite")
 
-app = FastAPI(title="Chat AI Python Backend")
 auth_rate_limit_state: dict[str, list[float]] = {}
 auth_rate_limit_lock = threading.Lock()
 email_job_worker_started = False
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+    start_email_job_worker()
+    yield
+
+
+app = FastAPI(title="Chat AI Python Backend", lifespan=lifespan)
 
 
 class Base(DeclarativeBase):
@@ -2604,11 +2613,6 @@ def start_email_job_worker() -> None:
 
     thread = threading.Thread(target=worker, daemon=True, name="email-job-worker")
     thread.start()
-
-
-@app.on_event("startup")
-async def startup_event() -> None:
-    start_email_job_worker()
 
 
 @app.middleware("http")

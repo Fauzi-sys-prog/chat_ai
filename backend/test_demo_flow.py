@@ -81,7 +81,7 @@ class DemoFlowTests(unittest.TestCase):
         )
         self.assertEqual(chat.status_code, 200, chat.text)
         self.assertEqual(chat.headers.get("x-ai-mode"), "demo")
-        self.assertIn("Berdasarkan dokumen workspace yang tersedia", chat.text)
+        self.assertIn("Based on the available workspace documents", chat.text)
         self.assertIn("SOP onboarding karyawan baru", chat.text)
 
     def test_demo_chat_without_documents_gives_clear_guidance(self) -> None:
@@ -98,8 +98,8 @@ class DemoFlowTests(unittest.TestCase):
         )
         self.assertEqual(chat.status_code, 200, chat.text)
         self.assertEqual(chat.headers.get("x-ai-mode"), "demo")
-        self.assertIn("belum ada dokumen workspace", chat.text.lower())
-        self.assertIn("upload pdf atau txt", chat.text.lower())
+        self.assertIn("there are no workspace documents available yet", chat.text.lower())
+        self.assertIn("upload a relevant pdf or txt file", chat.text.lower())
 
     def test_google_login_creates_account_and_returns_token(self) -> None:
         self.app_main.GOOGLE_CLIENT_ID = "google-client-id"

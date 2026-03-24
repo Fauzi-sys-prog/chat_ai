@@ -468,6 +468,7 @@ export function ChatApp() {
   const googleInitializedRef = useRef(false);
   const [isGoogleScriptReady, setIsGoogleScriptReady] = useState(false);
   const [showGoogleDevHint, setShowGoogleDevHint] = useState(false);
+  const [browserOrigin, setBrowserOrigin] = useState("");
   const isSimpleWorkspaceMode = true;
   const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? "";
   const isRegisterMode = authMode === "register";
@@ -886,6 +887,7 @@ export function ChatApp() {
       return;
     }
     const hostname = window.location.hostname;
+    setBrowserOrigin(window.location.origin);
     setShowGoogleDevHint(hostname === "localhost" || hostname === "127.0.0.1");
   }, []);
 
@@ -2234,7 +2236,9 @@ export function ChatApp() {
                 <p className={styles.authHint}>{googleHelperText}</p>
                 {showGoogleDevHint ? (
                   <p className={styles.authHint}>
-                    If the Google button does not respond locally, make sure this browser origin is registered in Google Cloud OAuth.
+                    If the Google button does not respond locally, add{" "}
+                    <code>{browserOrigin || "this local origin"}</code> to the Authorized JavaScript origins in
+                    Google Cloud OAuth.
                   </p>
                 ) : null}
               </>
