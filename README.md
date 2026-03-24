@@ -6,6 +6,37 @@ In one sentence: this app brings drawing intake, code knowledge, and AI-assisted
 
 This project is closer to `AI product engineering` than a simple chat UI. The focus is on project intake, document-aware review, workspace isolation, observability, and a deployment path that can be elevated to a production-style environment.
 
+## Recruiter preview
+
+`30-second pitch`
+
+This project demonstrates how an AI-assisted product can support building-plan review workflows instead of acting as a generic chatbot. The app combines plan intake, code-reference retrieval, structured review chat, project collaboration, and operational visibility inside one product surface.
+
+`What this shows`
+
+- Product thinking: the workflow is designed around a real review process, not only around a model response
+- Full-stack execution: the product includes frontend UX, backend APIs, database flows, auth, document handling, and observability
+- Operational realism: the app includes audit logs, usage tracking, fallback AI behavior, and a multi-project workspace model
+
+`Recommended screenshot order`
+
+1. Landing or sign-in screen
+   Show that the purpose is immediately clear: plan intake, code knowledge, and coordinated MEP review.
+2. Project dashboard
+   Show the active project summary, readiness board, and the broader operational framing of the product.
+3. Plan intake and reference files
+   Show uploaded plans, code references, and the document-aware review flow.
+4. Review chat and action output
+   Show how the assistant turns plan context into findings, checklists, and next actions.
+5. Audit or usage panel
+   Show request logs, analytics, or team usage to highlight production-minded design.
+
+`Walkthrough emphasis`
+
+- Start with the business problem, not the tech stack
+- Show one complete workflow from project intake to review output
+- End with observability, collaboration, or fallback behavior to reinforce engineering maturity
+
 ## At a glance
 
 - `Primary users`: architecture teams, MEP reviewers, code reviewers, estimators, or technical operations teams
